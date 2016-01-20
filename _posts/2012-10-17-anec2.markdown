@@ -1,0 +1,260 @@
+---
+layout: post
+title: "使用AIR透過ANE連接原生C++操控滑鼠-Part 2"
+date: 2012-10-17 18:24:24 +0800
+comments: true
+categories: [AIR,ActionScript3.0,C++]
+---
+我們最後產出一個dll動態連結類別檔
+
+接下來我們要來撰寫AS端的程式碼
+
+讓我們可以用鍵盤來控制滑鼠移動了！
+<!--more-->
+###Part2:AS端程式撰寫並生成ANE檔
+
+首先你可以在桌面上新建一個資料夾並且命名為<code>com<code>
+
+在裡面再創建一個資料夾,名稱可以用你的名字
+
+最後打開flashdevelop新增一個as檔或是你用記事本編寫存成as檔也都可以
+
+as檔的名稱可以自己取，這邊我取名<code>NativeApp.as</code>
+
+而這個as檔的路徑就像
+
+<code>com\ {yourName} \ {自己取的as}</code> 
+
+以我的範例來說:
+
+<code>com\sayaku\NativeApp.as</code> 
+
+內容如下
+
+{% codeblock lang:as3 NativeApp.as %}
+package com.sayaku{ 
+
+  import flash.external.ExtensionContext; 
+  //如果想要讓此類別可以發送及偵聽事件可以繼承EventDispatcher
+  public class NativeApp 
+  { 
+    private var _ec:ExtensionContext; 
+  
+    public function NativeApp() 
+    { 
+      _ec = ExtensionContext.createExtensionContext("com.sayaku.NativeApp", ""); 
+    } 
+  
+    public function setMousePos(_x:int, _y:int):void 
+    { 
+        //調用原生C++的setMousePosition方法
+       _ec.call('setMousePosition', _x, _y); 
+        
+    } 
+	
+    public function mouseClick():void 
+    { 
+        //調用原生C++的mouseClick方法＿
+       _ec.call('mouseClick',0); 
+        
+    } 
+	
+    public function dispose():void 
+    { 
+      _ec.dispose(); 
+    } 
+  } 
+}
+{% endcodeblock %}
+
+下面這段createExtensionContext方法會返回一個ExtensionContext的實體
+<code>ExtensionContext.createExtensionContext('com.sayaku.NativeApp', '');</code> 
+createExtensionContext的第一個參數是"識別用的ID"在這裡應該要是<code>com.你的名字.你的AS名稱</code>
+
+第二個參數目前還不知道要怎麼用~可以先填字串
+
+接著我們要將我們的as檔封裝成swc
+
+封裝成swc我們要使用命令提是字元程式
+
+首先打開附屬應用程式下的命令提示字元
+
+輸入
+{% codeblock %}
+cd "你自己flexSDK\bin的完整路徑" 
+{% endcodeblock %}
+
+以我的為範例
+
+{% codeblock %}
+ cd C:\Program Files\FlashDevelop\Tools\flexSDK4.6\bin 
+{% endcodeblock %}
+
+會導航到我們自己flexSDK裡bin的目錄中
+
+接下來我們下輸出swc的指令:
+{% codeblock %}
+ acompc -source-path "你com資料夾所在目錄的完整路徑"-include-classes "NativeApp.as的路徑"-swf-version="你flashplayer的版本號"-output "輸出swc的路徑"
+{% endcodeblock %}
+
+以我的範例:
+
+{% codeblock %}
+acompc -source-path C:\Users\sayaKU\Desktop -include-classes com.sayaku.NativeApp -swf-version=14 -output C:\Users\sayaKU\Desktop\com.sayaku.NativeApp.swc
+{% endcodeblock %}
+
+按下enter就能在桌面上看到輸出的swc
+
+![001](http://pcdn1.rimg.tw/photos/3034597_inootzk_l.jpg)
+
+生成swc以後,我們就可以跟之前編譯出來的dll檔包裝成ane檔了
+
+包裝ane檔需要下面幾項東西
+
+**1.dll檔**</br>
+**2.swc檔**</br>
+**3.swc裡的swf檔**</br>
+**4.xml描述檔**</br>
+
+我們先來製作描述檔，名稱可以自己取,這邊我是取<code>aneexpo.xml</code>
+
+內容如下:
+
+{% codeblock lang:xml aneexpo.xml %}
+<extension xmlns="http://ns.adobe.com/air/extension/3.1"> 
+    <id>com.sayaku.NativeApp</id> 
+    <versionNumber>1</versionNumber> 
+    <platforms> 
+        <platform name="Windows-x86">  
+            <applicationDeployment>  
+                <nativeLibrary>NativeApp.dll</nativeLibrary>  
+                <initializer>ExtInitializer</initializer>  
+                <finalizer>ExtFinalizer</finalizer>  
+            </applicationDeployment>  
+        </platform>  
+    </platforms> 
+</extension>
+{% endcodeblock %}
+
+接下來我們建立一個資料夾命名可以自己取~我這邊是取aneexpo,用來裝入我們要發布ane檔的檔案
+
+目前我們只有<code>NativeApp.dll</code><code>com.sayaku.NativeApp.swc</code><code>aneexpo.xml</code>
+
+還缺少一個swc裡的swf
+
+所以我們直接將swc的副檔名直接改成zip
+
+然後選擇解壓縮檔案去裡面尋找library.swf
+
+然後把他拉出來
+
+接下就可以把解壓縮出來的檔案砍掉
+
+將壓縮檔副檔名zip改回成swc
+
+![14](http://pcdn1.rimg.tw/photos/3034635_vbr2on7_l.jpg)
+
+接下來終於進入到最後階段........發布ane檔
+
+將aneexpo資料夾複製到你flexsdk\bin的目錄下
+
+然後打開命令提示字元
+
+先指向到flexsdk\bin的目錄下
+
+然後輸入以下指令
+
+{% codeblock %}
+adt -package -target ane NativeApp.ane "xml描述檔路徑" -swc "swc檔路徑"-platform Windows-x86 -C "原生dll檔與swf檔"
+{% endcodeblock %}
+
+以我的範例
+{% codeblock %}
+adt -package -target ane NativeAdd.ane expo/expo.xml -swc expo/com.sayaku.NativeAdd.swc -platform Windows-x86 -C expo NativeAdd.dll library.swf
+{% endcodeblock %}
+
+按下enter就會在flexsdk\bin目錄下生成一個ane檔
+
+![15](http://pcdn1.rimg.tw/photos/3034643_3tiexo6_l.jpg)
+
+有了ane檔接下來要來做測試
+
+打開FlashDevelop開啟一個新的AIR專案
+
+ane的使用方式可以參考這篇→[點我](http://blog.roodo.com/sayaku/archives/19907808.html)
+
+裡面有講到ane的設定
+
+我們就利用鍵盤來控制鼠標位置與點擊事件來做測試
+
+主檔案NativaMouse.as的內容
+
+{% codeblock lang:as3 NativaMouse.as %}
+package 
+{
+	
+   import com.sayaku.NativeApp;
+   import flash.display.Sprite;
+   import flash.events.KeyboardEvent;
+   import flash.events.MouseEvent;
+   import flash.ui.Keyboard;
+ 
+   public class NativeMouse extends Sprite 
+   {
+	private var ane:NativeApp;
+	private var _x:int=0;
+	private var _y:int=0;
+	public function NativeMouse():void 
+	{
+		ane = new NativeApp();  
+		//偵聽鍵盤事件
+		stage.addEventListener(KeyboardEvent.KEY_DOWN, keydown);
+            
+			
+		//畫一個黑色矩形做為測試滑鼠點擊的區域
+		var sp:Sprite = new Sprite();
+		addChild(sp);
+		sp.graphics.beginFill(0x000000);
+		sp.graphics.drawRect(0, 0, 100, 100);
+		sp.graphics.endFill();
+		sp.buttonMode = true;
+		sp.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):void { trace("我點到了!!") } );
+			
+			
+			
+	}
+		
+	private function keydown(e:KeyboardEvent):void 
+	{
+		//根據鍵盤按的方向去移動滑鼠的位置
+		switch(e.keyCode) 
+                {
+		 case Keyboard.UP:      _y-=5;
+				        ane.setMousePos(_x, _y);
+					break;
+		 case Keyboard.DOWN:    _y+=5;
+				        ane.setMousePos(_x, _y);
+					break;
+		 case Keyboard.LEFT:    _x-=5;
+				        ane.setMousePos(_x, _y);
+					break;
+		 case Keyboard.RIGHT:   _x+=5;
+				        ane.setMousePos(_x, _y);
+					break;
+		 case Keyboard.SPACE:   ane.mouseClick() ;
+				        break;
+		}
+	}
+		
+    }
+	
+}
+{% endcodeblock %}
+
+發布後我們就可以用鍵盤去控制鼠標的位置
+
+並且移到黑色方塊上按下空白鍵也會發生點擊事件喔!
+
+![16](http://pcdn1.rimg.tw/photos/3034695_kvn5a94_l.jpg)
+
+原始檔底加→[點我](http://dl.dropbox.com/u/68443214/ANEMouse.rar)

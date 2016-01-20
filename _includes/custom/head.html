@@ -1,0 +1,154 @@
+<!--
+Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!--fancybox plugin -->
+<script type="text/javascript" src="{{ root_url }}/javascripts/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="{{ root_url }}/javascripts/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="{{ root_url }}/javascripts/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="{{ root_url }}/javascripts/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="{{ root_url }}/javascripts/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="{{ root_url }}/javascripts/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="{{ root_url }}/javascripts/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="{{ root_url }}/javascripts/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.fancybox-media').attr('rel', 'media-gallery').fancybox({
+        openEffect : 'none',
+		closeEffect : 'none',
+        prevEffect : 'none',
+		nextEffect : 'none',
+        arrows : false,
+		helpers : {
+			media : {
+                    
+                     },
+            overlay : {
+		        closeClick : true,  // if true, fancyBox will be closed when user clicks on the overlay
+		        speedOut   : 200,
+		        showEarly  : false,  // indicates if should be opened immediately or wait until the content is ready
+		       css        : {},    // custom CSS properties
+		       locked     : true   // if true, the content will be locked into overlay
+	         },
+			buttons : {
+              },
+            title : {
+		            type : 'float'
+	                }
+		}
+	});
+
+    $('.fancybox-youtube').fancybox({
+        openEffect : 'none',
+		closeEffect : 'none',
+        aspectRatio : true,
+		helpers : {
+			media : {},
+            overlay : {
+		      closeClick : true,  // if true, fancyBox will be closed when user clicks on the overlay
+             
+		      speedOut   : 200,   // duration of fadeOut animation
+		      showEarly  : false,  // indicates if should be opened immediately or wait until the content is ready
+		      css        : {},    // custom CSS properties
+		      locked     : true   // if true, the content will be locked into overlay
+	        },
+            title : {
+		            type : 'float'
+	                }
+		}
+	});
+    
+
+
+   $("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : 'http://pcdn1.rimg.tw/photos/4345004_k4cthzh_l.jpg',
+						title : '牡丹'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345006_pp533mr_l.jpg',
+						title : '鰲魚'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345008_mhd0iju_l.png',
+                        title : '小三王'  
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345010_nvge79d_l.png',
+                        title : '四大天王'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345012_6o7xykw_l.png',
+                        title : '市上大吉'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345016_h4a7sja_l.png',
+                        title : '鹿乳奉親'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345018_5cq017x_l.png',
+                        title : '喜鵲報財'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+             $("#fancybox-manual-a").click(function() {
+				$.fancybox.open([
+					{
+						href : 'http://pcdn1.rimg.tw/photos/4346588_z8u4dhw_l.jpg',
+						title : 'Photoshop 2D Render 練習'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346594_p69xwui_l.jpg',
+						title : 'Photoshop 2D Render 練習'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346598_fyp748e_l.jpg',
+                        title : 'Photoshop 2D Render 練習'  
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346600_m1pvhc6_l.jpg',
+                        title : '桃園捷運LOGO競賽'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346590_xqskd8z_l.jpg',
+                        title : 'e-job形象人物設計'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346592_9dknqbo_l.jpg',
+                        title : '台哥大雲豹形象設計'
+					}, {
+						href : 'http://b1.rimg.tw/sayaku/f3f760f9.gif',
+                        title : '氣球女孩繪製過程'
+					}, {
+						href : 'http://b1.rimg.tw/sayaku/ac038e53.jpg',
+                        title : '氣球女孩'
+					}, {
+						href : 'https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-frc3/t1/397110_10151299971519687_2115497686_n.jpg',
+                        title : '水彩練習'
+					}, {
+						href : 'https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash2/t1/399279_10151299876174687_1691872990_n.jpg',
+                        title : '工筆練習'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+            $('.fancybox').fancybox();
+
+});
+
+</script>

@@ -1,0 +1,83 @@
+---
+layout: page
+title: "作品集"
+comments: false
+sharing: true
+footer: true
+sidebar: false
+---
+
+<section class="slide-container">
+  <h1>互動裝置</h1>
+
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="{{root_url}}/portfolio/actionmirror.html" ><img src="http://pcdn1.rimg.tw/photos/4337162_qvt4w78_l.jpg" alt="動鏡" border="0" /></a>
+  <div class="title">動鏡</div>
+</div>
+
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="http://www.youtube.com/watch?v=pACrwwLjPxA" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337228_7xeovtu_l.png" alt="核解" border="0" /></a>
+  <div class="title">核解</br>(體感程式技術支援)</div>
+</div>
+
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="http://www.youtube.com/watch?v=7VjGwlgNkys" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337238_kb43754_l.png" alt="v" border="0" /></a>
+  <div class="title">卡司蹦 CashaBall</br>(體感程式技術支援)</div>
+</div>
+
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="#" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337240_1k08boe_l.png" alt="愛樂活,拒垃活" border="0" /></a>
+  <div class="title">愛樂活,拒垃活</br>(負責部份：程式撰寫)</div>
+</div>
+
+ <h1>Flash website</h1>
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="https://dl.dropboxusercontent.com/u/68443214/mediaLab/media/index.html" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337158_dk0tzov_l.jpg" alt="MediaLab" border="0" /></a>
+  <div class="title">MediaLab</div>
+</div>
+
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="https://dl.dropboxusercontent.com/u/68443214/rexdesign/index.html" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337210_5qah5aa_l.png" alt="Rex Design" border="0" /></a>
+  <div class="title">Rex Design</div>
+</div>
+
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="#"><img src="/images/logo.png"  border="0" /></a>
+  <div class="title">鎮南國小插角國小交流系統</div>
+</div>
+ 
+ <h1>iOS APP Project</h1>
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="http://www.youtube.com/watch?v=C2dJp212iIY" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337164_bwjamb2_l.jpg" alt="點不同" border="0" /></a>
+  <div class="title">點不同</br>(Cocos2D project)</div>
+</div>
+
+ <h1>動畫</h1>
+
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="http://www.youtube.com/watch?v=6zVlpd3aRpk" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337160_k3pyfu2_l.jpg" alt="RunRunRun" border="0" /></a>
+  <div class="title">RunRunRun-國防部第47屆文藝金像獎-多媒體短片-銅獎</div>
+</div>
+ <h1>平面畫廊</h1>
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="http://www.youtube.com/watch?v=-osoEetKS6A" target="_blank"><img src="/images/logo.png" alt="Xcode and Storyboard" border="0" /></a>
+  <div class="title">Xcode and Storyboard</div>
+</div>
+
+<div class="slide-deck">
+  <div class="date">2013.12.24</div>
+  <a href="http://www.youtube.com/watch?v=-osoEetKS6A" target="_blank"><img src="/images/logo.png" alt="Xcode and Storyboard" border="0" /></a>
+  <div class="title">Xcode and Storyboard</div>
+</div>
+<h1></h1>
+</section>
