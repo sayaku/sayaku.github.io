@@ -4,7 +4,7 @@
   <title><![CDATA[林克融]]></title>
   <link href="http://sayaku.github.io/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
-  <updated>2016-01-20T18:49:16+08:00</updated>
+  <updated>2016-01-20T18:50:58+08:00</updated>
   <id>http://sayaku.github.io/</id>
   <author>
     <name><![CDATA[sayaku]]></name>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Demo]]></title>
-    <link href="http://sayaku.github.io/blog/2016/01/20/demo/"/>
-    <updated>2016-01-20T18:48:28+08:00</updated>
-    <id>http://sayaku.github.io/blog/2016/01/20/demo</id>
-    <content type="html"><![CDATA[<p>test</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby on Rails入門筆記-開發前環境設定]]></title>
