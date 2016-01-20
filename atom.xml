@@ -1,0 +1,3025 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[林克融]]></title>
+  <link href="http://sayaku.github.io/atom.xml" rel="self"/>
+  <link href="http://sayaku.github.io/"/>
+  <updated>2016-01-20T16:43:33+08:00</updated>
+  <id>http://sayaku.github.io/</id>
+  <author>
+    <name><![CDATA[sayaku]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby on Rails入門筆記-開發前環境設定]]></title>
+    <link href="http://sayaku.github.io/blog/2016/01/20/learnruby/"/>
+    <updated>2016-01-20T14:09:46+08:00</updated>
+    <id>http://sayaku.github.io/blog/2016/01/20/learnruby</id>
+    <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Ruby_logo.png" width="300px"></p>
+
+<!--more-->
+
+
+<h1>什麼要學Ruby?</h1>
+
+<p>Ruby是由日本人<strong>松本行弘</strong>（まつもとゆきひろ）以Ｃ語言為基礎所創造出來的程式語言</p>
+
+<p>Ruby知名於Ruby on Rails,是個可以用簡短的程式快速創造出網站的框架</p>
+
+<blockquote><p>注意：Ruby on Rails不是程式語言,他只是基於Ruby所製作出來的框架</p></blockquote>
+
+<p>Ruby on Rails近年來也越來越火紅，也越來越多大神在使用</p>
+
+<p>既然要學好Ruby on Rails，那Ruby學好是必須的！</p>
+
+<p>而學習Ruby有趣的地方，則在於他的語法簡單易懂</p>
+
+<p>有基礎程式概念的人還蠻容易上手的</p>
+
+<p>當然Ruby除了Rails以外還可以做其他的事</p>
+
+<p>最近開始上Ruby on Rails的課程</p>
+
+<p>寫這篇當作筆記也當作複習</p>
+
+<p>好好的來體驗吧！</p>
+
+<h1>環境設定</h1>
+
+<p>Ruby支援<strong>Windows / Mac / Linux</strong>平台</p>
+
+<p>在安裝使用上建議使用 Mac / Linux 平台</p>
+
+<p>如果是windows平台的使用者，可以下載rubyinstaller來安裝<a href="http://rubyinstaller.org/">官網下載</a></p>
+
+<p>像小弟我本身使用Mac來開發，系統本身就有內建ruby了</p>
+
+<p>但使用系統內建的ruby會有權限問題，每打個指令就很常需要用到sudo來通過系統權限</p>
+
+<p>很麻煩，所以可以自己下載不同版本的ruby來使用</p>
+
+<p>既然會有多不同版本的ruby，自然就會有控制Ruby版本的東西</p>
+
+<p>首先打開terminal(windows平台叫命令提示字元)輸入指令</p>
+
+<p>mac找不到的話，可以使用程式搜尋來尋找terminal.app</p>
+
+<p>其實如果只是想打打Ruby語言，可以直接跳到step.5</p>
+
+<p>另外也可以使用雲端環境cloud9來使用ruby,<a href="https://c9.io/?redirect=0">cloud9</a></p>
+
+<h1>step1.安裝RVM</h1>
+
+<p>RVM是管理Ruby版本用的套件</p>
+
+<p>安裝方式可以RVM的<a href="http://rvm.io/">官網下載</a></p>
+
+<p>安裝方法需要使用<code>terminal</code>輸入指令安裝</p>
+
+<h1>step2.安裝Homebrew</h1>
+
+<p>Homebrew可以用來下載系統需要的套件包，例如MySql等等套件</p>
+
+<p>安裝RVM過程中可能會出錯，需要透過homebrew來安裝套件包</p>
+
+<p>Homebrew的<a href="http://brew.sh/">官網</a></p>
+
+<p>裝好RVM的話，可以使用指令來下載最新的Ruby（截稿前最新版本2.3.0)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>    <span class="nv">$ </span>rvm install 2.3.0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>裝好後可以下指令來當做預設版本</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>    <span class="nv">$ </span>rvm 2.3.0 --default
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>step3.安裝Bundler</h1>
+
+<p>Bundler是Ruby套件的版本管理套件包，會根據所指定版本的套件來更新</p>
+
+<p>可以先用ruby內建的gem來安裝</p>
+
+<p>gem是管理ruby套件的套件</p>
+
+<p>有需要ruby的套件如rails都可以透過它來下載</p>
+
+<p>有需要Ruby其他的套件也可以上他們官網去搜尋</p>
+
+<p>RubyGem的<a href="https://rubygems.org/">官網</a></p>
+
+<p>第一件事情就是更新Gem的版本囉</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> <span class="nv">$ </span>gem update --system
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>更新好gem接下來就是利用gem來安裝bundler</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install bundler
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>step4. 安裝 Rake</h1>
+
+<p>Rake是可以將Ruby指令簡化的一個套件</p>
+
+<p>未來在開發的過程中會很常使用</p>
+
+<p>可以透過Gem來下載這個套件</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install rake
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>裝完後基本上該設定的環境也都差不多設定好了</p>
+
+<p>我們可以試著來打打看Ruby語言</p>
+
+<h1>step5. Ruby的第一個Hello World</h1>
+
+<p>首先在terminal上鍵入irb</p>
+
+<p>irb是個可以處理與顯示ruby語法的互動介面</p>
+
+<p>可以做簡單的ruby運算</p>
+
+<p>第一個ruby的APP!印出Hello World</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;hello world!&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>會印出</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="n">world</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果要離開irb互動介面的話</p>
+
+<p>可以按下<code>ctrl</code>+<code>D</code></p>
+
+<p>irb在處理ruby比較麻煩，一次就只能輸出一行</p>
+
+<p>如果要編輯多行的話可以使用編輯器來編輯ruby的文件</p>
+
+<p>編輯ruby小弟推薦sublime text這套編輯器</p>
+
+<h1>step6.安裝Sublime Text編輯器</h1>
+
+<p>sublime text編輯器<a href="http://www.sublimetext.com/3">下載</a></p>
+
+<p>下載安裝後，打開編輯器，新增一的檔案並且存檔想要的檔名</p>
+
+<p>例如：<code>rubyTest.rb</code></p>
+
+<p>並在直接在內容輸入</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="nb">puts</span> <span class="s1">&#39;hello world!&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>存檔後</p>
+
+<p>開啟terminal</p>
+
+<p>輸入指令</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="err">$</span> <span class="n">ruby</span> <span class="n">rubyTest</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>結果是一樣的</p>
+
+<p>不過每改完一次還要再打開terminal輸入這個才能看到結果實在是太麻煩了</p>
+
+<p>所以可以直接在sublime text編輯畫面直接按下<code>command</code>+<code>B</code></p>
+
+<p>sublime text可以直接顯示輸出結果</p>
+
+<p>下個單元再來介紹ruby語言的基礎介紹</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[広島一日遊]]></title>
+    <link href="http://sayaku.github.io/blog/2014/09/23/hirosima/"/>
+    <updated>2014-09-23T13:25:22+08:00</updated>
+    <id>http://sayaku.github.io/blog/2014/09/23/hirosima</id>
+    <content type="html"><![CDATA[<p><img src="http://pcdn1.rimg.tw/photos/4558748_jw2sv3d_l.jpg" alt="" /></p>
+
+<!--more-->
+
+
+<p>繼上回<a href="http://sayaku.github.io/blog/2014/09/22/kyoto/">大阪京都小折來回</a>的當天，晚上馬上又要搭夜巴到廣島</p>
+
+<p>真是非常充實阿!</p>
+
+<p>由於是第一次體驗夜巴真是既新鮮又期待阿(但往往會受傷害，後面會提到)</p>
+
+<p>我們是搭乘晚間11點整發的"青春ドリーム広島号"</p>
+
+<p><img src="https://scontent-tpe1-1.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/10690021_10152701906104687_8749923742024899837_n.jpg?oh=f8d6fe455ecf8efe0f0045b3ef8982af&amp;oe=5736149F" alt="" /></p>
+
+<p>上車到廣島的這段期間可以說是一大折磨</p>
+
+<p>因為冷氣斷斷續續的，窗簾全都拉起來看不到窗景，空氣非常的悶</p>
+
+<p>熱到你完全不會想睡= =</p>
+
+<p>我還蠻佩服有些日本人還穿大衣睡</p>
+
+<p>終於熬到了早上六點到了廣島</p>
+
+<p>這班車非常非常準時在六點整抵達(真的是六點整!!)</p>
+
+<p>出了廣島巴士轉運站因為才六點沒什麼人</p>
+
+<p><img src="https://scontent-tpe1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/10636317_10152702735614687_7521068287686158464_n.jpg?oh=6405682cb52845dce8e834952d42332c&amp;oe=56FEBE6D" alt="" /></p>
+
+<p>雖然早上六點但路面電車已經在街上趴趴走了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558747_w15q65t_l.jpg" alt="" /></p>
+
+<p>廣島是全世界路面電車系統最大也是最發達的都市</p>
+
+<p>而且車種很多，由於早上沒什麼車，顯得格外優閒</p>
+
+<p>廣島也是世界上第一個遭受核攻擊的都市(第一個被種香菇的都市)</p>
+
+<p>所以在世界上的知名度非常的大</p>
+
+<p>廣島有兩個世界遺產，即二戰末期遭受原子彈爆炸後所殘留下來的圓頂広島県産業奨励館</p>
+
+<p>另一個則是海上大鳥居的厳島神社，也是晚一點會去的景點</p>
+
+<p>原爆DOME就離廣島巴士中心不遠的地方</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558749_rzcujh5_l.jpg" alt="" /></p>
+
+<p>以往在歷史課本上看到的原爆圓頂建築現在活生生映在眼前</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558750_nac46ah_l.jpg" alt="" /></p>
+
+<p>戰爭真是殘酷的，位於爆炸中心點附近的圓頂屋是少數留存下來的建物</p>
+
+<p>其他的則是全部夷為平地，死傷超過20萬人</p>
+
+<p>也體會到核子武器的恐怖</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558751_vgfc5bd_l.jpg" alt="" /></p>
+
+<p>圓頂屋現在有圍籬圍起來進不去，變成許多鳥類的棲息地</p>
+
+<p>相生橋旁的烏鴉，羽色黑的蠻漂亮的</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558752_t893qvf_l.jpg" alt="" />
+<img src="http://pcdn1.rimg.tw/photos/4558753_vzo4a7c_l.jpg" alt="" /></p>
+
+<p>相生橋是本川與元安川兩條河流的分歧處，相生橋則跨越兩條河川成T字型</p>
+
+<p>因為明顯的T字型，所以二戰美軍則以相生橋為原子彈的投彈目標</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558754_e2wbneh_l.jpg" alt="" /></p>
+
+<p>每年的8/6日(原爆的日期)則會有舉辦紀念會</p>
+
+<p>廣島市路面電車新車型，聽說還有保留4輛原爆當時還在營運的電車</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558755_zxr1ch0_l.jpg" alt="" /></p>
+
+<p>廣島是個充滿和平氣息的城市</p>
+
+<p>接著來到廣島城，早上天氣不太好真可惜</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558756_i68itv3_l.jpg" alt="" /></p>
+
+<p>時間來到早上九點，會有廣島當地日本友人向井さん帶我們遊廣島</p>
+
+<p>向井さん是個非常親切的日本人!!!</p>
+
+<p>走到赴約地點的路上，經過政府機關都會發現全部降半旗</p>
+
+<p>回來看新聞才知道，因為之前廣島發生非常嚴重的土石流，死了40幾個人</p>
+
+<p>於是降半旗一個月以示哀悼</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558757_tgtc8uk_l.jpg" alt="" /></p>
+
+<p>與向井さん會合後</p>
+
+<p>我們搭著路面電車要去宮島</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558762_ybwly2e_l.jpg" alt="" /></p>
+
+<p>第一次搭路面電車獻給了廣島</p>
+
+<p>在大阪這麼久了還沒搭過大阪的路面電車</p>
+
+<p>車內一景</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558764_rgh10qi_l.jpg" alt="" /></p>
+
+<p>路面電車的市內線價格一律160日圓，很划算</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558766_ipks5sl_l.jpg" alt="" /></p>
+
+<p>抵達西廣島站，要轉車到宮島</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558769_hrukhs5_l.jpg" alt="" /></p>
+
+<p>到了宮島站以後，還要再搭船前往宮島</p>
+
+<p>在宮島口又與兩位日本朋友竹馬さん會合，他說他們每個月都會來宮島一次</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558771_4y6yro8_l.jpg" alt="" /></p>
+
+<p>前方就是宮島、是嚴島神社的所在地</p>
+
+<p>這邊的牡蠣(カキ)很有名，搭船期間可以看到海上都是蚵架(かきいかだ)</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558773_8kut0w2_l.jpg" alt="" /></p>
+
+<p>看到海上大鳥居了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558775_17qlvpz_l.jpg" alt="" /></p>
+
+<p>準備登島了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558776_pans7jy_l.jpg" alt="" /></p>
+
+<p>一登島就看到&hellip;</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558777_p17duqz_l.jpg" alt="" /></p>
+
+<p>這邊的鹿我覺得沒有奈良的這麼兇，不過好愛吃紙&hellip;</p>
+
+<p>這邊的牡蠣很有名，竹馬さん買了這邊有名的牡蠣烤飯糰招待大家</p>
+
+<p>大感謝阿!!!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558778_aqzny36_l.jpg" alt="" /></p>
+
+<p>熱熱吃還蠻好吃的!!!</p>
+
+<p>繼續往前走就會看到世界名景嚴島神社海上大鳥居</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558780_f678zas_l.jpg" alt="" /></p>
+
+<p>拍照拍到一半，旁邊的鹿群們又開始在爭食物</p>
+
+<p>他們好可憐，都吃地圖維生</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558781_9aaarca_l.jpg" alt="" /></p>
+
+<p>第三隻參戰!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558782_wpwl7yt_l.jpg" alt="" /></p>
+
+<p>來到這不要亂丟紙類品喔，不然鹿吃了都是油墨對身體不好</p>
+
+<p>接下來進去嚴島神社</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558783_6stgm7h_l.jpg" alt="" /></p>
+
+<p>竹馬さん教了我們正確的參拜的方法</p>
+
+<p>他還說大神社的參拜法與一般神社不一樣</p>
+
+<p>像是先行兩次禮，再拍手(一般神社拍手拍兩下，大型神社拍四下)</p>
+
+<p>對了，連在手洗舍洗手也有一些不同</p>
+
+<p>感謝竹馬さん的教導!!</p>
+
+<p>進到嚴島神社剛好遇到有結婚式</p>
+
+<p>第一次看到傳統的</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558787_99zbt0p_l.jpg" alt="" /></p>
+
+<p>由神社往大鳥居看，都退潮了，等等可以走下去看</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558788_dkqrx3g_l.jpg" alt="" /></p>
+
+<p>在這邊來個大合照</p>
+
+<p><img src="https://scontent-b-pao.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10612804_657030091070552_1677297934565919262_n.jpg?oh=75339ab7abef938ad1a478202d51866a&amp;oe=548DAAC4" alt="" /></p>
+
+<p>向井さん在參拜
+<img src="http://pcdn1.rimg.tw/photos/4558789_8fuesrr_l.jpg" alt="" /></p>
+
+<p>嚴島神社社徽</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558790_azutfkk_l.jpg" alt="" /></p>
+
+<p>繼續往下走，來到一個小神社</p>
+
+<p>這個小神社是求錢財的，聽說很靈驗</p>
+
+<p>拜的時候要把錢包放進旁邊的石燈籠內(我忘了放= =，難怪這麼窮)</p>
+
+<p>參拜時記得把錢包放到照片後面的那個石燈籠內喔</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558791_eq58c5d_l.jpg" alt="" /></p>
+
+<p>中午時則是在宮島上吃中餐</p>
+
+<p>竹馬さん還有向井さん招待了炸紅葉饅頭(もみじ饅頭)還有向井さん友人開的漢堡店</p>
+
+<p>唐揚もみじ饅頭</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558972_kokk7ti_l.jpg" alt="" /></p>
+
+<p>魚堡
+<img src="http://pcdn1.rimg.tw/photos/4558973_mfrcntw_l.jpg" alt="" /></p>
+
+<p>又吃了串燒</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558799_4c0ps4n_l.jpg" alt="" /></p>
+
+<p>感謝招待了這麼多食物!!!</p>
+
+<p>廣島人果然非常友善阿!!</p>
+
+<p>吃完後去逛一下退潮大大鳥居
+<img src="http://pcdn1.rimg.tw/photos/4558796_3f9tfmb_l.jpg" alt="" /></p>
+
+<p>當然人是超級多了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558798_y7buyxz_l.jpg" alt="" /></p>
+
+<p>差不多要離開宮島了</p>
+
+<p>在路邊看到囂張的鹿，這樣人家怎麼做生意</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558800_xu2el54_l.jpg" alt="" />
+<img src="http://pcdn1.rimg.tw/photos/4558801_yin9zk0_l.jpg" alt="" /></p>
+
+<p>宮島掰掰
+<img src="http://pcdn1.rimg.tw/photos/4558802_5dsrmr3_l.jpg" alt="" /></p>
+
+<p>回廣島的路上
+<img src="http://pcdn1.rimg.tw/photos/4558803_e4dc0nj_l.jpg" alt="" /></p>
+
+<p>JR真的是甚麼都包，鐵路、夜巴、船，都給你玩就好了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558804_hh0sy1m_l.jpg" alt="" /></p>
+
+<p>來到渡船頭在JR宮島口站搭乘JR回到西廣島</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558807_wiapxy9_l.jpg" alt="" /></p>
+
+<p>在街路面電車回到巴士中心站，這邊向井さん要先回去開車來載我們</p>
+
+<p>有當地人真的超方便的啦!!</p>
+
+<p>話說這邊的7-11為什麼是寫英文的</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558808_s7fd2ys_l.jpg" alt="" /></p>
+
+<p>在等向井さん的這段期間又再去了一次廣島城</p>
+
+<p>這時天氣非常的好!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558809_7y323ek_l.jpg" alt="" /></p>
+
+<p>廣島城內很多展廳不是不用錢不然就很便宜</p>
+
+<p>其實蠻值得去看的</p>
+
+<p>而且裡面的公園感覺很悠閒</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558810_7rgmln0_l.jpg" alt="" /></p>
+
+<p>城內的廣島護國神社</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558812_vu1k9vs_l.jpg" alt="" /></p>
+
+<p>這裡面也有銅馬</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558813_3p7xfkp_l.jpg" alt="" /></p>
+
+<p>獨特的社徽</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558814_pbuilmv_l.jpg" alt="" /></p>
+
+<p>廣島城天守閣!!</p>
+
+<p>天氣真的超好，天很藍(其實我用了偏光鏡)</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558816_e0ab43w_l.jpg" alt="" /></p>
+
+<p>天守閣頂樓風景</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558817_1qcczje_l.jpg" alt="" /></p>
+
+<p>後來向井さん到了</p>
+
+<p>就開車帶我們亂繞</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558818_bfmwtn8_l.jpg" alt="" /></p>
+
+<p>後來晚餐就去吃道地的廣島燒</p>
+
+<p>店名叫bali A(廣島方言ばりえぇ、"非常好"之意)</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558819_iaccje1_l.jpg" alt="" /></p>
+
+<p>好吃的廣島燒</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558820_8zf3hoe_l.jpg" alt="" /></p>
+
+<p>吃飽後向井さん帶我們去看廣島夜景</p>
+
+<p>在一個叫做黃金山的山上可以看到廣島所有夜景</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558821_w8ros22_l.jpg" alt="" /></p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558822_1oi1w54_l.jpg" alt="" /></p>
+
+<p>這真是太感謝向井さん了</p>
+
+<p>帶外地觀光客來看這些私房景點</p>
+
+<p>最後向井さん送我們到巴士中心去搭往大阪的夜巴</p>
+
+<p>心裡真是由衷的感謝</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558823_2ffsjpm_l.jpg" alt="" /></p>
+
+<p>車來了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4558825_ppp7109_l.jpg" alt="" /></p>
+
+<p>然後，回大阪的夜巴更慘，司機連冷氣都沒開</p>
+
+<p>坐我後面的大阪女生一直在喊:腹減った(肚子餓了)</p>
+
+<p>就這樣在又熱又吵的環境下回大阪&hellip;.</p>
+
+<p>下次絕對&hellip;.不會再搭夜巴了= =</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[大阪京都小折119公里]]></title>
+    <link href="http://sayaku.github.io/blog/2014/09/22/kyoto/"/>
+    <updated>2014-09-22T16:27:57+08:00</updated>
+    <id>http://sayaku.github.io/blog/2014/09/22/kyoto</id>
+    <content type="html"><![CDATA[<p><img src="http://pcdn1.rimg.tw/photos/4557886_sjb8ull_l.jpg" alt="" /></p>
+
+<!--more-->
+
+
+<p>為了讓自己在日本有個美好的回憶</p>
+
+<p>決定就來騎小折到京都啦</p>
+
+<p>經過上次騎到關西空港附近的岸和田還有前不久騎到奈良</p>
+
+<p>想這次應該是沒問題!</p>
+
+<p>出發前準備一下，避免下雨記得要帶個晴天雨衣(莫非定律)</p>
+
+<p>早上六點準時從大阪平野出發，天氣陰
+<img src="http://pcdn1.rimg.tw/photos/4557835_gc1can4_l.jpg" alt="" /></p>
+
+<p>這一次還有兩位室友的陪同就甘心ㄟ</p>
+
+<p>就這樣一路往京都的方向出發</p>
+
+<p>抵達千日前通
+<img src="http://pcdn1.rimg.tw/photos/4557836_bty47i4_l.jpg" alt="" /></p>
+
+<p>騎了約5公里</p>
+
+<p>抵達放出</p>
+
+<p>恩!對~地名就叫"放出"</p>
+
+<p>放出站構內
+<img src="http://pcdn1.rimg.tw/photos/4557837_wd6g3pb_l.jpg" alt="" /></p>
+
+<p>騎了一陣子</p>
+
+<p>終於離開大阪市抵達守口市
+<img src="http://pcdn1.rimg.tw/photos/4557838_8g6vumb_l.jpg" alt="" /></p>
+
+<p>看看騎了這麼久，到京都還有多遠</p>
+
+<p>不看還好,一看&hellip;.囧</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557839_ao0ncrw_l.jpg" alt="" /></p>
+
+<p>繼續努力</p>
+
+<p>接下來到達淀川，他是大阪最大的河川</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557841_bf4614t_l.jpg" alt="" /></p>
+
+<p>因為走平面道路紅綠燈很多，所以改走河堤</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557842_eq95n5v_l.jpg" alt="" /></p>
+
+<p>他們連河堤的路都好平阿，非常好騎，旁邊就是淀川河川公園</p>
+
+<p>這個自行車道可以從大阪港附近一路騎到樟葉(くずは)約25KM</p>
+
+<p>↓大阪單軌電車</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557843_yfrus08_l.jpg" alt="" /></p>
+
+<p>抵達枚方，到這裡就表示我們的路途已經騎了一半了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557845_axgxgoa_l.jpg" alt="" /></p>
+
+<p>沿著13號府道一直接到枚方大橋，往高槻前進</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557846_zcgxsxk_l.jpg" alt="" /></p>
+
+<p>高槻市與枚方市是以淀川為分界</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557847_9xfsyco_l.jpg" alt="" /></p>
+
+<p>騎到這正好是學生上學的時間</p>
+
+<p>看著看著覺得年輕真好阿(嘆)</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557848_plcjv5q_l.jpg" alt="" /></p>
+
+<p>接著繼續往前走</p>
+
+<p>來到大阪的邊界島本</p>
+
+<p>再過去就是京都府境了</p>
+
+<p>來到這距離京都的里程也剩21公里</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557849_ty0kg3c_l.jpg" alt="" /></p>
+
+<p>繼續往前走來到一個叫做水無瀨的地方，上次去山崎拍火車時</p>
+
+<p>本來想來看這裡的水無瀨神宮，但無緣</p>
+
+<p>所以這次特地來看看</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557850_4n3nfqg_l.jpg" alt="" /></p>
+
+<p>抵達水無瀨神宮</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557851_eoalom7_l.jpg" alt="" /></p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557852_r183kev_l.jpg" alt="" /></p>
+
+<p>看到門柱上有寫著大盜五右衛門，えぇ！！這是遊戲上的那個大盜五右衛門嗎</p>
+
+<p>有在這裡留下手印，但是我沒看到就是了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557853_pc6aak0_l.jpg" alt="" /></p>
+
+<p>這個神社最有名的是祂的水，這邊號稱日本名水百選之一的離宮之水</p>
+
+<p>可以看到很多當地居民在這邊裝水</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557854_cbeczyo_l.jpg" alt="" /></p>
+
+<p>逛完水無瀨神宮，繼續往下一站大山崎前進，上次來這拍火車</p>
+
+<p>天氣很差，這次來一樣不好</p>
+
+<p>來到大山崎就表示已經進入京都府境內了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557855_ygg4bo_l.jpg" alt="" /></p>
+
+<p>當然他的背面就是</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557857_3zpsqto_l.jpg" alt="" /></p>
+
+<p>大山崎這邊最有名的是釀酒廠還有製油廠，聽說是某製油廠的發源地</p>
+
+<p>裡面有一個離宮八幡宮，看到很多"離宮"，應該是指以前天皇的離宮吧</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557861_6gqa3ys_l.jpg" alt="" /></p>
+
+<p>這間神社跟台灣桃園神社一樣也有神馬</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557858_h5m5ec3_l.jpg" alt="" /></p>
+
+<p>每個神社獨一無二的社徽</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557860_8sm3iry_l.jpg" alt="" /></p>
+
+<p>離宮八幡宮</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557862_er6sz86_l.jpg" alt="" /></p>
+
+<p>大山崎這邊的JR叫做山崎站，不叫大山崎的原因是因為阪急電鐵用走了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557863_1mho8kz_l.jpg" alt="" /></p>
+
+<p>離開大山崎，繼續往京都的方向前進</p>
+
+<p>里程來到1開頭</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557864_34r7hma_l.jpg" alt="" /></p>
+
+<p>新幹線剛好從旁邊呼嘯而過</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557865_p67o09s_l.jpg" alt="" /></p>
+
+<p>抵達長岡京市</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557866_6imppb8_l.jpg" alt="" /></p>
+
+<p>記得騎到這附近有看到一個好笑的地名</p>
+
+<p>叫"羽束師"，漢字看起來沒什麼</p>
+
+<p>但他的發音是はづかし、跟害羞的日文(恥ずかしい)發音很像</p>
+
+<p>繼續往下騎來到了向日市</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557867_z1wey9o_l.jpg" alt="" /></p>
+
+<p>這邊都是沿著高速道路走，車子又很多，周邊似乎都是工業區</p>
+
+<p>加油加油，還有12公里</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557868_96ol58g_l.jpg" alt="" /></p>
+
+<p>終於抵達京都市&hellip;&hellip;.的邊境</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557869_3ez5qu9_l.jpg" alt="" /></p>
+
+<p>在這邊看到有趣的路標</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557873_x22as29_l.jpg" alt="" /></p>
+
+<p>騎沒多久看到一個熟悉的地名</p>
+
+<p>有沒有</p>
+
+<p>原來高雄如此的近阿!!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557877_oiasx2v_l.jpg" alt="" /></p>
+
+<p>沿路經過的重機駕訓班</p>
+
+<p>日本好多人騎重機阿!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557880_p7pgmjh_l.jpg" alt="" /></p>
+
+<p>騎了將近53公里，屁股超痛的</p>
+
+<p>但是我們還是成功抵達中點京都站</p>
+
+<p>是中點不是終點，因為還要再騎回大阪</p>
+
+<p>在京都站留影紀念一下</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557881_sqf4no2_l.jpg" alt="" /></p>
+
+<p>接下來吃完簡單的中餐我們又馬不停蹄的騎到二条城</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557882_l9tyave_l.jpg" alt="" /></p>
+
+<p>話說在京都，腳踏車的停車會超難找的阿!!!</p>
+
+<p>不像大阪鎖了就能直接走</p>
+
+<p>這邊又抓違停抓很嚴</p>
+
+<p>所以只好跑到二条城附近的LIFE超市去停了</p>
+
+<p>再進入二条城</p>
+
+<p>二条城是日本少數保存完好的城堡</p>
+
+<p>雖然天守閣很久以前就因為閃電失火燒了</p>
+
+<p>但之後也就沒再重建，這邊很推去看他的御殿，就是將軍住的地方</p>
+
+<p>著名的大政奉還就是在這宣布的，德川將政權還給天皇</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557890_bsczl0x_l.jpg" alt="" /></p>
+
+<p>二丸御殿</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557887_sx13fwm_l.jpg" alt="" /></p>
+
+<p>最近是彼岸花的花季，城內也是隨處可見</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557883_k1larh3_l.jpg" alt="" /></p>
+
+<p>逛完二条城就差不多要再騎回大阪了，因為晚上還要再趕搭往廣島的夜巴</p>
+
+<p>回程路途中經過京都著名的東寺，這個好像就是JR はるか車身上的LOGO</p>
+
+<p>算是京都著名的地標</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557888_jesoxfl_l.jpg" alt="" /></p>
+
+<p>抵達八幡市</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557889_v4gda9n_l.jpg" alt="" /></p>
+
+<p>回程騎在淀川的河邊，景色很美</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557884_2cfoeqx_l.jpg" alt="" /></p>
+
+<p>終於回到大阪了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4557885_51jkh5i_l.jpg" alt="" /></p>
+
+<p>用GPS追蹤全程共騎了119公里，但是我同學的GPS卻是13X公里</p>
+
+<p>還蠻奇妙的</p>
+
+<p>總之這次的京都小折之旅還算蠻成功的</p>
+
+<p>接著就要去趕往廣島的車子</p>
+
+<p>下回廣島之行待續&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[大阪奈良小折一日遊]]></title>
+    <link href="http://sayaku.github.io/blog/2014/08/23/hiranotonara/"/>
+    <updated>2014-08-23T18:56:22+08:00</updated>
+    <id>http://sayaku.github.io/blog/2014/08/23/hiranotonara</id>
+    <content type="html"><![CDATA[<p><img src="http://pcdn1.rimg.tw/photos/4531424_gqu8yu6_l.jpg" alt="" /></p>
+
+<!--more-->
+
+
+<p>因為下個月要挑戰大阪騎到京都</p>
+
+<p>所以先試試騎到奈良</p>
+
+<p>這次的奈良行其實在前一天有挑戰騎到奈良，但失敗了!</p>
+
+<p>千萬不要相信GOOGLE MAP的最短路徑</p>
+
+<p>他會開一條陡坡連續3~4公里的古道給你&hellip;.</p>
+
+<p>還有記得一定要帶雨衣</p>
+
+<p>因為這世界上總是有所謂的莫非定律</p>
+
+<p>你不帶雨衣他就下給你看</p>
+
+<p>所以這次我帶了雨衣，完全沒下雨!!</p>
+
+<p>日本氣象廳已經快跟台灣氣象局一樣，參考參考就好</p>
+
+<p>那麼，就開始今天的行程吧</p>
+
+<p>基本上大部分的路線都是沿著JR大和路線走</p>
+
+<p>從大阪平野（ひらの）的宿舍出發
+<img src="http://pcdn1.rimg.tw/photos/4531359_35ztiec_l.jpg" alt="" /></p>
+
+<p>看看這精美的里程數，38公里說遠不遠，大概從台北車站騎車騎到桃園的楊梅吧，而且38公里只是單單到奈良車站，還沒算到其他景點的里程</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531358_ewybeo2_l.jpg" alt="" /></p>
+
+<p>反正這次我打算邊騎邊到處看看，不趕時間</p>
+
+<p>好了，減少一公里了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531360_fvjy1rm_l.jpg" alt="" /></p>
+
+<p>經過已經廢線JR貨物線，由ＪＲ久寶寺站(久宝寺駅，きゅうほうじえき)分歧</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531361_qdoby6z_l.jpg" alt="" /></p>
+
+<p>抵達八尾市（やおし)</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531362_onea3ra_l.jpg" alt="" /></p>
+
+<p>騎著騎著都會發現有趣的地名，比如說這個跡部（あとべ）</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531363_c97cnko_l.jpg" alt="" /></p>
+
+<p>日本的人孔蓋都很有設計感，這是八尾市的人孔蓋</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531364_2179q8a_l.jpg" alt="" /></p>
+
+<p>騎了好久還一直在八尾市&hellip;.什麼時後才會到柏原..</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531365_7a5ksd8_l.jpg" alt="" /></p>
+
+<p>終於&hellip;柏原站（柏原駅、かしはらえき）到着</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531366_wvrqdd0_l.jpg" alt="" /></p>
+
+<p>加油~快破三字頭了!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531367_nrkd5tb_l.jpg" alt="" /></p>
+
+<p>柏原是大阪府與奈良縣的邊界，所已過了柏原就到了奈良縣境了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531368_v1rfkqu_l.jpg" alt="" /></p>
+
+<p>騎上河堤，旁邊這條河是大阪兩大河川之一的大和川（やまとがわ）</p>
+
+<p>另一個則是淀川（よどがわ）</p>
+
+<p>由於JR關西本線都沿著大和川到奈良，所以這一段又叫JR大和路線</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531369_dn0u6is_l.jpg" alt="" /></p>
+
+<p>河堤上還蠻好騎的，不用與汽車爭道</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531370_18q8nkc_l.jpg" alt="" /></p>
+
+<p>路線換到大和川的右岸，反正順著指標走也很難迷路</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531371_p325o4g_l.jpg" alt="" /></p>
+
+<p>終於等到你了!進入奈良縣境的王寺（おうじ）</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531372_df0vorv_l.jpg" alt="" /></p>
+
+<p>歡迎光臨奈良（ようこそ、なら！）</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531373_kjeka1x_l.jpg" alt="" /></p>
+
+<p>日本的路都很好騎，騎起來心情很愉快，而且今天也看到很多騎單車的</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531374_v0woq8l_l.jpg" alt="" /></p>
+
+<p>YES!要破2字頭了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531375_7rxq7ri_l.jpg" alt="" /></p>
+
+<p>王寺站到着!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531376_vny69dp_l.jpg" alt="" /></p>
+
+<p>王寺站有很多支線分歧，所以是個中繼大站，往南可以到和歌山，往北可以到生駒，往東可以到奈良。</p>
+
+<p>王寺站構內，最右邊的是近鐵的鐵道</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531377_d1qnjte_l.jpg" alt="" /></p>
+
+<p>來到斑鳩（いかるが）了，斑鳩是個很老的地方，也是很大的地方</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531379_qpoeisn_l.jpg" alt="" /></p>
+
+<p>經過一個有趣的地名-貓阪（猫坂、ねこざか），拍一下</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531380_saidfhq_l.jpg" alt="" /></p>
+
+<p>亂繞繞到一個龍田神社（たつたじんじゃ），鳥居是原木色的蠻少見</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531381_yjlvk56_l.jpg" alt="" /></p>
+
+<p>來到今天的目標之一-法隆寺（ほうりゅうじ）</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531382_gxkoszb_l.jpg" alt="" /></p>
+
+<p>法隆寺大門!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531383_41oqye7_l.jpg" alt="" /></p>
+
+<p>法隆寺是世界最早的木構建築群，也是日本第一個世界文化遺產</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531422_noe414k_l.jpg" alt="" /></p>
+
+<p>看來是很多沒品的人才會出現這種告示(警告不要隨便亂塗鴉)</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531385_qg2cpvl_l.jpg" alt="" /></p>
+
+<p>竹編夾泥牆</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531387_3w13l6n_l.jpg" alt="" /></p>
+
+<p>其實法隆寺又名斑鳩寺，所以斑鳩這個地名很久了!斑鳩的水溝蓋!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531386_juzvokx_l.jpg" alt="" /></p>
+
+<p>斑鳩神社，看到有大嬸坐在那吃東西就不好意思上去了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531388_54l2cc4_l.jpg" alt="" /></p>
+
+<p>這邊好有來去鄉下住一晚的感覺!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531389_bfabu6d_l.jpg" alt="" /></p>
+
+<p>就算很累看到這種路都覺得很舒服</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531390_jfl6lzr_l.jpg" alt="" /></p>
+
+<p>大和郡山(やまとこありやま)的水溝蓋，這邊的金魚好像很有名，還有釣金魚大賽</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531391_439a4cb_l.jpg" alt="" /></p>
+
+<p>經過郡山城，豐臣秀吉弟弟的城堡</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531393_clwd6wk_l.jpg" alt="" /></p>
+
+<p>高架不能走就走地下道鑽過JR</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531394_tmlvwbf_l.jpg" alt="" /></p>
+
+<p>肚子餓先來吃個すきや、在這都不用排隊的!388日元(含稅)</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531423_4nwl2pi_l.jpg" alt="" /></p>
+
+<p>終於看到令人感動的指標，奈良站我來了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531395_nq1g03p_l.jpg" alt="" /></p>
+
+<p>JR奈良站到着!!真是令人感動</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531396_mlt8avd_l.jpg" alt="" /></p>
+
+<p>接下來就是要去奈良之前有去過的地方還有一些沒去過的地方</p>
+
+<p>比如東大寺是一定要的!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531398_canhghl_l.jpg" alt="" /></p>
+
+<p>有小折以後鹿都不太敢靠近我&hellip;.</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531399_fuzz2bl_l.jpg" alt="" /></p>
+
+<p>再來是要去之前沒去過的平成宮跡，奈良1500年前是日本的首都</p>
+
+<p>名為平成京，之後才遷都至平安京(今天的京都)</p>
+
+<p>這個是重新打造出來的平成宮的朱雀門</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531400_ut1eb6u_l.jpg" alt="" /></p>
+
+<p>接下來網下一個地點前進，無意間發現一個天皇的陵墓</p>
+
+<p>垂仁天皇的墓，是日本第11代天皇，據說活了140歲</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531401_krroz5n_l.jpg" alt="" />
+<img src="http://pcdn1.rimg.tw/photos/4531402_eqcja2w_l.jpg" alt="" />
+<img src="http://pcdn1.rimg.tw/photos/4531403_2vvfyf7_l.jpg" alt="" /></p>
+
+<p>全景照</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531404_wpb8lhz_l.jpg" alt="" /></p>
+
+<p>話說這附近很多天皇的墓從空照圖來，墳墓的型狀很像一個鑰匙孔</p>
+
+<p>繼續騎下去，抵達藥師寺(やくしじ)</p>
+
+<p>目前還在維修中，它跟附近的唐招提寺都是很老的寺院!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531406_7eyuohv_l.jpg" alt="" /></p>
+
+<p>如果要來藥師寺與唐招提寺可以在近鐵的西ノ京（にしのきょう）站下車!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531407_l3xo808_l.jpg" alt="" />
+<img src="http://pcdn1.rimg.tw/photos/4531408_azzn3sa_l.jpg" alt="" /></p>
+
+<p>前往唐招提寺，街景好美阿!在這邊騎車真的很好!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531409_fuggm2w_l.jpg" alt="" /></p>
+
+<p>抵達唐招提寺，會有一個唐字是因為中國唐代時有一個名為鑒真的高僧修築的這個寺院，風格是純粹的唐式建築</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531411_ef7yy82_l.jpg" alt="" /></p>
+
+<p>逛完唐招提寺也差不多該回程了，所以還要再騎回大阪??</p>
+
+<p>當然是不用啦，小折有它的好處就要好好利用，所以就決定搭電車回去</p>
+
+<p>日本的電車一樣也是可以載腳踏車，但就是要用攜車袋把它裝好!</p>
+
+<p>所以來日本旅有真的可以考慮單車+電車!這樣機動性大又省錢!</p>
+
+<p>裝起來放在電車就像這樣，很方便的!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531414_56b031o_l.jpg" alt="" /></p>
+
+<p>看著窗景降下的神光(?)，覺得下次的單車挑戰京都一定會順利的!!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4531416_t2jbu55_l.jpg" alt="" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[初めての甲子園]]></title>
+    <link href="http://sayaku.github.io/blog/2014/06/18/kousien/"/>
+    <updated>2014-06-18T22:02:52+08:00</updated>
+    <id>http://sayaku.github.io/blog/2014/06/18/kousien</id>
+    <content type="html"><![CDATA[<p><img src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/t31.0-8/10481662_10152493602209687_1625728320912229796_o.jpg" alt="初めての甲子園" /></p>
+
+<p>甲子園，日本高校棒球賽的殿堂</p>
+
+<p>看過KANO的或是日本棒球相關題材的人大概也都知道這有名的甲子園</p>
+
+<p>日本高校棒球賽在甲子園球場有一項傳統，就是輸球時，</p>
+
+<p>總會抓一把球場充滿汗水與淚水的黑土帶回家當做紀念</p>
+
+<p>因為也許以後沒有機會再來到甲子園比賽了。</p>
+
+<p>今年正好是它滿90周年的紀念!</p>
+
+<!--more-->
+
+
+<p>今天是我第一次來甲子園，也是生平第一次看棒球賽</p>
+
+<p>在朋友的邀約之下，想體驗看看所謂甲子園球場的震撼，就來當個一日球迷吧</p>
+
+<p>搭乘近鐵來到甲子園駅，人山人海的..
+<img src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xap1/t31.0-8/10443159_10152493600499687_507346843526989569_o.jpg" alt="" /></p>
+
+<p>因為我們是很早之前就先訂票了，倒是不用先買票
+<img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xpa1/t31.0-8/10497326_10152493600504687_4476246039919869795_o.jpg" alt="" /></p>
+
+<p>今天的比賽是阪神虎與北海道火腿，火腿隊裡有來自台灣的陽岱鋼</p>
+
+<p>雖然他因為前幾場比賽受傷今天沒辦法上場是還蠻可惜的</p>
+
+<p>我們坐的位子是三壘的方向
+<img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/t1.0-9/p417x417/10390331_10152493600494687_5228303323638791730_n.jpg" alt="" /></p>
+
+<p>今天一到球場就在下雨，明明氣象預報說降雨機率10%&hellip;</p>
+
+<p>但很幸運的就是就是中那10%</p>
+
+<p>由於甲子園是阪神虎的主場，所以這裡的紀念品店都是阪神虎的
+<img src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xfp1/t31.0-8/10465445_10152493600554687_3950777465328574247_o.jpg" alt="" /></p>
+
+<p>進球場後坐好定位，比賽就準備要開始了</p>
+
+<p>開球前總是會有啦啦隊的表演
+<img src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xfa1/t31.0-8/10317726_10152493600564687_2336118337675162852_o.jpg" alt="" /></p>
+
+<p>現場的酒促妹，從比賽開始到結束一直在場內背一大桶走來走去服務客人，</p>
+
+<p>真是辛苦了!!</p>
+
+<p><img src="https://scontent-b-pao.xx.fbcdn.net/hphotos-xfp1/t1.0-9/p417x417/10394592_10152493600584687_6688714121778064107_n.jpg" alt="" /></p>
+
+<p>火腿隊加油團聲勢浩大阿!!!還自己帶喇叭來吹了!!
+<img src="https://scontent-b-pao.xx.fbcdn.net/hphotos-xfp1/t31.0-8/10492952_10152493600624687_1612684632246504443_o.jpg" alt="" /></p>
+
+<p>比賽正式開始!</p>
+
+<p>由火腿隊先攻</p>
+
+<p>下面這張是這場比賽的第一顆球
+<img src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xfp1/t31.0-8/10383759_10152493600639687_7573722664823985824_o.jpg" alt="" /></p>
+
+<p>比賽進行沒多久，雨就越下越大，大到還暫停比賽&hellip;</p>
+
+<p>我們還跑去室內躲雨..想說不會這麼衰吧，第一次看球賽會不會就因為大雨取消比賽</p>
+
+<p>還好過沒多久雨就停了，比賽繼續開始!!</p>
+
+<p>比賽時看了看場邊~</p>
+
+<p>居然看到台灣的國旗，可能是來為陽岱鋼加油的!</p>
+
+<p>雖然他今天不會上場
+<img src="https://scontent-a-pao.xx.fbcdn.net/hphotos-xfa1/t31.0-8/10255247_10152493600709687_4409719710071015469_o.jpg" alt="" /></p>
+
+<p>投手投球的一瞬間</p>
+
+<p><img src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xpa1/t31.0-8/1899573_10152493600724687_2201753039188959912_o.jpg" alt="" /></p>
+
+<p>另外比賽到了七局下半，附近的人都開始在吹氣球也不知道為啥</p>
+
+<p><img src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xpf1/t31.0-8/10344145_10152493600764687_7107875104851511603_o.jpg" alt="" /></p>
+
+<p>原來是日本職棒的傳統，會在七局下半時"放風船"</p>
+
+<p>就是七局下半結束時大家把手上充飽的氣球放掉，形成許多氣球亂飛的景像</p>
+
+<iframe class="youtube" width="640" height="360" src="//www.youtube.com/embed/Uk3wn9TaGbQ" frameborder="0" allowfullscreen></iframe>
+
+
+<p>八局上半，阪神的投手由於用球數變多開始呈現不穩定的狀況，在2壘有人的狀況下</p>
+
+<p>阪神決定換投手，結果換投手的方式居然是用車把投手載進球場內!</p>
+
+<p>這大概就是所謂的主場優勢吧!
+<img src="https://scontent-b-pao.xx.fbcdn.net/hphotos-xap1/t31.0-8/p417x417/10460883_10152493600799687_3508817703038650417_o.jpg" alt="" /></p>
+
+<p>但是這時才是阪神最大的危機，這個投手一上來只投了六球，連連被打出安打就失掉了兩分&hellip;</p>
+
+<p>剛剛還很威風的上場&hellip;結果就被打爆了= =</p>
+
+<p>阪神虎在第八局掉了3分&hellip;到了第九局最後一次反攻機會</p>
+
+<p>由阪神明星"大和"打出最後一支安打後沒多久比賽就結束了!</p>
+
+<p>說到大和我才想到他們棒球場每個打擊者上場時球場都會播放他們的主題曲喔!!</p>
+
+<p>重點是糗場的人都會一起哼他們的主題曲，真不愧是球迷阿!!</p>
+
+<p>本場比賽的最後一支安打
+<img src="https://scontent-b-pao.xx.fbcdn.net/hphotos-xpf1/t31.0-8/10333322_10152493600854687_2669140421047679802_o.jpg" alt="" /></p>
+
+<p>今天陽岱鋼沒來，本來是要支持火腿的，但身在人家阪神的地盤，今天就支持阪神啦!!</p>
+
+<p>雖然今天阪神被火腿打爆了&hellip;現場的阪神球迷都頻頻嘆氣，有些比賽還沒打完就先走了..</p>
+
+<p>可能是不想看到悲慘的結局吧</p>
+
+<p><img src="https://scontent-b-pao.xx.fbcdn.net/hphotos-xpf1/t31.0-8/10443255_10152493600884687_8715027304461197988_o.jpg" alt="" /></p>
+
+<p>最後好朋友們在球場合照留念
+<img src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xpa1/t31.0-8/10481527_10152493600919687_953449892137174684_o.jpg" alt="" /></p>
+
+<p>剛好遇到剛剛帶國旗的台灣球迷，於是就跟他們借台灣國旗啦!
+<img src="https://scontent-a-pao.xx.fbcdn.net/hphotos-xpa1/t1.0-9/p417x417/10462682_10152493600934687_4344409052292391273_n.jpg" alt="" /></p>
+
+<p>回去時車站當然是塞爆了
+<img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xpf1/t31.0-8/10379848_10152493600944687_714621459109967686_o.jpg" alt="" /></p>
+
+<p>在甲子園留念一下，下面的武庫川女子大學，諧音好像是無褲穿女子大學&hellip;
+<img src="https://scontent-a-pao.xx.fbcdn.net/hphotos-xpa1/t31.0-8/10353512_10152493600989687_7262153139946702787_o.jpg" alt="" /></p>
+
+<p>最後在尼崎轉車結束這歡樂的夜晚
+<img src="https://scontent-a-pao.xx.fbcdn.net/hphotos-xfp1/t31.0-8/10355606_10152493601084687_5649623436136067486_o.jpg" alt="" /></p>
+
+<p>後記:甲子園現場看球賽真的跟電視上看的感覺完全不一樣，光聲勢就很震撼了</p>
+
+<p>這是電視上完全不能比擬的阿!!不過缺點是沒有慢動作重播..要自己腦補!</p>
+
+<p>有機會真的要來甲子園體驗一次!!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[和歌山電鐵-貴志貓站長一日遊]]></title>
+    <link href="http://sayaku.github.io/blog/2014/04/26/wakayama/"/>
+    <updated>2014-04-26T23:59:31+08:00</updated>
+    <id>http://sayaku.github.io/blog/2014/04/26/wakayama</id>
+    <content type="html"><![CDATA[<p><img src="http://pcdn1.rimg.tw/photos/4424803_3arnze5_l.jpg" alt="" /></p>
+
+<!-- more -->
+
+
+<p>和歌山電鐵 貴志川線(わかやま電鉄 きしがわせん)，前經營者為南海電鐵之後轉給岡山電鐵改名叫和歌山電鐵，原本南海電鐵在2006年要將這一條默默無名營收不佳的鐵道支線給廢掉</p>
+
+<p>因為該線末站-貴志站讓一隻名為"たま"(玉子)的母貓做為站長後，整個和歌山電鐵因此聲名大噪。</p>
+
+<p>台灣也模仿和歌山的貓站長而出現所謂侯硐貓站長與貓村</p>
+
+<p>既然是貓站長文化的元老一直就很想來朝聖一下，所幸和歌山就在大阪的下面並不是很遠</p>
+
+<p>從大阪天王寺搭關空、和歌山方面的紀州快速電車
+<img src="http://pcdn1.rimg.tw/photos/4424730_l2q2dp3_l.jpg" alt="" /></p>
+
+<p>搭乘紀州路快速,會叫紀州應該是和歌山就是以前的紀伊國吧
+<img src="http://pcdn1.rimg.tw/photos/4424732_4pjq6so_l.jpg" alt="" /></p>
+
+<p>約一個多小時的車程抵達JR和歌山站
+<img src="http://pcdn1.rimg.tw/photos/4424731_kre2ld9_l.jpg" alt="" /></p>
+
+<p>接著要轉搭乘和歌山電鐵，和歌山電鐵的和歌山站與JR和歌山站是共構</p>
+
+<p>所以不用出站換個月台搭乘即可(就有點類似台鐵瑞芳站轉搭平溪線)</p>
+
+<p>和歌山電鐵的月台是9號，可以看到貓的標誌
+<img src="http://pcdn1.rimg.tw/photos/4424734_ggly1na_l.jpg" alt="" /></p>
+
+<p>接著就會一直看到跟たま站長有關的擺飾，畢竟是他們的<del> 搖錢 </del>吉祥物
+<img src="http://pcdn1.rimg.tw/photos/4424735_moi3xna_l.jpg" alt="" /></p>
+
+<p>上月台樓梯的另一面&hellip;滿滿的跟たま站長有關畫
+<img src="http://pcdn1.rimg.tw/photos/4424736_z1wtwjt_l.jpg" alt="" /></p>
+
+<p>走到上面就會抵達和歌山電鐵的和歌山站,恩..一個月台就是整個車站的全部
+<img src="http://pcdn1.rimg.tw/photos/4424737_6qxncsr_l.jpg" alt="" /></p>
+
+<p>另外提醒因為和歌山電鐵跟JR是不同的鐵道系統，所以在進和歌山電鐵的月台前會有出站的閘門，用IC卡的請記得要刷出站(因為我同學忘了刷出站，等回來IC卡因為逾時而被鎖卡..還要拿去JR的櫃檯解鎖很麻煩)</p>
+
+<p>另外和歌山電鐵從和歌山站到終點站貴志單程是370日元</p>
+
+<p>當然和歌山電鐵也有提供"一日劵"供遊客一天無限上下車，全票為720日元</p>
+
+<p>拿到一日劵看了一下還蠻有趣，除了該鐵道最有名的貓站長外還有貴志盛產的草莓</p>
+
+<p>還有他們的日期不是用蓋的而是用刮的，所以你刮到另一格就整張報廢了
+<img src="http://pcdn1.rimg.tw/photos/4424739_gdhjrgg_l.jpg" alt="" /></p>
+
+<p>另一面  <br/>
+<img src="http://pcdn1.rimg.tw/photos/4424740_nny3cjj_l.jpg" alt="" /></p>
+
+<p>和歌山電鐵之和歌山站
+<img src="http://pcdn1.rimg.tw/photos/4424738_jalhjs_l.jpg" alt="" /></p>
+
+<p>和歌山電鐵的火車大抵分為三種，一種是貓站長主題的車廂；第二種給小孩玩的"玩具"主題車廂；最後就是整條支線的名產"草莓"主題車廂，車廂都是兩節為一個編組</p>
+
+<p>車來了，來的是貓站長主題車箱，既然以貓站長為主題，這車自然就叫"たま電車"
+<img src="http://pcdn1.rimg.tw/photos/4424741_p0kx7pq_l.jpg" alt="" /></p>
+
+<p>整個都是たま&hellip;.
+<img src="http://pcdn1.rimg.tw/photos/4424742_ix6zzmw_l.jpg" alt="" /></p>
+
+<p>進去看了一下內裝&hellip;不得了阿&hellip;愛貓人士應該會很喜歡這車的內裝
+<img src="http://pcdn1.rimg.tw/photos/4424743_xmpggr7_l.jpg" alt="" /></p>
+
+<p>甚至還有看書的空間</p>
+
+<p>當然書架上的書都是跟貓有關的&hellip;例如哆啦A夢..
+<img src="http://pcdn1.rimg.tw/photos/4424748_ve25bv4_l.jpg" alt="" /></p>
+
+<p>車內一隅，我真的覺得很不簡單，可以把氣氛營造得如此美好
+<img src="http://pcdn1.rimg.tw/photos/4424745_7nncjhu_l.jpg" alt="" /></p>
+
+<p>是的..連燈的造型都跟たま有關
+<img src="http://pcdn1.rimg.tw/photos/4424753_co8xc9t_l.jpg" alt="" /></p>
+
+<p>在搭乘的過程中，雖然它算是小支線，但是速度飆起來其實也蠻快的&hellip;
+<img src="http://pcdn1.rimg.tw/photos/4424754_vnniks0_l.jpg" alt="" /></p>
+
+<p>司機除了開車以外也肩負車長的業務，上下車查票也都是他的工作</p>
+
+<p>お疲れ様でした！！
+<img src="http://pcdn1.rimg.tw/photos/4424755_fmmnizx_l.jpg" alt="" /></p>
+
+<p>在中間交會列車時看到另一款兒童主題的"玩具電車"(おもちゃ電車)
+<img src="http://pcdn1.rimg.tw/photos/4424752_lobobgn_l.jpg" alt="" /></p>
+
+<p>到了貴志站，車上廣播也變得很有趣，講完廣播後面還會在加一聲貓叫聲</p>
+
+<p>而貴志站滿滿的都是人，聽口音似乎是台灣人的樣子</p>
+
+<p>正好要搭我們那班電車回和歌山</p>
+
+<p>一下車就看到貴志站
+<img src="http://pcdn1.rimg.tw/photos/4424757_ggjvfon_l.jpg" alt="" /></p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4424760_dwk6eug_l.jpg" alt="" /></p>
+
+<p>進到站內就會看到貓站長了..不過是被關在玻璃櫃裡
+<img src="http://pcdn1.rimg.tw/photos/4424758_f0daugq_l.jpg" alt="" /></p>
+
+<p>順帶一提原本貓站長"たま"，因為為和歌山電鐵帶來很可觀的觀光效益</p>
+
+<p>所以他現在可是和歌山電鐵的超級站長，也因為數不清的功績而成為和歌山電鐵的代理社長&hellip;</p>
+
+<p>而和歌山電鐵給他的獎勵就是幫他找一個小幫手代替她輪班值勤</p>
+
+<p>而這個小幫手就叫小玉二號(にたま)&hellip;日語發音就&hellip;.自己發發看就知道了</p>
+
+<p>而今天站長"たま"休假改由"にたま"代理站長
+<img src="http://pcdn1.rimg.tw/photos/4424759_2s6nvdm_l.jpg" alt="" /></p>
+
+<p>值班地點其實也並不侷限在貴志站內，有時也會到伊太祁曾站去值勤</p>
+
+<p>以下為輪值時間跟地點表
+<img src="http://pcdn1.rimg.tw/photos/4424777_iux8s1u_l.jpg" alt="" /></p>
+
+<p>&ldquo;にたま"大部分的時間大概都是這樣
+<img src="http://pcdn1.rimg.tw/photos/4424774_ymmc1dk_l.jpg" alt="" /></p>
+
+<p>恩..大概就是在發呆
+<img src="http://pcdn1.rimg.tw/photos/4424773_ke0nrmr_l.jpg" alt="" /></p>
+
+<p>而貴志站整個造型與裝飾都是以貓為主題，包含車站的外觀，室內的擺設都是如此
+<img src="http://pcdn1.rimg.tw/photos/4424761_1epwmys_l.jpg" alt="" /></p>
+
+<p>地板上也少不了有小玉的圖樣
+<img src="http://pcdn1.rimg.tw/photos/4424775_paubivw_l.jpg" alt="" /></p>
+
+<p>就在這時，外面出現了&hellip;.小玉公仔..
+<img src="http://pcdn1.rimg.tw/photos/4424763_xf4z127_l.jpg" alt="" /></p>
+
+<p>說實在當時天氣真的很熱&hellip;他穿成這樣只能說辛苦他了
+<img src="http://pcdn1.rimg.tw/photos/4424772_xft1xgd_l.jpg" alt="" /></p>
+
+<p>逛完貴志後抓好時間去拍電車，本來希望回程能坐到玩具主題車&hellip;不過還是出現..
+<img src="http://pcdn1.rimg.tw/photos/4424778_gkkg12n_l.jpg" alt="" /></p>
+
+<p>在台灣是鐵道迷，在日本當然更不能手軟多拍幾張了
+<img src="http://pcdn1.rimg.tw/photos/4424804_fdq6f48_l.jpg" alt="" /></p>
+
+<p>離開了貴志站，前往沿線最大站伊太祁曾(現在改名"伊太祈曾"，いだきそ)</p>
+
+<p>這個站的名字蠻奇特的..漢字難念就算了日語讀音也都一直記不起來</p>
+
+<p>回來查了一下伊太祁曾是日本樹之神明-大屋毘古神的兒子，算是很大的一個神</p>
+
+<p>而伊太祁曾則是因為這附近有一個歷史悠久的伊太祁曾神社而得名的</p>
+
+<p>舊站牌
+<img src="http://pcdn1.rimg.tw/photos/4424780_rmnzrrr_l.jpg" alt="" /></p>
+
+<p>附近很有名且古老的伊太祁曾神社
+<img src="http://pcdn1.rimg.tw/photos/4424782_202jrnu_l.jpg" alt="" /></p>
+
+<p>這間神社有女巫，算是逛這麼多神社來第一個看到有女巫的
+<img src="http://pcdn1.rimg.tw/photos/4424788_f27m7lk_l.jpg" alt="" /></p>
+
+<p>本殿不能進去很可惜，感覺很漂亮
+<img src="http://pcdn1.rimg.tw/photos/4424786_kbpssef_l.jpg" alt="" /></p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4424787_ulteuzu_l.jpg" alt="" /></p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4424790_nc4jpmk_l.jpg" alt="" /></p>
+
+<p>逛完差不多該前往和歌山市了，想說看這次能不能再拼看看玩具主題列車&hellip;
+<img src="http://pcdn1.rimg.tw/photos/4424779_mrblmio_l.jpg" alt="" /></p>
+
+<p>結果還是沒那個命&hellip;&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[日本短期免綁約申請手機、網路的好選擇-Bmobile-]]></title>
+    <link href="http://sayaku.github.io/blog/2014/04/01/bmobile/"/>
+    <updated>2014-04-01T19:29:47+08:00</updated>
+    <id>http://sayaku.github.io/blog/2014/04/01/bmobile</id>
+    <content type="html"><![CDATA[<p><img src="http://pcdn1.rimg.tw/photos/4402798_3cuqfwq_l.jpg" alt="bmobile" /></p>
+
+<!-- more -->
+
+
+<p>來日本留學最麻煩的兩件事分別為</p>
+
+<ul>
+<li>銀行開戶</li>
+<li>申請手機</li>
+</ul>
+
+
+<p>通常在日本申請手機都會要求綁約</p>
+
+<p>綁約時間通常為2~3年</p>
+
+<p>對我這種只在日本留學半年的留學生根本不可能去綁約</p>
+
+<p>於是日本有一家b-mobile提供了一種免綁約的方案</p>
+
+<p>他有很多種方案，比如只提供網路的、只提供通話的，或是通話跟網路都有的方案</p>
+
+<p>有短期7~14天的，也有一個月的甚至最長到半年的</p>
+
+<p>詳細可以參考他們家的網站:<a href="http://www.bmobile.ne.jp/">http://www.bmobile.ne.jp/</a></p>
+
+<p>以我來說，我只待半年，比較其他方案我選擇半年方案，至少不用每個月跑去繳款</p>
+
+<p>我的方案是6個月只有網路LTE(4G)流量1G的方案，當你超過1G流量時就會限速(150kbps)</p>
+
+<p>此方案不包含通話功能，因為想說只要靠LINE或是Skype就可以溝通了，所以沒有打算申請通話方案</p>
+
+<p>要買bmobile可以在日本各地的yodobashi購買或是使用網路訂購(配送免費!)</p>
+
+<p>小弟我是使用網路訂購配送到府的服務</p>
+
+<p>而申請過程如下(6個月4G方案申請)，申請時請使用IE瀏覽器喔，我用google chrome申請會有問題!</p>
+
+<p>確定方案之後可以按右上角的<code>購入する</code>
+<img src="http://pcdn1.rimg.tw/photos/4402770_mb2s814_l.jpg" alt="" /></p>
+
+<p>選擇要用的SIM卡大小，小弟我是使用IPAD 4,所以是使用右邊的<code>マイクロSIMカード(micro sim card)</code>
+<img src="http://pcdn1.rimg.tw/photos/4402771_um6902e_l.jpg" alt="" /></p>
+
+<p>這邊會要求你看使用規定，拉到最下面每個都按<code>OK</code>後會要求你選擇付款方式
+<img src="http://pcdn1.rimg.tw/photos/4402773_n6qni5t_l.jpg" alt="" /></p>
+
+<p>左邊是使用信用卡付款；右邊是使用貨到付款</p>
+
+<p>小弟我沒有信用卡，所以使用貨到付款</p>
+
+<p>他會告訴你的方案要多少錢，這邊的價錢15,326是採4/1日之後消費稅8%後的價錢(4/1日前稅入為14900)</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4402774_y58ccc4_l.jpg" alt="" /></p>
+
+<p>確定OK後就按下一步</p>
+
+<p>接下來就是把該填的資料填一填，如果你是來日本短期旅遊可以填飯店的住址
+<img src="http://pcdn1.rimg.tw/photos/4402775_mtid0xh_l.jpg" alt="" /></p>
+
+<p>比較麻煩的大概是他需要日本當地的手機號碼(來日本的外國人就是要辦電話，都沒電話了怎麼打&hellip;，BTW:不能是室內電話或是IP電話一定要手機)</p>
+
+<p>所以我是跟我室友借他的手機號碼來開通</p>
+
+<p>申請完了他會顯示感謝您購買bmobile的產品並且寄一封電子郵件跟你確認你所買的方案</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4402776_yg5e5e8_l.jpg" alt="" /></p>
+
+<p>通常今天下訂，黑貓明天就會送到了</p>
+
+<p>我是預約晚上18:00~20:00收件，黑貓大概19:30到府送件!
+<img src="http://pcdn1.rimg.tw/photos/4402781_f1ah9aw_l.jpg" alt="" /></p>
+
+<p>打開之後
+<img src="http://pcdn1.rimg.tw/photos/4402852_mhm2sza_l.jpg" alt="" /></p>
+
+<p>他會附一張sim卡，b-mobile是走Docomo路線的，所以會看到Docomo的SIM卡</p>
+
+<p>接下來就是跟別人借手機來做開通的手續，撥打旁邊的那個電話號碼，然後輸入SIM卡上的認證碼</p>
+
+<p>大概等五分鐘之後就可以開通了</p>
+
+<p>馬上來測試一下</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4402779_16an3zy_l.jpg" alt="" /></p>
+
+<p>嗯!訊號是滿格的</p>
+
+<p>接下來測試能不能做熱點分享(在日本開熱點分享是要另外收費的，Bmobile是沒有這個限制)</p>
+
+<p>拿我的ipod touch來做測試!成功!!
+<img src="http://pcdn1.rimg.tw/photos/4402777_q4qpnax_l.jpg" alt="" /></p>
+
+<p>另外做了其他的測試如line通話是可以正常使用的</p>
+
+<p>目前尚未測試facetime或是skype~不過我想應該也是OK的</p>
+
+<p>這大概就是bmobile的測試結果，短期來日本急需網路又不想綁約的朋友可以參考這個方案喔!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在Octopress的第一篇]]></title>
+    <link href="http://sayaku.github.io/blog/2014/02/09/my-first-octopress/"/>
+    <updated>2014-02-09T17:23:02+08:00</updated>
+    <id>http://sayaku.github.io/blog/2014/02/09/my-first-octopress</id>
+    <content type="html"><![CDATA[<p>退伍後使用Octopress架站強制讓自己學Ruby以及Git</p>
+
+<p>最主要是Octopress架沒有廣告!預設版面簡潔又清爽</p>
+
+<p>擴充性又很大，除了要打指令比較麻煩外其餘都還好</p>
+
+<p>未來日誌更新會以這邊為主，樂多日誌那邊的文章也會慢慢的搬過來</p>
+
+<p>想看以前文章可以到我的樂多日誌:<a href="http://blog.roodo.com/sayaku">點我</a></p>
+
+<p>第一次使用在安裝上花了還蠻多的時間</p>
+
+<p>可以參考 <a href="http://wwssllabcd.github.io/blog/2012/08/01/how-to-install-octopress-on-window/">這裡</a></p>
+
+<!-- more -->
+
+
+<p>剛開始的時候有聽聞windows裝問題會很多，於是自己試著用雙系統ubuntu來安裝octopress</p>
+
+<p>裝是很順利，但最後是ubuntu變得很不穩定，最後只好刪掉ubuntu回到windows來玩octopress</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AirKinect 簡易手指偵測]]></title>
+    <link href="http://sayaku.github.io/blog/2013/01/29/airkinectdetec/"/>
+    <updated>2013-01-29T20:26:19+08:00</updated>
+    <id>http://sayaku.github.io/blog/2013/01/29/airkinectdetec</id>
+    <content type="html"><![CDATA[<iframe class="youtube" width="640" height="360" src="//www.youtube.com/embed/DSHgjOvAFiA?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+<!--more-->
+
+
+<p>為了完成直覺與精準的Kinect操作方式，想要做到手部的細節辨識</p>
+
+<p>由於Kinect與其他webcam的差別就在於它多了一個深度資訊的攝影機</p>
+
+<p>所以其實關於姿勢辨識或是手指辨識的東西還是得靠自己寫!</p>
+
+<p>完全沒有圖學背景的我就開始從網路上找一些手指辨識的資料</p>
+
+<p>認識到OpenCV強大的影像處理類別庫，且大多數手指辨識似乎都是用這套類別庫完成的</p>
+
+<p>於是我也到網路上找了OpenCV在AS3上的應用~找到有個神人寫了OpenCV的ANE</p>
+
+<p>&hellip;.不過&hellip;..是mac only的&hellip;</p>
+
+<p>好吧&hellip;.使用windows os還是得靠自己&hellip;</p>
+
+<p>好好理解關於手指辨識的流程</p>
+
+<p>也試著用as3來實做出來</p>
+
+<p>最後也成功做出一個堪用的版本~</p>
+
+<h3>實作手指偵測的步驟</h3>
+
+<p><strong>1.利用骨架關節定位出右手(或左手)的區域範圍</strong></p>
+
+<p><strong>2.擷取該區域範圍的深度影像來做影像處理，一方面可以減少大範圍的雜訊二方面可以提升辨識效能</strong></p>
+
+<p><strong>3.利用右手座標得到該像素的色彩值並搭配bitmapData.threshold可以保留手部輪廓範圍</strong></p>
+
+<p><strong>4.將得到的手部輪廓再做模糊化，用意是去除雜訊</strong></p>
+
+<p><strong>5.將處理完的輪廓取出輪廓線</strong></p>
+
+<p><strong>6.將輪廓線像素作順時針排列</strong></p>
+
+<p><strong>7.使用K曲率(k-curvature)來作手指偵測</strong></p>
+
+<p>這樣就能做出一個簡單的手指偵測與簡單的Open/Close</p>
+
+<p>雖然還是有些小問題!不過也堪用了!</p>
+
+<p>靜態圖片偵測效果如下圖:</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3340521_pezfyhu_l.jpg" alt="手指偵測" /></p>
+
+<p>原始碼在這: <a href="http://dl.dropbox.com/u/68443214/AirKinectFingerDetectionDemo.rar">點我</a></p>
+
+<p>小弟本人程度較差!可能寫了很多冗碼!</p>
+
+<p>所以其實可以優化的地方還很多!請自己做修改!</p>
+
+<p>由上圖可以看到抓指尖同時還會將凹陷處辨認為指尖!</p>
+
+<p>這邊可以用手心與半徑範圍去辨識是指間還是凹陷處!</p>
+
+<h1>How to use?</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='as3'><span class='line'><span class="kd">var</span> <span class="n">kfd</span><span class="p">:</span><span class="kt">KinectFingerDetection</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">KinectFingerDetection</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">kfd</span><span class="o">.</span><span class="na">onFingerDetection</span><span class="o">({</span><span class="s2">&quot;深度影像&quot;</span><span class="o">},</span> <span class="o">{</span><span class="s2">&quot;要偵測的手掌關節座標&quot;</span><span class="o">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//手掌張開時會觸發的事件</span>
+</span><span class='line'><span class="n">kfd</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">KinectFingerEvent</span><span class="o">.</span><span class="na">HAND_OPEN</span><span class="o">,</span> <span class="n">onkinectOpen</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//手掌握拳時會觸發的事件</span>
+</span><span class='line'><span class="n">kfd</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">KinectFingerEvent</span><span class="o">.</span><span class="na">HAND_CLOSE</span><span class="o">,</span> <span class="n">onkinectClose</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用AIR透過ANE連接原生C++操控滑鼠-Part 2]]></title>
+    <link href="http://sayaku.github.io/blog/2012/10/17/anec2/"/>
+    <updated>2012-10-17T18:24:24+08:00</updated>
+    <id>http://sayaku.github.io/blog/2012/10/17/anec2</id>
+    <content type="html"><![CDATA[<p>我們最後產出一個dll動態連結類別檔</p>
+
+<p>接下來我們要來撰寫AS端的程式碼</p>
+
+<p>讓我們可以用鍵盤來控制滑鼠移動了！</p>
+
+<!--more-->
+
+
+<h3>Part2:AS端程式撰寫並生成ANE檔</h3>
+
+<p>首先你可以在桌面上新建一個資料夾並且命名為<code>com<code></p>
+
+<p>在裡面再創建一個資料夾,名稱可以用你的名字</p>
+
+<p>最後打開flashdevelop新增一個as檔或是你用記事本編寫存成as檔也都可以</p>
+
+<p>as檔的名稱可以自己取，這邊我取名<code>NativeApp.as</code></p>
+
+<p>而這個as檔的路徑就像</p>
+
+<p><code>com\ {yourName} \ {自己取的as}</code></p>
+
+<p>以我的範例來說:</p>
+
+<p><code>com\sayaku\NativeApp.as</code></p>
+
+<p>內容如下</p>
+
+<figure class='code'><figcaption><span>NativeApp.as </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='as3'><span class='line'><span class="k">package</span> <span class="nn">com.sayaku</span><span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">import</span> <span class="nn">flash.external.ExtensionContext</span><span class="o">;</span>
+</span><span class='line'>  <span class="c1">//如果想要讓此類別可以發送及偵聽事件可以繼承EventDispatcher</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">class</span> <span class="n">NativeApp</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">_ec</span><span class="p">:</span><span class="kt">ExtensionContext</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">function </span><span class="nf">NativeApp</span><span class="o">()</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="n">_ec</span> <span class="o">=</span> <span class="n">ExtensionContext</span><span class="o">.</span><span class="na">createExtensionContext</span><span class="o">(</span><span class="s2">&quot;com.sayaku.NativeApp&quot;</span><span class="o">,</span> <span class="s2">&quot;&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">function </span><span class="nf">setMousePos</span><span class="o">(</span><span class="n">_x</span><span class="o">:</span><span class="kt">int</span><span class="o">,</span> <span class="n">_y</span><span class="o">:</span><span class="kt">int</span><span class="o">):</span><span class="kt">void</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>        <span class="c1">//調用原生C++的setMousePosition方法</span>
+</span><span class='line'>       <span class="n">_ec</span><span class="o">.</span><span class="na">call</span><span class="o">(</span><span class="s1">&#39;setMousePosition&#39;</span><span class="o">,</span> <span class="n">_x</span><span class="o">,</span> <span class="n">_y</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">function </span><span class="nf">mouseClick</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>        <span class="c1">//調用原生C++的mouseClick方法＿</span>
+</span><span class='line'>       <span class="n">_ec</span><span class="o">.</span><span class="na">call</span><span class="o">(</span><span class="s1">&#39;mouseClick&#39;</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">function </span><span class="nf">dispose</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="n">_ec</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下面這段createExtensionContext方法會返回一個ExtensionContext的實體
+<code>ExtensionContext.createExtensionContext(&lsquo;com.sayaku.NativeApp&rsquo;, &lsquo;&rsquo;);</code>
+createExtensionContext的第一個參數是"識別用的ID"在這裡應該要是<code>com.你的名字.你的AS名稱</code></p>
+
+<p>第二個參數目前還不知道要怎麼用~可以先填字串</p>
+
+<p>接著我們要將我們的as檔封裝成swc</p>
+
+<p>封裝成swc我們要使用命令提是字元程式</p>
+
+<p>首先打開附屬應用程式下的命令提示字元</p>
+
+<p>輸入</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd "你自己flexSDK\bin的完整路徑"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以我的為範例</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd C:\Program Files\FlashDevelop\Tools\flexSDK4.6\bin</span></code></pre></td></tr></table></div></figure>
+
+
+<p>會導航到我們自己flexSDK裡bin的目錄中</p>
+
+<p>接下來我們下輸出swc的指令:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>acompc -source-path "你com資料夾所在目錄的完整路徑"-include-classes "NativeApp.as的路徑"-swf-version="你flashplayer的版本號"-output "輸出swc的路徑"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以我的範例:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>acompc -source-path C:\Users\sayaKU\Desktop -include-classes com.sayaku.NativeApp -swf-version=14 -output C:\Users\sayaKU\Desktop\com.sayaku.NativeApp.swc</span></code></pre></td></tr></table></div></figure>
+
+
+<p>按下enter就能在桌面上看到輸出的swc</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3034597_inootzk_l.jpg" alt="001" /></p>
+
+<p>生成swc以後,我們就可以跟之前編譯出來的dll檔包裝成ane檔了</p>
+
+<p>包裝ane檔需要下面幾項東西</p>
+
+<p><strong>1.dll檔</strong></br>
+<strong>2.swc檔</strong></br>
+<strong>3.swc裡的swf檔</strong></br>
+<strong>4.xml描述檔</strong></br></p>
+
+<p>我們先來製作描述檔，名稱可以自己取,這邊我是取<code>aneexpo.xml</code></p>
+
+<p>內容如下:</p>
+
+<figure class='code'><figcaption><span>aneexpo.xml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;extension</span> <span class="na">xmlns=</span><span class="s">&quot;http://ns.adobe.com/air/extension/3.1&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;id&gt;</span>com.sayaku.NativeApp<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;versionNumber&gt;</span>1<span class="nt">&lt;/versionNumber&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;platforms&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;platform</span> <span class="na">name=</span><span class="s">&quot;Windows-x86&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;applicationDeployment&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;nativeLibrary&gt;</span>NativeApp.dll<span class="nt">&lt;/nativeLibrary&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;initializer&gt;</span>ExtInitializer<span class="nt">&lt;/initializer&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;finalizer&gt;</span>ExtFinalizer<span class="nt">&lt;/finalizer&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/applicationDeployment&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/platform&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/platforms&gt;</span>
+</span><span class='line'><span class="nt">&lt;/extension&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接下來我們建立一個資料夾命名可以自己取~我這邊是取aneexpo,用來裝入我們要發布ane檔的檔案</p>
+
+<p>目前我們只有<code>NativeApp.dll</code><code>com.sayaku.NativeApp.swc</code><code>aneexpo.xml</code></p>
+
+<p>還缺少一個swc裡的swf</p>
+
+<p>所以我們直接將swc的副檔名直接改成zip</p>
+
+<p>然後選擇解壓縮檔案去裡面尋找library.swf</p>
+
+<p>然後把他拉出來</p>
+
+<p>接下就可以把解壓縮出來的檔案砍掉</p>
+
+<p>將壓縮檔副檔名zip改回成swc</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3034635_vbr2on7_l.jpg" alt="14" /></p>
+
+<p>接下來終於進入到最後階段&hellip;&hellip;..發布ane檔</p>
+
+<p>將aneexpo資料夾複製到你flexsdk\bin的目錄下</p>
+
+<p>然後打開命令提示字元</p>
+
+<p>先指向到flexsdk\bin的目錄下</p>
+
+<p>然後輸入以下指令</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>adt -package -target ane NativeApp.ane "xml描述檔路徑" -swc "swc檔路徑"-platform Windows-x86 -C "原生dll檔與swf檔"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以我的範例</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>adt -package -target ane NativeAdd.ane expo/expo.xml -swc expo/com.sayaku.NativeAdd.swc -platform Windows-x86 -C expo NativeAdd.dll library.swf</span></code></pre></td></tr></table></div></figure>
+
+
+<p>按下enter就會在flexsdk\bin目錄下生成一個ane檔</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3034643_3tiexo6_l.jpg" alt="15" /></p>
+
+<p>有了ane檔接下來要來做測試</p>
+
+<p>打開FlashDevelop開啟一個新的AIR專案</p>
+
+<p>ane的使用方式可以參考這篇→<a href="http://blog.roodo.com/sayaku/archives/19907808.html">點我</a></p>
+
+<p>裡面有講到ane的設定</p>
+
+<p>我們就利用鍵盤來控制鼠標位置與點擊事件來做測試</p>
+
+<p>主檔案NativaMouse.as的內容</p>
+
+<figure class='code'><figcaption><span>NativaMouse.as </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class='as3'><span class='line'><span class="kd">package</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  
+</span><span class='line'>   <span class="k">import</span> <span class="nn">com.sayaku.NativeApp</span><span class="o">;</span>
+</span><span class='line'>   <span class="k">import</span> <span class="nn">flash.display.Sprite</span><span class="o">;</span>
+</span><span class='line'>   <span class="k">import</span> <span class="nn">flash.events.KeyboardEvent</span><span class="o">;</span>
+</span><span class='line'>   <span class="k">import</span> <span class="nn">flash.events.MouseEvent</span><span class="o">;</span>
+</span><span class='line'>   <span class="k">import</span> <span class="nn">flash.ui.Keyboard</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="kd">public</span> <span class="kd">class</span> <span class="n">NativeMouse</span> <span class="kd">extends</span> <span class="n">Sprite</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">ane</span><span class="p">:</span><span class="kt">NativeApp</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">_x</span><span class="p">:</span><span class="kt">int</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">_y</span><span class="p">:</span><span class="kt">int</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">function </span><span class="nf">NativeMouse</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>      <span class="n">ane</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">NativeApp</span><span class="o">();</span>
+</span><span class='line'>      <span class="c1">//偵聽鍵盤事件</span>
+</span><span class='line'>      <span class="n">stage</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">KeyboardEvent</span><span class="o">.</span><span class="na">KEY_DOWN</span><span class="o">,</span> <span class="n">keydown</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>          
+</span><span class='line'>      <span class="c1">//畫一個黑色矩形做為測試滑鼠點擊的區域</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="n">sp</span><span class="p">:</span><span class="kt">Sprite</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Sprite</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">addChild</span><span class="o">(</span><span class="n">sp</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">sp</span><span class="o">.</span><span class="na">graphics</span><span class="o">.</span><span class="na">beginFill</span><span class="o">(</span><span class="mh">0x000000</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">sp</span><span class="o">.</span><span class="na">graphics</span><span class="o">.</span><span class="na">drawRect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">100</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">sp</span><span class="o">.</span><span class="na">graphics</span><span class="o">.</span><span class="na">endFill</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">sp</span><span class="o">.</span><span class="na">buttonMode</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class='line'>      <span class="n">sp</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">MouseEvent</span><span class="o">.</span><span class="na">CLICK</span><span class="o">,</span> <span class="kd">function</span><span class="o">(</span><span class="n">e</span><span class="o">:</span><span class="n">MouseEvent</span><span class="o">):</span><span class="kc">void</span> <span class="o">{</span> <span class="nf">trace</span><span class="o">(</span><span class="s2">&quot;我點到了!!&quot;</span><span class="o">)</span> <span class="o">}</span> <span class="o">);</span>
+</span><span class='line'>          
+</span><span class='line'>          
+</span><span class='line'>          
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">function </span><span class="nf">keydown</span><span class="o">(</span><span class="n">e</span><span class="o">:</span><span class="kt">KeyboardEvent</span><span class="o">):</span><span class="kt">void</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>      <span class="c1">//根據鍵盤按的方向去移動滑鼠的位置</span>
+</span><span class='line'>      <span class="k">switch</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">keyCode</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">{</span>
+</span><span class='line'>       <span class="k">case</span> <span class="n">Keyboard</span><span class="o">.</span><span class="na">UP</span><span class="o">:</span>      <span class="n">_y</span><span class="o">-=</span><span class="mi">5</span><span class="o">;</span>
+</span><span class='line'>                      <span class="n">ane</span><span class="o">.</span><span class="na">setMousePos</span><span class="o">(</span><span class="n">_x</span><span class="o">,</span> <span class="n">_y</span><span class="o">);</span>
+</span><span class='line'>                  <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">case</span> <span class="n">Keyboard</span><span class="o">.</span><span class="na">DOWN</span><span class="o">:</span>    <span class="n">_y</span><span class="o">+=</span><span class="mi">5</span><span class="o">;</span>
+</span><span class='line'>                      <span class="n">ane</span><span class="o">.</span><span class="na">setMousePos</span><span class="o">(</span><span class="n">_x</span><span class="o">,</span> <span class="n">_y</span><span class="o">);</span>
+</span><span class='line'>                  <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">case</span> <span class="n">Keyboard</span><span class="o">.</span><span class="na">LEFT</span><span class="o">:</span>    <span class="n">_x</span><span class="o">-=</span><span class="mi">5</span><span class="o">;</span>
+</span><span class='line'>                      <span class="n">ane</span><span class="o">.</span><span class="na">setMousePos</span><span class="o">(</span><span class="n">_x</span><span class="o">,</span> <span class="n">_y</span><span class="o">);</span>
+</span><span class='line'>                  <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">case</span> <span class="n">Keyboard</span><span class="o">.</span><span class="na">RIGHT</span><span class="o">:</span>   <span class="n">_x</span><span class="o">+=</span><span class="mi">5</span><span class="o">;</span>
+</span><span class='line'>                      <span class="n">ane</span><span class="o">.</span><span class="na">setMousePos</span><span class="o">(</span><span class="n">_x</span><span class="o">,</span> <span class="n">_y</span><span class="o">);</span>
+</span><span class='line'>                  <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">case</span> <span class="n">Keyboard</span><span class="o">.</span><span class="na">SPACE</span><span class="o">:</span>   <span class="n">ane</span><span class="o">.</span><span class="na">mouseClick</span><span class="o">()</span> <span class="o">;</span>
+</span><span class='line'>                      <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>發布後我們就可以用鍵盤去控制鼠標的位置</p>
+
+<p>並且移到黑色方塊上按下空白鍵也會發生點擊事件喔!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3034695_kvn5a94_l.jpg" alt="16" /></p>
+
+<p>原始檔底加→<a href="http://dl.dropbox.com/u/68443214/ANEMouse.rar">點我</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用AIR透過ANE連接原生C++操控滑鼠-Part 1]]></title>
+    <link href="http://sayaku.github.io/blog/2012/10/17/anec1/"/>
+    <updated>2012-10-17T15:30:50+08:00</updated>
+    <id>http://sayaku.github.io/blog/2012/10/17/anec1</id>
+    <content type="html"><![CDATA[<p><img src="http://pcdn1.rimg.tw/photos/3030609_smej5qs_l.jpg" alt="12" /></p>
+
+<!--more-->
+
+
+<p>大家好我是阿邪。</p>
+
+<p>以前在製作FLASH時，我們可以透過滑鼠的控制來達成許多互動效果。</p>
+
+<p>可是今天如果反過來說:那我們能不能不用滑鼠去控制系統滑鼠座標與點擊動作?</p>
+
+<p>FLASH能辦到的只有透過dispatchEvent()去發送一個假的滑鼠點擊事件，但充其量它還是個模擬出來的假事件!!</p>
+
+<p>改變系統滑鼠座標，單靠目前的FLASH是辦不到的，還是得靠系統原生語言來控制!</p>
+
+<p>好在現在我們可以利用AIR透過ANE(AIR Native Extension)原生擴充功能來與原生語言動態函式庫的聯繫。</p>
+
+<p>目前關於ANE的文章大部分都是以行動裝置ios,android的原生拓展的文章較多</p>
+
+<p>桌面應用程式方面的原生拓展文章則較少著墨。</p>
+
+<p>剛好現在做的專案遇到這樣的問題，順便來筆記一下如何讓AIR透過ANE去跟C++溝通。</p>
+
+<p>本教學原文是參考此篇教學:<a href="http://rhuno.com/flashblog/2012/04/30/tutorial-flash-and-c-native-extension/">點我</a></p>
+
+<h4>以下是我的開發環境:</h4>
+
+<p><a href="http://www.flashdevelop.org/">FlashDevelop 4.0.4 RTM</a></br>
+<a href="http://www.adobe.com/devnet/flex/flex-sdk-download.html">FlexSDK 4.6(目前最新版本為4.6)</a></br>
+<a href="http://www.adobe.com/devnet/air/air-sdk-download.html">AIRSDK 3.3 (目前最新版本為3.4，至少要3.0以上)</a></br>
+<a href="http://www.microsoft.com/visualstudio/eng/products/visual-studio-express-products">M$ Visual Studio Express 2012</a></br></p>
+
+<h3>Part1 : C++端的程式撰寫</h3>
+
+<p>在此聲明!我是個Flasher!!我完完全全的不會寫C++</p>
+
+<p>所以內文有疑慮或是解釋錯的地方煩請高手多多包涵!</p>
+
+<p>首先打開我們的Visual Studio Express 2012</p>
+
+<p>新增專案:</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030295_ca9jfsq_l.jpg" alt="01" /></p>
+
+<p>選擇Win32專案</p>
+
+<p>並填好專案名稱跟儲存位置</p>
+
+<p>我專案名稱是命名NativeApp</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030297_5kwzpib_l.jpg" alt="02" /></p>
+
+<p>應用程式類型選擇為DLL(Dynamic Link Library)動態連結類別庫</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030439_dvfphnv_l.jpg" alt="03" /></p>
+
+<p>先到dllmain.cpp,這是dll程式的進入點</p>
+
+<p>將dllmain.cpp預設內容改成</p>
+
+<figure class='code'><figcaption><span>dllmain.cpp </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="c1">// dllmain.cpp : 定義 DLL 應用程式的進入點。</span>
+</span><span class='line'><span class="cp">#include &lt;windows.h&gt;</span>
+</span><span class='line'><span class="n">BOOL</span> <span class="n">APIENTRY</span> <span class="nf">DllMain</span><span class="p">(</span> <span class="n">HMODULE</span> <span class="n">hModule</span><span class="p">,</span>
+</span><span class='line'>                       <span class="n">DWORD</span>  <span class="n">ul_reason_for_call</span><span class="p">,</span>
+</span><span class='line'>                       <span class="n">LPVOID</span> <span class="n">lpReserved</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>之後將原始程式檔裡的<code>stdafx.cpp</code>跟標頭檔裡兩個<code>stdafx.h</code>跟<code>targetver.h</code>砍掉</p>
+
+<p>然後到你下載好的flex sdk裡include資料夾</p>
+
+<p>將裡面的<code>FlashRuntimeExtensions.h</code>複製起來</p>
+
+<p>到你NativeApp的專案裡的NativeApp資料夾貼上</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030359_j9885ui_l.jpg" alt="04" /></p>
+
+<p>OK之後再回到Flex SDK>lib找到win資料夾</p>
+
+<p>裡面有一個<code>FlashRuntimeExtensions.lib</code>把它複製起來</p>
+
+<p>一樣把它丟到你NativeApp的專案裡的NativeApp資料夾</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030377_mtcyb9y_l.jpg" alt="05" /></p>
+
+<p>這個階段OK之後回到Visual Studio Express 2012</p>
+
+<p>在標頭檔的資料夾上按右鍵加入>現有項目>FlashRuntimeExtensions.h</p>
+
+<p>結束後再加入一個新增項目>選擇標頭檔(.h),然後命名<code>NativeApp.h</code></p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030381_z6ypkai_l.jpg" alt="06" /></p>
+
+<p>下一個步驟就是將<code>FlashRuntimeExtensions.lib</code>給加進來</p>
+
+<p>在上面的NativeApp按右建>加入>現有項目>FlashRuntimeExtensions.lib</p>
+
+<p>全部改完之後會像這樣</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030389_4pn6q5h_l.jpg" alt="07" /></p>
+
+<p>接下來因為我們之前去掉<code>stdafx.h</code>，我們需要告訴編譯器不要找到他!不然會一直出錯!!</p>
+
+<p>我們到NativeApp上按右鍵選擇屬性 > C/C++ > 先行編譯標頭檔選擇未使用先行編譯標頭檔!</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030393_uddbl1m_l.jpg" alt="08" /></p>
+
+<p>設定差不多了!可以開始coding了!</p>
+
+<p>首先打開<code>NativeApp.h</code></p>
+
+<p>我們輸入以下程式碼</p>
+
+<figure class='code'><figcaption><span>NativeApp.h </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &quot;FlashRuntimeExtensions.h&quot;  </span>
+</span><span class='line'><span class="c1">//用 extern &quot;C&quot;將C++指令轉換成C語言 </span>
+</span><span class='line'><span class="c1">//原因是防止C++名稱重整器造成函數名稱的錯位</span>
+</span><span class='line'><span class="k">extern</span> <span class="s">&quot;C&quot;</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kr">__declspec</span><span class="p">(</span><span class="n">dllexport</span><span class="p">)</span> <span class="kt">void</span> <span class="n">ExtInitializer</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">extDataToSet</span><span class="p">,</span> <span class="n">FREContextInitializer</span><span class="o">*</span> <span class="n">ctxInitializerToSet</span><span class="p">,</span> <span class="n">FREContextFinalizer</span><span class="o">*</span> <span class="n">ctxFinalizerToSet</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kr">__declspec</span><span class="p">(</span><span class="n">dllexport</span><span class="p">)</span> <span class="kt">void</span> <span class="n">ExtFinalizer</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">extData</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kr">__declspec</span><span class="p">(</span><span class="n">dllexport</span><span class="p">)</span> <span class="n">FREObject</span> <span class="n">setMousePosition</span><span class="p">(</span><span class="n">FREContext</span> <span class="n">ctx</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">funcData</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">argc</span><span class="p">,</span> <span class="n">FREObject</span> <span class="n">argv</span><span class="p">[]);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kr">__declspec</span><span class="p">(</span><span class="n">dllexport</span><span class="p">)</span> <span class="n">FREObject</span> <span class="n">mouseClick</span><span class="p">(</span><span class="n">FREContext</span> <span class="n">ctx</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">funcData</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">argc</span><span class="p">,</span> <span class="n">FREObject</span> <span class="n">argv</span><span class="p">[]);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這邊宣告四種方法</p>
+
+<p><strong>初始化(ExtInitializer)與終結(ExtFinalizer)這兩個方法是必須的</strong></p>
+
+<p><strong>setMousePosition,mouseClick這兩個方法是用來給AS3調用的</strong></p>
+
+<p><strong>setMousePosition是改變系統滑鼠的座標</strong></p>
+
+<p><strong>mouseClick是觸發系統的滑鼠Click</strong></p>
+
+<p>接下來編寫<code>NativeApp.cpp</code>
+輸入以下程式</p>
+
+<figure class='code'><figcaption><span>NativeApp.cpp </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#include &quot;NativeApp.h&quot;</span>
+</span><span class='line'><span class="cp">#include &lt;stdlib.h&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;windows.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">extern</span> <span class="s">&quot;C&quot;</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">FREObject</span> <span class="n">setMousePosition</span><span class="p">(</span><span class="n">FREContext</span> <span class="n">ctx</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">funcData</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">argc</span><span class="p">,</span> <span class="n">FREObject</span> <span class="n">argv</span><span class="p">[])</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>    <span class="c1">//AS3傳來的參數會存在argv[]裡</span>
+</span><span class='line'>    <span class="kt">int32_t</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
+</span><span class='line'>  
+</span><span class='line'>    <span class="c1">//將AS3數據轉成C++</span>
+</span><span class='line'>    <span class="n">FREGetObjectAsInt32</span> <span class="p">(</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">FREGetObjectAsInt32</span> <span class="p">(</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">//設定系統的座標,為Windows.h裡的方法</span>
+</span><span class='line'>    <span class="n">SetCursorPos</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">//如果不在意回傳數值就回傳第一個參數</span>
+</span><span class='line'>    <span class="c1">//如果需要回傳經計算過的數值請記得利用FRE Object轉成AS3看得懂的數據</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">FREObject</span> <span class="n">mouseClick</span><span class="p">(</span><span class="n">FREContext</span> <span class="n">ctx</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">funcData</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">argc</span><span class="p">,</span> <span class="n">FREObject</span> <span class="n">argv</span><span class="p">[])</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>    <span class="c1">//觸發滑鼠事件,click事件其實就是mousedown跟mouseup的組合</span>
+</span><span class='line'>    <span class="n">mouse_event</span><span class="p">(</span><span class="n">MOUSEEVENTF_LEFTDOWN</span> <span class="o">|</span> <span class="n">MOUSEEVENTF_LEFTUP</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="kt">void</span> <span class="n">ContextInitializer</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">extData</span><span class="p">,</span> <span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">ctxType</span><span class="p">,</span> <span class="n">FREContext</span> <span class="n">ctx</span><span class="p">,</span> <span class="kt">uint32_t</span><span class="o">*</span> <span class="n">numFunctions</span><span class="p">,</span> <span class="k">const</span> <span class="n">FRENamedFunction</span><span class="o">**</span> <span class="n">functions</span><span class="p">)</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>    <span class="c1">//在初始化時宣告可以被AS3調用的方法</span>
+</span><span class='line'>    <span class="o">*</span><span class="n">numFunctions</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">FRENamedFunction</span><span class="o">*</span> <span class="n">func</span> <span class="o">=</span> <span class="p">(</span><span class="n">FRENamedFunction</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">FRENamedFunction</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">numFunctions</span><span class="p">));</span>
+</span><span class='line'>  
+</span><span class='line'>      
+</span><span class='line'>    <span class="n">func</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="s">&quot;setMousePosition&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">func</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">functionData</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">func</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">function</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">setMousePosition</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">func</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="s">&quot;mouseClick&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">func</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">functionData</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">func</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">function</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">mouseClick</span><span class="p">;</span>
+</span><span class='line'>      
+</span><span class='line'>    <span class="o">*</span><span class="n">functions</span> <span class="o">=</span> <span class="n">func</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">ContextFinalizer</span><span class="p">(</span><span class="n">FREContext</span> <span class="n">ctx</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">ExtInitializer</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">extData</span><span class="p">,</span> <span class="n">FREContextInitializer</span><span class="o">*</span> <span class="n">ctxInitializer</span><span class="p">,</span> <span class="n">FREContextFinalizer</span><span class="o">*</span> <span class="n">ctxFinalizer</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="o">*</span><span class="n">ctxInitializer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ContextInitializer</span><span class="p">;</span>
+</span><span class='line'>  <span class="o">*</span><span class="n">ctxFinalizer</span>   <span class="o">=</span> <span class="o">&amp;</span><span class="n">ContextFinalizer</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">ExtFinalizer</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">extData</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>結束後!程式就完成了!可以編譯出dll檔</p>
+
+<p>選擇上方的"建置">建置方案</p>
+
+<p>當然你可以選擇你要編譯debug還是release版本</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030423_c0xo82a_l.jpg" alt="9" /></p>
+
+<p>編譯成功下面會輸出</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/3030425_bondyg4_l.jpg" alt="10" /></p>
+
+<p>關於C++與AS3之間的數據轉換的類別可以參考→<a href="http://help.adobe.com/en_US/air/extensions/WS460ee381960520ad-866f9c112aa6e1ad46-7ff8.html">點我</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Away3D歐拉旋轉所造成的GimbalLock現象]]></title>
+    <link href="http://sayaku.github.io/blog/2012/06/30/gimballock/"/>
+    <updated>2012-06-30T00:08:17+08:00</updated>
+    <id>http://sayaku.github.io/blog/2012/06/30/gimballock</id>
+    <content type="html"><![CDATA[<iframe src="https://dl.dropboxusercontent.com/u/68443214/gimbalLock/GimbalLock.html" width="640" height="500" frameborder="o"></iframe>
+
+
+
+
+<!--more-->
+
+
+<p>所謂的gimballock我們稱為萬向鎖、萬向節鎖或稱平橫軸死鎖</p>
+
+<p>這是在歐拉旋轉系統可能會碰到的一個惱人問題!!</p>
+
+<p>歐拉旋轉系統是一般3D製圖軟體最基礎的旋轉系統</p>
+
+<p>雖然3D軟體裡執行物件旋轉時看不出歐拉系統的旋轉軸</p>
+
+<p>然而電腦背後還是使用歐拉旋轉系統來做旋轉</p>
+
+<p>所以一般3D繪圖軟體所標的旋轉軸線也只是參考用。</p>
+
+<p>在歐拉旋轉系統中</p>
+
+<p>它把空間中的旋轉獨立成roll,pitch,yaw這三個軸向的旋轉。</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/2593243_608qk49_l.png" alt="rpy" /></p>
+
+<p>這三個軸向在不同座標系分別代表不同的軸向</p>
+
+<p>如果以笛卡兒座標系來說</p>
+
+<p>roll代表空間中物體X軸向的旋轉</p>
+
+<p>pitch代表空間中物體Y軸向的旋轉</p>
+
+<p>yaw代表空間中物體Z軸向的旋轉</p>
+
+<p>而在Flash away3D裡的座標系</p>
+
+<p>roll代表空間中物體Z軸向的旋轉</p>
+
+<p>pitch代表空間中物體X軸向的旋轉</p>
+
+<p>yaw代表空間中物體Y軸向的旋轉</p>
+
+<p>而歐拉旋轉是有順序與階層性的</p>
+
+<p>例如先轉X軸再轉Y軸與先轉Y軸再轉X軸的結果是不同的</p>
+
+<p>而階層性，可以用旋轉順序來定義</p>
+
+<p>如果旋轉順序是X→Y→Z</p>
+
+<p>則X旋轉時會同時牽動子階層Y、Z軸</p>
+
+<p>Y軸旋轉時會牽動子階層Z軸但不會牽動到父階層X軸</p>
+
+<p>而Z旋轉時只有本身的旋轉並不會影響到它的父階層X、Y軸</p>
+
+<p>所以這時三軸各自旋轉時就有可能會造成GimbalLock現象</p>
+
+<p>例如本篇文章最上面的範例裡</p>
+
+<p>旋轉到第二步驟會發現Z軸跟X軸重疊於同一個平面</p>
+
+<p>所以你不論你去轉Z軸跟X軸就相當是在同一個軸向上旋轉</p>
+
+<p>也代表失去一個軸向的自由度(三軸旋轉變成兩軸旋轉!!)</p>
+
+<p>在旋轉時可能造成旋轉效果不如預期的問題</p>
+
+<p>即使轉換成矩陣旋轉一樣也避免不了GimbalLock的問題</p>
+
+<p>所以這時處理空間中的旋轉，我們可以使用四元數旋轉來避免GimbalLock</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Away3d Quaternion 使用四元數來處理空間中的旋轉]]></title>
+    <link href="http://sayaku.github.io/blog/2012/05/27/quaternion/"/>
+    <updated>2012-05-27T20:55:21+08:00</updated>
+    <id>http://sayaku.github.io/blog/2012/05/27/quaternion</id>
+    <content type="html"><![CDATA[<iframe src="https://dl.dropboxusercontent.com/u/68443214/QuaternionRotation/bin/index.html" width="640" height="480" frameborder="o"></iframe>
+
+
+
+
+<!--more-->
+
+
+<p>大家好我是阿邪!</p>
+
+<p>最近因為要計算一些空間中的位移與旋轉</p>
+
+<p>不得不要理解一些數學的運算</p>
+
+<p>要了解3D引擎如何在空間中運算</p>
+
+<p>了解向量與矩陣的基礎知識是必要的</p>
+
+<p>因為大學不是相關科系的</p>
+
+<p>距離上一次算這些東西大概是高中指考前</p>
+
+<p>所以現在關於這些數學觀念全還給高中老師了</p>
+
+<p>標題提到的四元數必須要了解這些概念才會比較好懂!</p>
+
+<p>所以最近幾天都在算數學</p>
+
+<h2>向量</h2>
+
+<p>其實向量概念很簡單</p>
+
+<p>它可以表示一個座標點、方向跟長度</p>
+
+<p>假設一原點<code>O(0,0)</code> 與<code>P(a,b)</code></p>
+
+<p>則OP向量我們可以用P點的座標來表示</p>
+
+<p>空間中的兩點:</p>
+
+<p>空間中有兩點 <code>A(a,b,c)</code> 與 <code>B(d,e,f)</code></p>
+
+<p>則AB向量是 <code>AB( d-a , e-b , f-c )</code></p>
+
+<p>這是個簡單的向量</p>
+
+<h3>向量長度:</h3>
+
+<p>向量A(a,b,c)</p>
+
+<p>長度=<code>Math.sqr(a<em>a+b</em>b+c*c)</code></p>
+
+<h2>向量的運算</h2>
+
+<h3>向量的加減(位移):</h3>
+
+<p>A向量(a,b,c) , B向量(d,e,f)</p>
+
+<figure class='code'><figcaption><span>向量加法</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>加法: A向量+B向量 = (a+d , b+e , c+f);</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>向量減法</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>減法: A向量 - B向量= (a-d , b-e , c-f);</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>向量的運算滿足交換律與結合律</h2>
+
+<figure class='code'><figcaption><span>向量交換律 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>交換律:A+B=B+A</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>向量結合律 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>結合律:A+(B+C)=(A+B)+C</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>向量的乘法(縮放):</h3>
+
+<figure class='code'><figcaption><span>向量的乘法 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>常數x乘與向量A(a,b,c)=(x*a , x*b , x*c);</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>向量的內積(點積):</h3>
+
+<p>符號是<code>‧</code>
+兩向量的內積為一個純數
+也代表A向量投影在B向量上的分量</p>
+
+<p>向量A(a,b,c)與向量B(d,e,f)</p>
+
+<p>則向量<code>A ‧ B</code></p>
+
+<figure class='code'><figcaption><span>向量內積 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A ‧ B=(a*d + b*e + c*f)=A向量的長度*B向量的長度*cosq;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我們可以使用內積來求兩向量的夾角!</p>
+
+<h3>向量的外積(叉積):</h3>
+
+<p>符號是<code>X</code></p>
+
+<p>向量的外積還是一個向量</p>
+
+<p>向量A(a,b,c)與向量B(d,e,f)</p>
+
+<p>則<code>A X B</code></p>
+
+<figure class='code'><figcaption><span>向量外積 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A X B=(a*f-c*e ,  c*d-a*f , a*e-b*d)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>得出來的新向量會垂直於A向量與B向量</p>
+
+<p>所以也是A向量與B向量構成的平面上的法向量</p>
+
+<p>另外向量的外積是不滿足交換律的</p>
+
+<p><code>A X B</code>與<code>B X A</code>是不同的!但是兩個得出來的方向剛好相反</p>
+
+<h2>矩陣</h2>
+
+<p>我們可以將向量轉成矩陣</p>
+
+<p>去運算在空間中的平移與旋轉</p>
+
+<p>空間中的平移會用到矩陣的加法與減法</p>
+
+<p>旋轉會用到矩陣的相乘</p>
+
+<p>所以我們3D引擎裡的rotation X,Y,Z其實背後都是在做旋轉矩陣的運算!</p>
+
+<p>一些算式在這邊都有:<a href="http://www.nicoptere.net/noobie_ninja/lib/doc/3d_cheatsheet.pdf">點我</a></p>
+
+<p>關於矩陣的運算與原理</p>
+
+<p>可以看這些:<a href="http://book.51cto.com/art/200808/84772.htm">點我</a></p>
+
+<p>呼!打好久!接下來終於要進入本篇的主題:四元數</p>
+
+<p>四元數不是個數!它是一個數學的模型!</p>
+
+<p>是由愛爾蘭學家威廉·盧雲·哈密頓發現的</p>
+
+<p>有興趣可以去看維基百科:<a href="http://zh.wikipedia.org/wiki/%E5%9B%9B%E5%85%83%E6%95%B8">點我</a></p>
+
+<p>看了以後!發現還是看不懂!只知道他有4個分量<code>w</code>,<code>x</code>,<code>y</code>,<code>z</code></p>
+
+<p>x,y,z是虛數,w是實數</p>
+
+<p>那跟旋轉有甚麼關係呢?</p>
+
+<p>還好在空間中的四元數不需要從數學的角度去理解(因為我看了好久還是看不懂)</p>
+
+<p>四元數在空間中可以儲存四種分量!畢竟叫四元數就是有四個元素組成</p>
+
+<p>簡單來說可以把四元數表示成:</p>
+
+<p>x,y,z是一個向量!而w是以這個向量為旋轉軸所繞的角度</p>
+
+<p>所以我們可以利用四元數來計算空間中的旋轉</p>
+
+<p>那為什麼要用四元數呢?</p>
+
+<p>以前一般來作空間中的旋轉式使用旋轉矩陣來運算</p>
+
+<p>但它很不好清楚的表示出X,Y,Z的旋轉角度</p>
+
+<p>於是有了歐拉角(Euler)來表示旋轉角度!</p>
+
+<p>但使用歐拉角來表示空間中的旋轉!會有一個很大的問題!</p>
+
+<p>就是萬向死鎖(Gimbal Lock)</p>
+
+<p>簡單來說就是經過3軸旋轉以後~可能會演變成旋轉軸重疊!導至只能轉一個方向</p>
+
+<p>這邊有一個影片可以說明萬向鎖</p>
+
+<iframe class="youtube" width="480" height="480" src="//www.youtube.com/embed/zc8b2Jo7mno?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+<p>所以在四元數的實作中可以避免掉萬向鎖的問題</p>
+
+<p>基本上還蠻多地方會用到四元數</p>
+
+<p>比如3D模型的骨架</p>
+
+<p>它們骨塊關節的旋轉都是運用四元數</p>
+
+<p>我們這邊使用四元數來實作一個地球任意方向的旋轉</p>
+
+<p>這邊使用的是away3d 4 beta的3D引擎</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+</pre></td><td class='code'><pre><code class='as3'><span class='line'><span class="kd">package</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.cameras.Camera3D</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.containers.Scene3D</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.containers.View3D</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.core.math.Quaternion</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.entities.Mesh</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.lights.PointLight</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.materials.lightpickers.StaticLightPicker</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.materials.TextureMaterial</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.primitives.SphereGeometry</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.textures.BitmapTexture</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.tools.utils.Ray</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">flash.display.Sprite</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">flash.events.Event</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">flash.geom.Matrix3D</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">flash.geom.Vector3D</span><span class="o">;</span>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * ...</span>
+</span><span class='line'><span class="cm"> * @author sayaku</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="o">[</span><span class="n">SWF</span><span class="o">(</span><span class="n">frameRate</span><span class="o">=</span><span class="s2">&quot;60&quot;</span><span class="o">,</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;800&quot;</span><span class="o">,</span><span class="n">height</span><span class="o">=</span><span class="s2">&quot;600&quot;</span><span class="o">)]</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="n">QuaternionEarth</span> <span class="kd">extends</span> <span class="n">Sprite</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="o">[</span><span class="n">Embed</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;../bin/assets/earth.jpg&quot;</span><span class="o">)]</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">EarthSkin</span><span class="p">:</span><span class="kt">Class</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">view</span><span class="p">:</span><span class="kt">View3D</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">camera</span><span class="p">:</span><span class="kt">Camera3D</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">scene</span><span class="p">:</span><span class="kt">Scene3D</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">mesh</span><span class="p">:</span><span class="kt">Mesh</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">light</span><span class="p">:</span><span class="kt">PointLight</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">lightPicker</span><span class="p">:</span><span class="kt">StaticLightPicker</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">ray</span><span class="p">:</span><span class="kt">Ray</span><span class="o">;//</span><span class="err">直線運算</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">SPEED</span><span class="p">:</span><span class="kt">Number</span> <span class="o">=</span> <span class="o">.</span><span class="mi">97</span><span class="o">;//</span><span class="err">減速度</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">var</span> <span class="n">radius</span><span class="p">:</span><span class="kt">Number</span> <span class="o">=</span> <span class="mi">350</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">function </span><span class="nf">QuaternionEarth</span><span class="o">()</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="k">if</span> <span class="o">(</span><span class="n">stage</span><span class="o">)</span> <span class="n">init</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">else</span> <span class="n">addEventListener</span><span class="o">(</span><span class="n">Event</span><span class="o">.</span><span class="na">ADDED_TO_STAGE</span><span class="o">,</span> <span class="n">init</span><span class="o">);</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">function </span><span class="nf">init</span><span class="o">(</span><span class="n">e</span><span class="o">:</span><span class="kt">Event</span><span class="o">):</span><span class="kt">void</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>  <span class="n">removeEventListener</span><span class="o">(</span><span class="n">Event</span><span class="o">.</span><span class="na">ADDED_TO_STAGE</span><span class="o">,</span> <span class="n">init</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">initEngine</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">initLight</span><span class="o">();</span>      
+</span><span class='line'>        <span class="n">initObj3D</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">initListener</span><span class="o">()</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">function </span><span class="nf">initEngine</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>  <span class="n">view</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">View3D</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">scene</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">scene</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">camera</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">camera</span><span class="o">;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">addChild</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">function </span><span class="nf">initLight</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>  <span class="n">light</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">PointLight</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">light</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="mi">5000</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">light</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3000</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">light</span><span class="o">.</span><span class="na">ambient</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">scene</span><span class="o">.</span><span class="na">addChild</span><span class="o">(</span><span class="n">light</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">lightPicker</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">StaticLightPicker</span><span class="o">([</span><span class="n">light</span><span class="o">]);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">function </span><span class="nf">initObj3D</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="n">sphere</span><span class="p">:</span><span class="kt">SphereGeometry</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">SphereGeometry</span><span class="o">(</span><span class="n">radius</span><span class="o">,</span><span class="mi">50</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="n">mt</span><span class="p">:</span><span class="kt">TextureMaterial</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">TextureMaterial</span><span class="o">(</span><span class="k">new</span> <span class="kt">BitmapTexture</span><span class="o">(</span><span class="k">new</span> <span class="kt">EarthSkin</span><span class="o">().</span><span class="n">bitmapData</span><span class="o">));</span>
+</span><span class='line'>  <span class="n">mt</span><span class="o">.</span><span class="na">specular</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">mt</span><span class="o">.</span><span class="na">gloss</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">mt</span><span class="o">.</span><span class="na">ambientColor</span> <span class="o">=</span> <span class="mh">0x333333</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">mt</span><span class="o">.</span><span class="na">ambient</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">mt</span><span class="o">.</span><span class="na">lightPicker</span> <span class="o">=</span> <span class="n">lightPicker</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">mesh</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Mesh</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">mesh</span><span class="o">.</span><span class="na">geometry</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">mesh</span><span class="o">.</span><span class="na">material</span> <span class="o">=</span> <span class="n">mt</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">scene</span><span class="o">.</span><span class="na">addChild</span><span class="o">(</span><span class="n">mesh</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">ray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Ray</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">function </span><span class="nf">initListener</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>  <span class="n">addEventListener</span><span class="o">(</span><span class="n">Event</span><span class="o">.</span><span class="na">ENTER_FRAME</span><span class="o">,</span> <span class="n">onRender</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">function </span><span class="nf">onRender</span><span class="o">(</span><span class="n">e</span><span class="o">:</span><span class="kt">Event</span><span class="o">):</span><span class="kt">void</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>  <span class="n">view</span><span class="o">.</span><span class="na">render</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">updataRotation</span><span class="o">();</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">function </span><span class="nf">updataRotation</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'> <span class="kd">var</span> <span class="n">mouse3DPos</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">unproject</span><span class="o">(</span><span class="n">view</span><span class="o">.</span><span class="na">mouseX</span><span class="o">,</span> <span class="n">view</span><span class="o">.</span><span class="na">mouseY</span><span class="o">);</span>
+</span><span class='line'>    <span class="c1">//利用反投影得到2D平面的滑鼠位置轉換成3D空間中的點</span>
+</span><span class='line'> <span class="kd">var</span> <span class="n">currentEarthMt</span><span class="p">:</span><span class="kt">Matrix3D</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="na">transform</span><span class="o">;</span>
+</span><span class='line'><span class="c1">//取得現在地球在空間中的矩陣</span>
+</span><span class='line'><span class="c1">//============================================    </span>
+</span><span class='line'><span class="c1">//宣告一個XY平面的四個頂點</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="n">v1</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span> <span class="o">-</span><span class="mi">1000</span><span class="o">,</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="n">v2</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="n">v3</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span> <span class="mi">1000</span><span class="o">,</span> <span class="o">-</span><span class="mi">1000</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="n">v4</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span> <span class="o">-</span><span class="mi">1000</span><span class="o">,</span> <span class="o">-</span><span class="mi">1000</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//============================================        </span>
+</span><span class='line'>   <span class="kd">var</span> <span class="n">interSection</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector3D</span><span class="o">;</span>
+</span><span class='line'><span class="c1">//相機到空間中滑鼠點的向量與XY平面的交點(也代表原點到此交點的向量)</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="k">if</span> <span class="o">(</span><span class="n">ray</span><span class="o">.</span><span class="na">getRayToTriangleIntersection</span><span class="o">(</span><span class="n">camera</span><span class="o">.</span><span class="na">position</span><span class="o">,</span> <span class="n">mouse3DPos</span><span class="o">,</span> <span class="n">v1</span><span class="o">,</span> <span class="n">v2</span><span class="o">,</span> <span class="n">v3</span><span class="o">))</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>  <span class="n">interSection</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="na">getRayToTriangleIntersection</span><span class="o">(</span><span class="n">camera</span><span class="o">.</span><span class="na">position</span><span class="o">,</span> <span class="n">mouse3DPos</span><span class="o">,</span> <span class="n">v1</span><span class="o">,</span> <span class="n">v2</span><span class="o">,</span> <span class="n">v3</span><span class="o">);</span>   
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>  <span class="o">{</span>        
+</span><span class='line'>  <span class="n">interSection</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="na">getRayToTriangleIntersection</span><span class="o">(</span><span class="n">camera</span><span class="o">.</span><span class="na">position</span><span class="o">,</span> <span class="n">mouse3DPos</span><span class="o">,</span> <span class="n">v1</span><span class="o">,</span> <span class="n">v4</span><span class="o">,</span> <span class="n">v3</span><span class="o">);</span>   
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="n">interSection</span> <span class="o">||=</span> <span class="k">new</span> <span class="n">Vector3D</span><span class="o">;</span>
+</span><span class='line'>        <span class="c1">//如果是null就NEW一個出來</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">interSection</span><span class="o">.</span><span class="na">scaleBy</span><span class="o">(</span><span class="n">SPEED</span><span class="o">);</span>
+</span><span class='line'>         <span class="c1">//向量乘以一個倍數來表示旋轉速度 </span>
+</span><span class='line'>  <span class="kd">var</span> <span class="n">distance</span><span class="p">:</span><span class="kt">Number</span> <span class="o">=</span> <span class="n">interSection</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span><span class='line'>        <span class="c1">//計算長度       </span>
+</span><span class='line'>  <span class="kd">var</span> <span class="n">normalDir</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>        <span class="c1">//XY平面的法向量</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="n">rotationAxis</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="n">interSection</span><span class="o">.</span><span class="na">crossProduct</span><span class="o">(</span><span class="n">normalDir</span><span class="o">);</span>
+</span><span class='line'>        <span class="c1">//兩向量作外積可得到垂直於兩向量的向量(即我們需要的旋轉軸)</span>
+</span><span class='line'>  <span class="n">rotationAxis</span><span class="o">.</span><span class="na">normalize</span><span class="o">();</span>
+</span><span class='line'>        <span class="c1">//旋轉軸記得要正規化!不然轉起來會頓頓</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="n">q</span><span class="p">:</span><span class="kt">Quaternion</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Quaternion</span><span class="o">();</span>
+</span><span class='line'>        <span class="c1">//四元數</span>
+</span><span class='line'>  <span class="n">q</span><span class="o">.</span><span class="na">fromAxisAngle</span><span class="o">(</span><span class="n">rotationAxis</span><span class="o">,</span> <span class="o">(</span><span class="n">distance</span> <span class="o">/</span> <span class="n">radius</span><span class="o">));</span>
+</span><span class='line'>  <span class="n">q</span><span class="o">.</span><span class="na">normalize</span><span class="o">();</span>
+</span><span class='line'>        <span class="c1">//如果沒有再作其他四元數的運算,不正規化也沒關係</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="n">currentEarthMt</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="na">toMatrix3D</span><span class="o">());</span>
+</span><span class='line'>        <span class="c1">//矩陣運算(兩矩陣相乘)改變目前地球的旋轉角度</span>
+</span><span class='line'>  <span class="n">mesh</span><span class="o">.</span><span class="na">transform</span><span class="o">=</span><span class="n">currentEarthMt</span> <span class="o">;</span>
+</span><span class='line'>        <span class="c1">//再指定給現在的地球</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看一下這個地球旋轉用到的概念</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/2483131_4oc2t9o_l.jpg" alt="er" /></p>
+
+<p>從這張圖可以講解這個DEMO的基本概念</p>
+
+<p>基本上我們的目的就是要算出地球的旋轉軸</p>
+
+<p>首先我們利用unproject將2D的滑鼠位置轉成在空間中的位置,轉換後z值是20,我也不知道為什麼!蠻特殊的轉換法</p>
+
+<p>接下來有了滑鼠在空間中的點就能算攝影機到這個點的向量</p>
+
+<p>然後要算出這個向量跟XY平面的交點則是利用Ray類別裡的<code>getRayToTriangleIntersection()</code>方法</p>
+
+<p>這個方法只能算你給的三角形面與這個向量的交點(其實平面就是兩個三角型組成的)</p>
+
+<p>getRayToTriangleIntersection()的參數分別是<code>(&ldquo;向量的起點&rdquo;,&ldquo;向量的終點&rdquo;,&ldquo;三角形的三個頂點&rdquo;)</code></p>
+
+<p>如果沒有交點的話會回傳null</p>
+
+<p>所以將我們定義的XY平面的頂點拆成兩個三角形去用if來判斷現在是在哪個平面有交點</p>
+
+<p>算出交點後~就表示地球是要往你那個交點方向旋轉</p>
+
+<p>那要算出旋轉軸就很簡單了</p>
+
+<p>只要交點這個向量與Z軸向量作外積就可以做出垂直於這兩個向量的向量也就是我們要的旋轉軸</p>
+
+<p>得到向量的旋轉軸要做正規化的動作</p>
+
+<p>因為我們只需要這個向量的方向~不需要它的長度跟座標!所以將它正規化</p>
+
+<p>正規化的意義就是使這個向量的長度為1,如果你不做正規化!在運算時可能會超出範圍!</p>
+
+<p>所以務必要使用向量正規化!正規化後原本的座標與長度就被蓋掉了!這點要注意</p>
+
+<p>然後再用四元數去處理旋轉就OK了</p>
+
+<p>基本上四元數能算旋轉但是不能直接給出角度!所以還是要轉成矩陣去做矩陣運算</p>
+
+<p>原始碼下載:<a href="https://www.box.com/s/ffcnoi5km4g05vqtnfme">點我</a></p>
+
+<p>如果數學概念有錯的話請指正:)</p>
+]]></content>
+  </entry>
+  
+</feed>

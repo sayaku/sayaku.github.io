@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Away3d | 林克融]]></title>
+  <link href="http://sayaku.github.io/blog/categories/away3d/atom.xml" rel="self"/>
+  <link href="http://sayaku.github.io/"/>
+  <updated>2016-01-20T16:43:33+08:00</updated>
+  <id>http://sayaku.github.io/</id>
+  <author>
+    <name><![CDATA[sayaku]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Away3D歐拉旋轉所造成的GimbalLock現象]]></title>
+    <link href="http://sayaku.github.io/blog/2012/06/30/gimballock/"/>
+    <updated>2012-06-30T00:08:17+08:00</updated>
+    <id>http://sayaku.github.io/blog/2012/06/30/gimballock</id>
+    <content type="html"><![CDATA[<iframe src="https://dl.dropboxusercontent.com/u/68443214/gimbalLock/GimbalLock.html" width="640" height="500" frameborder="o"></iframe>
+
+
+
+
+<!--more-->
+
+
+<p>所謂的gimballock我們稱為萬向鎖、萬向節鎖或稱平橫軸死鎖</p>
+
+<p>這是在歐拉旋轉系統可能會碰到的一個惱人問題!!</p>
+
+<p>歐拉旋轉系統是一般3D製圖軟體最基礎的旋轉系統</p>
+
+<p>雖然3D軟體裡執行物件旋轉時看不出歐拉系統的旋轉軸</p>
+
+<p>然而電腦背後還是使用歐拉旋轉系統來做旋轉</p>
+
+<p>所以一般3D繪圖軟體所標的旋轉軸線也只是參考用。</p>
+
+<p>在歐拉旋轉系統中</p>
+
+<p>它把空間中的旋轉獨立成roll,pitch,yaw這三個軸向的旋轉。</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/2593243_608qk49_l.png" alt="rpy" /></p>
+
+<p>這三個軸向在不同座標系分別代表不同的軸向</p>
+
+<p>如果以笛卡兒座標系來說</p>
+
+<p>roll代表空間中物體X軸向的旋轉</p>
+
+<p>pitch代表空間中物體Y軸向的旋轉</p>
+
+<p>yaw代表空間中物體Z軸向的旋轉</p>
+
+<p>而在Flash away3D裡的座標系</p>
+
+<p>roll代表空間中物體Z軸向的旋轉</p>
+
+<p>pitch代表空間中物體X軸向的旋轉</p>
+
+<p>yaw代表空間中物體Y軸向的旋轉</p>
+
+<p>而歐拉旋轉是有順序與階層性的</p>
+
+<p>例如先轉X軸再轉Y軸與先轉Y軸再轉X軸的結果是不同的</p>
+
+<p>而階層性，可以用旋轉順序來定義</p>
+
+<p>如果旋轉順序是X→Y→Z</p>
+
+<p>則X旋轉時會同時牽動子階層Y、Z軸</p>
+
+<p>Y軸旋轉時會牽動子階層Z軸但不會牽動到父階層X軸</p>
+
+<p>而Z旋轉時只有本身的旋轉並不會影響到它的父階層X、Y軸</p>
+
+<p>所以這時三軸各自旋轉時就有可能會造成GimbalLock現象</p>
+
+<p>例如本篇文章最上面的範例裡</p>
+
+<p>旋轉到第二步驟會發現Z軸跟X軸重疊於同一個平面</p>
+
+<p>所以你不論你去轉Z軸跟X軸就相當是在同一個軸向上旋轉</p>
+
+<p>也代表失去一個軸向的自由度(三軸旋轉變成兩軸旋轉!!)</p>
+
+<p>在旋轉時可能造成旋轉效果不如預期的問題</p>
+
+<p>即使轉換成矩陣旋轉一樣也避免不了GimbalLock的問題</p>
+
+<p>所以這時處理空間中的旋轉，我們可以使用四元數旋轉來避免GimbalLock</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Away3d Quaternion 使用四元數來處理空間中的旋轉]]></title>
+    <link href="http://sayaku.github.io/blog/2012/05/27/quaternion/"/>
+    <updated>2012-05-27T20:55:21+08:00</updated>
+    <id>http://sayaku.github.io/blog/2012/05/27/quaternion</id>
+    <content type="html"><![CDATA[<iframe src="https://dl.dropboxusercontent.com/u/68443214/QuaternionRotation/bin/index.html" width="640" height="480" frameborder="o"></iframe>
+
+
+
+
+<!--more-->
+
+
+<p>大家好我是阿邪!</p>
+
+<p>最近因為要計算一些空間中的位移與旋轉</p>
+
+<p>不得不要理解一些數學的運算</p>
+
+<p>要了解3D引擎如何在空間中運算</p>
+
+<p>了解向量與矩陣的基礎知識是必要的</p>
+
+<p>因為大學不是相關科系的</p>
+
+<p>距離上一次算這些東西大概是高中指考前</p>
+
+<p>所以現在關於這些數學觀念全還給高中老師了</p>
+
+<p>標題提到的四元數必須要了解這些概念才會比較好懂!</p>
+
+<p>所以最近幾天都在算數學</p>
+
+<h2>向量</h2>
+
+<p>其實向量概念很簡單</p>
+
+<p>它可以表示一個座標點、方向跟長度</p>
+
+<p>假設一原點<code>O(0,0)</code> 與<code>P(a,b)</code></p>
+
+<p>則OP向量我們可以用P點的座標來表示</p>
+
+<p>空間中的兩點:</p>
+
+<p>空間中有兩點 <code>A(a,b,c)</code> 與 <code>B(d,e,f)</code></p>
+
+<p>則AB向量是 <code>AB( d-a , e-b , f-c )</code></p>
+
+<p>這是個簡單的向量</p>
+
+<h3>向量長度:</h3>
+
+<p>向量A(a,b,c)</p>
+
+<p>長度=<code>Math.sqr(a<em>a+b</em>b+c*c)</code></p>
+
+<h2>向量的運算</h2>
+
+<h3>向量的加減(位移):</h3>
+
+<p>A向量(a,b,c) , B向量(d,e,f)
+<figure class='code'><figcaption><span>向量加法</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>加法: A向量+B向量 = (a+d , b+e , c+f);</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span>向量減法</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>減法: A向量 - B向量= (a-d , b-e , c-f);</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>向量的運算滿足交換律與結合律</h2>
+
+<p><figure class='code'><figcaption><span>向量交換律 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>交換律:A+B=B+A</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span>向量結合律 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>結合律:A+(B+C)=(A+B)+C</span></code></pre></td></tr></table></div></figure></p>
+
+<h3>向量的乘法(縮放):</h3>
+
+<p><figure class='code'><figcaption><span>向量的乘法 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>常數x乘與向量A(a,b,c)=(x&lt;em>a , x&lt;/em>b , x*c);</span></code></pre></td></tr></table></div></figure></p>
+
+<h3>向量的內積(點積):</h3>
+
+<p>符號是<code>‧</code>
+兩向量的內積為一個純數
+也代表A向量投影在B向量上的分量</p>
+
+<p>向量A(a,b,c)與向量B(d,e,f)</p>
+
+<p>則向量<code>A ‧ B</code>
+<figure class='code'><figcaption><span>向量內積 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A ‧ B=(a&lt;em>d + b&lt;/em>e + c&lt;em>f)=A向量的長度&lt;/em>B向量的長度*cosq;</span></code></pre></td></tr></table></div></figure></p>
+
+<p>我們可以使用內積來求兩向量的夾角!</p>
+
+<h3>向量的外積(叉積):</h3>
+
+<p>符號是<code>X</code></p>
+
+<p>向量的外積還是一個向量</p>
+
+<p>向量A(a,b,c)與向量B(d,e,f)</p>
+
+<p>則<code>A X B</code>
+<figure class='code'><figcaption><span>向量外積 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A X B=(a&lt;em>f-c&lt;/em>e ,  c&lt;em>d-a&lt;/em>f , a&lt;em>e-b&lt;/em>d)</span></code></pre></td></tr></table></div></figure></p>
+
+<p>得出來的新向量會垂直於A向量與B向量</p>
+
+<p>所以也是A向量與B向量構成的平面上的法向量</p>
+
+<p>另外向量的外積是不滿足交換律的</p>
+
+<p><code>A X B</code>與<code>B X A</code>是不同的!但是兩個得出來的方向剛好相反</p>
+
+<h2>矩陣</h2>
+
+<p>我們可以將向量轉成矩陣</p>
+
+<p>去運算在空間中的平移與旋轉</p>
+
+<p>空間中的平移會用到矩陣的加法與減法</p>
+
+<p>旋轉會用到矩陣的相乘</p>
+
+<p>所以我們3D引擎裡的rotation X,Y,Z其實背後都是在做旋轉矩陣的運算!</p>
+
+<p>一些算式在這邊都有:<a href="http://www.nicoptere.net/noobie_ninja/lib/doc/3d_cheatsheet.pdf">點我</a></p>
+
+<p>關於矩陣的運算與原理</p>
+
+<p>可以看這些:<a href="http://book.51cto.com/art/200808/84772.htm">點我</a></p>
+
+<p>呼!打好久!接下來終於要進入本篇的主題:四元數</p>
+
+<p>四元數不是個數!它是一個數學的模型!</p>
+
+<p>是由愛爾蘭學家威廉·盧雲·哈密頓發現的</p>
+
+<p>有興趣可以去看維基百科:<a href="http://zh.wikipedia.org/wiki/%E5%9B%9B%E5%85%83%E6%95%B8">點我</a></p>
+
+<p>看了以後!發現還是看不懂!只知道他有4個分量<code>w</code>,<code>x</code>,<code>y</code>,<code>z</code></p>
+
+<p>x,y,z是虛數,w是實數</p>
+
+<p>那跟旋轉有甚麼關係呢?</p>
+
+<p>還好在空間中的四元數不需要從數學的角度去理解(因為我看了好久還是看不懂)</p>
+
+<p>四元數在空間中可以儲存四種分量!畢竟叫四元數就是有四個元素組成</p>
+
+<p>簡單來說可以把四元數表示成:</p>
+
+<p>x,y,z是一個向量!而w是以這個向量為旋轉軸所繞的角度</p>
+
+<p>所以我們可以利用四元數來計算空間中的旋轉</p>
+
+<p>那為什麼要用四元數呢?</p>
+
+<p>以前一般來作空間中的旋轉式使用旋轉矩陣來運算</p>
+
+<p>但它很不好清楚的表示出X,Y,Z的旋轉角度</p>
+
+<p>於是有了歐拉角(Euler)來表示旋轉角度!</p>
+
+<p>但使用歐拉角來表示空間中的旋轉!會有一個很大的問題!</p>
+
+<p>就是萬向死鎖(Gimbal Lock)</p>
+
+<p>簡單來說就是經過3軸旋轉以後~可能會演變成旋轉軸重疊!導至只能轉一個方向</p>
+
+<p>這邊有一個影片可以說明萬向鎖</p>
+
+<iframe class="youtube" width="480" height="480" src="//www.youtube.com/embed/zc8b2Jo7mno?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+<p>所以在四元數的實作中可以避免掉萬向鎖的問題</p>
+
+<p>基本上還蠻多地方會用到四元數</p>
+
+<p>比如3D模型的骨架</p>
+
+<p>它們骨塊關節的旋轉都是運用四元數</p>
+
+<p>我們這邊使用四元數來實作一個地球任意方向的旋轉</p>
+
+<p>這邊使用的是away3d 4 beta的3D引擎</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+</pre></td><td class='code'><pre><code class='as3'><span class='line'><span class="kd">package</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.cameras.Camera3D</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.containers.Scene3D</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.containers.View3D</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.core.math.Quaternion</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.entities.Mesh</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.lights.PointLight</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.materials.lightpickers.StaticLightPicker</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.materials.TextureMaterial</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.primitives.SphereGeometry</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.textures.BitmapTexture</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">away3d.tools.utils.Ray</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">flash.display.Sprite</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">flash.events.Event</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">flash.geom.Matrix3D</span><span class="o">;</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">flash.geom.Vector3D</span><span class="o">;</span>
+</span><span class='line'><span class="o">/&lt;</span><span class="n">em</span><span class="o">&gt;*</span>
+</span><span class='line'> <span class="o">*</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="o">;</span>
+</span><span class='line'> <span class="o">*</span> <span class="err">@</span><span class="n">author</span> <span class="n">sayaku</span>
+</span><span class='line'> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
+</span><span class='line'><span class="o">[</span><span class="n">SWF</span><span class="o">(</span><span class="n">frameRate</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="mi">60</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span><span class="n">width</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="mi">800</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span><span class="n">height</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="mi">600</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;)]</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="n">QuaternionEarth</span> <span class="kd">extends</span> <span class="n">Sprite</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>    <span class="o">[</span><span class="n">Embed</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;../</span><span class="n">bin</span><span class="sr">/assets/</span><span class="n">earth</span><span class="o">.</span><span class="na">jpg</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;)]</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">EarthSkin</span><span class="p">:</span><span class="kt">Class</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">view</span><span class="p">:</span><span class="kt">View3D</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">camera</span><span class="p">:</span><span class="kt">Camera3D</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">scene</span><span class="p">:</span><span class="kt">Scene3D</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">mesh</span><span class="p">:</span><span class="kt">Mesh</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">light</span><span class="p">:</span><span class="kt">PointLight</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">lightPicker</span><span class="p">:</span><span class="kt">StaticLightPicker</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">ray</span><span class="p">:</span><span class="kt">Ray</span><span class="o">;//</span><span class="err">直線運算</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">SPEED</span><span class="p">:</span><span class="kt">Number</span> <span class="o">=</span> <span class="o">.</span><span class="mi">97</span><span class="o">;//</span><span class="err">減速度</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">var</span> <span class="n">radius</span><span class="p">:</span><span class="kt">Number</span> <span class="o">=</span> <span class="mi">350</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">function </span><span class="nf">QuaternionEarth</span><span class="o">()</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="o">(</span><span class="n">stage</span><span class="o">)</span> <span class="n">init</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="k">else</span> <span class="n">addEventListener</span><span class="o">(</span><span class="n">Event</span><span class="o">.</span><span class="na">ADDED_TO_STAGE</span><span class="o">,</span> <span class="n">init</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">function </span><span class="nf">init</span><span class="o">(</span><span class="n">e</span><span class="o">:</span><span class="kt">Event</span><span class="o">):</span><span class="kt">void</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="n">removeEventListener</span><span class="o">(</span><span class="n">Event</span><span class="o">.</span><span class="na">ADDED_TO_STAGE</span><span class="o">,</span> <span class="n">init</span><span class="o">);</span>
+</span><span class='line'><span class="n">initEngine</span><span class="o">();</span>
+</span><span class='line'><span class="n">initLight</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">initObj3D</span><span class="o">();</span>
+</span><span class='line'><span class="n">initListener</span><span class="o">()</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">function </span><span class="nf">initEngine</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="n">view</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">View3D</span><span class="o">();</span>
+</span><span class='line'><span class="n">scene</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">scene</span><span class="o">;</span>
+</span><span class='line'><span class="n">camera</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">camera</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">addChild</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">function </span><span class="nf">initLight</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="n">light</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">PointLight</span><span class="o">();</span>
+</span><span class='line'><span class="n">light</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="mi">5000</span><span class="o">;</span>
+</span><span class='line'><span class="n">light</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3000</span><span class="o">;</span>
+</span><span class='line'><span class="n">light</span><span class="o">.</span><span class="na">ambient</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="o">;</span>
+</span><span class='line'><span class="n">scene</span><span class="o">.</span><span class="na">addChild</span><span class="o">(</span><span class="n">light</span><span class="o">);</span>
+</span><span class='line'><span class="n">lightPicker</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">StaticLightPicker</span><span class="o">([</span><span class="n">light</span><span class="o">]);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">function </span><span class="nf">initObj3D</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="kd">var</span> <span class="n">sphere</span><span class="p">:</span><span class="kt">SphereGeometry</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">SphereGeometry</span><span class="o">(</span><span class="n">radius</span><span class="o">,</span><span class="mi">50</span><span class="o">,</span><span class="mi">50</span><span class="o">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="n">mt</span><span class="p">:</span><span class="kt">TextureMaterial</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">TextureMaterial</span><span class="o">(</span><span class="k">new</span> <span class="kt">BitmapTexture</span><span class="o">(</span><span class="k">new</span> <span class="kt">EarthSkin</span><span class="o">().</span><span class="n">bitmapData</span><span class="o">));</span>
+</span><span class='line'><span class="n">mt</span><span class="o">.</span><span class="na">specular</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="o">;</span>
+</span><span class='line'>    <span class="n">mt</span><span class="o">.</span><span class="na">gloss</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+</span><span class='line'><span class="n">mt</span><span class="o">.</span><span class="na">ambientColor</span> <span class="o">=</span> <span class="mh">0x333333</span><span class="o">;</span>
+</span><span class='line'><span class="n">mt</span><span class="o">.</span><span class="na">ambient</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+</span><span class='line'><span class="n">mt</span><span class="o">.</span><span class="na">lightPicker</span> <span class="o">=</span> <span class="n">lightPicker</span><span class="o">;</span>
+</span><span class='line'><span class="n">mesh</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Mesh</span><span class="o">();</span>
+</span><span class='line'><span class="n">mesh</span><span class="o">.</span><span class="na">geometry</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">;</span>
+</span><span class='line'><span class="n">mesh</span><span class="o">.</span><span class="na">material</span> <span class="o">=</span> <span class="n">mt</span><span class="o">;</span>
+</span><span class='line'><span class="n">scene</span><span class="o">.</span><span class="na">addChild</span><span class="o">(</span><span class="n">mesh</span><span class="o">);</span>
+</span><span class='line'><span class="n">ray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Ray</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">function </span><span class="nf">initListener</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="n">addEventListener</span><span class="o">(</span><span class="n">Event</span><span class="o">.</span><span class="na">ENTER_FRAME</span><span class="o">,</span> <span class="n">onRender</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">function </span><span class="nf">onRender</span><span class="o">(</span><span class="n">e</span><span class="o">:</span><span class="kt">Event</span><span class="o">):</span><span class="kt">void</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="n">view</span><span class="o">.</span><span class="na">render</span><span class="o">();</span>
+</span><span class='line'><span class="n">updataRotation</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">function </span><span class="nf">updataRotation</span><span class="o">():</span><span class="kt">void</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span> <span class="kd">var</span> <span class="n">mouse3DPos</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">unproject</span><span class="o">(</span><span class="n">view</span><span class="o">.</span><span class="na">mouseX</span><span class="o">,</span> <span class="n">view</span><span class="o">.</span><span class="na">mouseY</span><span class="o">);</span>
+</span><span class='line'>    <span class="c1">//利用反投影得到2D平面的滑鼠位置轉換成3D空間中的點</span>
+</span><span class='line'> <span class="kd">var</span> <span class="n">currentEarthMt</span><span class="p">:</span><span class="kt">Matrix3D</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="na">transform</span><span class="o">;</span>
+</span><span class='line'><span class="c1">//取得現在地球在空間中的矩陣</span>
+</span><span class='line'><span class="c1">//============================================ &lt;br/&gt;</span>
+</span><span class='line'><span class="c1">//宣告一個XY平面的四個頂點</span>
+</span><span class='line'>     <span class="kd">var</span> <span class="n">v1</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span> <span class="o">-</span><span class="mi">1000</span><span class="o">,</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>     <span class="kd">var</span> <span class="n">v2</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">1000</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>     <span class="kd">var</span> <span class="n">v3</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span> <span class="mi">1000</span><span class="o">,</span> <span class="o">-</span><span class="mi">1000</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>     <span class="kd">var</span> <span class="n">v4</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span> <span class="o">-</span><span class="mi">1000</span><span class="o">,</span> <span class="o">-</span><span class="mi">1000</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//============================================     &lt;br/&gt;</span>
+</span><span class='line'>     <span class="kd">var</span> <span class="n">interSection</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector3D</span><span class="o">;</span>
+</span><span class='line'><span class="c1">//相機到空間中滑鼠點的向量與XY平面的交點(也代表原點到此交點的向量)&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="o">(</span><span class="n">ray</span><span class="o">.</span><span class="na">getRayToTriangleIntersection</span><span class="o">(</span><span class="n">camera</span><span class="o">.</span><span class="na">position</span><span class="o">,</span> <span class="n">mouse3DPos</span><span class="o">,</span> <span class="n">v1</span><span class="o">,</span> <span class="n">v2</span><span class="o">,</span> <span class="n">v3</span><span class="o">))</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="n">interSection</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="na">getRayToTriangleIntersection</span><span class="o">(</span><span class="n">camera</span><span class="o">.</span><span class="na">position</span><span class="o">,</span> <span class="n">mouse3DPos</span><span class="o">,</span> <span class="n">v1</span><span class="o">,</span> <span class="n">v2</span><span class="o">,</span> <span class="n">v3</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'><span class="n">interSection</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="na">getRayToTriangleIntersection</span><span class="o">(</span><span class="n">camera</span><span class="o">.</span><span class="na">position</span><span class="o">,</span> <span class="n">mouse3DPos</span><span class="o">,</span> <span class="n">v1</span><span class="o">,</span> <span class="n">v4</span><span class="o">,</span> <span class="n">v3</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="n">interSection</span> <span class="o">||=</span> <span class="k">new</span> <span class="n">Vector3D</span><span class="o">;</span>
+</span><span class='line'>    <span class="c1">//如果是null就NEW一個出來</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">interSection</span><span class="o">.</span><span class="na">scaleBy</span><span class="o">(</span><span class="n">SPEED</span><span class="o">);</span>
+</span><span class='line'>     <span class="c1">//向量乘以一個倍數來表示旋轉速度    </span>
+</span><span class='line'><span class="kd">var</span> <span class="n">distance</span><span class="p">:</span><span class="kt">Number</span> <span class="o">=</span> <span class="n">interSection</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span><span class='line'>    <span class="c1">//計算長度      </span>
+</span><span class='line'><span class="kd">var</span> <span class="n">normalDir</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Vector3D</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>    <span class="c1">//XY平面的法向量</span>
+</span><span class='line'><span class="kd">var</span> <span class="n">rotationAxis</span><span class="p">:</span><span class="kt">Vector3D</span> <span class="o">=</span> <span class="n">interSection</span><span class="o">.</span><span class="na">crossProduct</span><span class="o">(</span><span class="n">normalDir</span><span class="o">);</span>
+</span><span class='line'>    <span class="c1">//兩向量作外積可得到垂直於兩向量的向量(即我們需要的旋轉軸)</span>
+</span><span class='line'><span class="n">rotationAxis</span><span class="o">.</span><span class="na">normalize</span><span class="o">();</span>
+</span><span class='line'>    <span class="c1">//旋轉軸記得要正規化!不然轉起來會頓頓</span>
+</span><span class='line'><span class="kd">var</span> <span class="n">q</span><span class="p">:</span><span class="kt">Quaternion</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Quaternion</span><span class="o">();</span>
+</span><span class='line'>    <span class="c1">//四元數</span>
+</span><span class='line'><span class="n">q</span><span class="o">.</span><span class="na">fromAxisAngle</span><span class="o">(</span><span class="n">rotationAxis</span><span class="o">,</span> <span class="o">(</span><span class="n">distance</span> <span class="o">/</span> <span class="n">radius</span><span class="o">));</span>
+</span><span class='line'><span class="n">q</span><span class="o">.</span><span class="na">normalize</span><span class="o">();</span>
+</span><span class='line'>    <span class="c1">//如果沒有再作其他四元數的運算,不正規化也沒關係</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">currentEarthMt</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="na">toMatrix3D</span><span class="o">());</span>
+</span><span class='line'>    <span class="c1">//矩陣運算(兩矩陣相乘)改變目前地球的旋轉角度</span>
+</span><span class='line'><span class="n">mesh</span><span class="o">.</span><span class="na">transform</span><span class="o">=</span><span class="n">currentEarthMt</span> <span class="o">;</span>
+</span><span class='line'>    <span class="c1">//再指定給現在的地球</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>看一下這個地球旋轉用到的概念</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/2483131_4oc2t9o_l.jpg" alt="er" /></p>
+
+<p>從這張圖可以講解這個DEMO的基本概念</p>
+
+<p>基本上我們的目的就是要算出地球的旋轉軸</p>
+
+<p>首先我們利用unproject將2D的滑鼠位置轉成在空間中的位置,轉換後z值是20,我也不知道為什麼!蠻特殊的轉換法</p>
+
+<p>接下來有了滑鼠在空間中的點就能算攝影機到這個點的向量</p>
+
+<p>然後要算出這個向量跟XY平面的交點則是利用Ray類別裡的<code>getRayToTriangleIntersection()</code>方法</p>
+
+<p>這個方法只能算你給的三角形面與這個向量的交點(其實平面就是兩個三角型組成的)</p>
+
+<p>getRayToTriangleIntersection()的參數分別是<code>(&ldquo;向量的起點&rdquo;,&ldquo;向量的終點&rdquo;,&ldquo;三角形的三個頂點&rdquo;)</code></p>
+
+<p>如果沒有交點的話會回傳null</p>
+
+<p>所以將我們定義的XY平面的頂點拆成兩個三角形去用if來判斷現在是在哪個平面有交點</p>
+
+<p>算出交點後~就表示地球是要往你那個交點方向旋轉</p>
+
+<p>那要算出旋轉軸就很簡單了</p>
+
+<p>只要交點這個向量與Z軸向量作外積就可以做出垂直於這兩個向量的向量也就是我們要的旋轉軸</p>
+
+<p>得到向量的旋轉軸要做正規化的動作</p>
+
+<p>因為我們只需要這個向量的方向~不需要它的長度跟座標!所以將它正規化</p>
+
+<p>正規化的意義就是使這個向量的長度為1,如果你不做正規化!在運算時可能會超出範圍!</p>
+
+<p>所以務必要使用向量正規化!正規化後原本的座標與長度就被蓋掉了!這點要注意</p>
+
+<p>然後再用四元數去處理旋轉就OK了</p>
+
+<p>基本上四元數能算旋轉但是不能直接給出角度!所以還是要轉成矩陣去做矩陣運算</p>
+
+<p>原始碼下載:<a href="https://www.box.com/s/ffcnoi5km4g05vqtnfme">點我</a></p>
+
+<p>如果數學概念有錯的話請指正:)</p>
+]]></content>
+  </entry>
+  
+</feed>

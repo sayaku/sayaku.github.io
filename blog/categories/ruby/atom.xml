@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | 林克融]]></title>
+  <link href="http://sayaku.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://sayaku.github.io/"/>
+  <updated>2016-01-20T16:43:33+08:00</updated>
+  <id>http://sayaku.github.io/</id>
+  <author>
+    <name><![CDATA[sayaku]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby on Rails入門筆記-開發前環境設定]]></title>
+    <link href="http://sayaku.github.io/blog/2016/01/20/learnruby/"/>
+    <updated>2016-01-20T14:09:46+08:00</updated>
+    <id>http://sayaku.github.io/blog/2016/01/20/learnruby</id>
+    <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Ruby_logo.png" width="300px"></p>
+
+<!--more-->
+
+
+<h1>什麼要學Ruby?</h1>
+
+<p>Ruby是由日本人<strong>松本行弘</strong>（まつもとゆきひろ）以Ｃ語言為基礎所創造出來的程式語言</p>
+
+<p>Ruby知名於Ruby on Rails,是個可以用簡短的程式快速創造出網站的框架</p>
+
+<blockquote><p>注意：Ruby on Rails不是程式語言,他只是基於Ruby所製作出來的框架</p></blockquote>
+
+<p>Ruby on Rails近年來也越來越火紅，也越來越多大神在使用</p>
+
+<p>既然要學好Ruby on Rails，那Ruby學好是必須的！</p>
+
+<p>而學習Ruby有趣的地方，則在於他的語法簡單易懂</p>
+
+<p>有基礎程式概念的人還蠻容易上手的</p>
+
+<p>當然Ruby除了Rails以外還可以做其他的事</p>
+
+<p>最近開始上Ruby on Rails的課程</p>
+
+<p>寫這篇當作筆記也當作複習</p>
+
+<p>好好的來體驗吧！</p>
+
+<h1>環境設定</h1>
+
+<p>Ruby支援<strong>Windows / Mac / Linux</strong>平台</p>
+
+<p>在安裝使用上建議使用 Mac / Linux 平台</p>
+
+<p>如果是windows平台的使用者，可以下載rubyinstaller來安裝<a href="http://rubyinstaller.org/">官網下載</a></p>
+
+<p>像小弟我本身使用Mac來開發，系統本身就有內建ruby了</p>
+
+<p>但使用系統內建的ruby會有權限問題，每打個指令就很常需要用到sudo來通過系統權限</p>
+
+<p>很麻煩，所以可以自己下載不同版本的ruby來使用</p>
+
+<p>既然會有多不同版本的ruby，自然就會有控制Ruby版本的東西</p>
+
+<p>首先打開terminal(windows平台叫命令提示字元)輸入指令</p>
+
+<p>mac找不到的話，可以使用程式搜尋來尋找terminal.app</p>
+
+<p>其實如果只是想打打Ruby語言，可以直接跳到step.5</p>
+
+<p>另外也可以使用雲端環境cloud9來使用ruby,<a href="https://c9.io/?redirect=0">cloud9</a></p>
+
+<h1>step1.安裝RVM</h1>
+
+<p>RVM是管理Ruby版本用的套件</p>
+
+<p>安裝方式可以RVM的<a href="http://rvm.io/">官網下載</a></p>
+
+<p>安裝方法需要使用<code>terminal</code>輸入指令安裝</p>
+
+<h1>step2.安裝Homebrew</h1>
+
+<p>Homebrew可以用來下載系統需要的套件包，例如MySql等等套件</p>
+
+<p>安裝RVM過程中可能會出錯，需要透過homebrew來安裝套件包</p>
+
+<p>Homebrew的<a href="http://brew.sh/">官網</a></p>
+
+<p>裝好RVM的話，可以使用指令來下載最新的Ruby（截稿前最新版本2.3.0)</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>    <span class="nv">$ </span>rvm install 2.3.0
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>裝好後可以下指令來當做預設版本
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>    <span class="nv">$ </span>rvm 2.3.0 <span class="p">&amp;</span>ndash<span class="p">;</span>default
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>step3.安裝Bundler</h1>
+
+<p>Bundler是Ruby套件的版本管理套件包，會根據所指定版本的套件來更新</p>
+
+<p>可以先用ruby內建的gem來安裝</p>
+
+<p>gem是管理ruby套件的套件</p>
+
+<p>有需要ruby的套件如rails都可以透過它來下載</p>
+
+<p>有需要Ruby其他的套件也可以上他們官網去搜尋</p>
+
+<p>RubyGem的<a href="https://rubygems.org/">官網</a></p>
+
+<p>第一件事情就是更新Gem的版本囉
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> <span class="nv">$ </span>gem update <span class="p">&amp;</span>ndash<span class="p">;</span>system
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>更新好gem接下來就是利用gem來安裝bundler
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install bundler
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>step4. 安裝 Rake</h1>
+
+<p>Rake是可以將Ruby指令簡化的一個套件</p>
+
+<p>未來在開發的過程中會很常使用</p>
+
+<p>可以透過Gem來下載這個套件</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install rake
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>裝完後基本上該設定的環境也都差不多設定好了</p>
+
+<p>我們可以試著來打打看Ruby語言</p>
+
+<h1>step5. Ruby的第一個Hello World</h1>
+
+<p>首先在terminal上鍵入irb</p>
+
+<p>irb是個可以處理與顯示ruby語法的互動介面</p>
+
+<p>可以做簡單的ruby運算</p>
+
+<p>第一個ruby的APP!印出Hello World</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">hello</span> <span class="n">world!</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>會印出
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="n">world</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">nil</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>如果要離開irb互動介面的話</p>
+
+<p>可以按下<code>ctrl</code>+<code>D</code></p>
+
+<p>irb在處理ruby比較麻煩，一次就只能輸出一行</p>
+
+<p>如果要編輯多行的話可以使用編輯器來編輯ruby的文件</p>
+
+<p>編輯ruby小弟推薦sublime text這套編輯器</p>
+
+<h1>step6.安裝Sublime Text編輯器</h1>
+
+<p>sublime text編輯器<a href="http://www.sublimetext.com/3">下載</a></p>
+
+<p>下載安裝後，打開編輯器，新增一的檔案並且存檔想要的檔名</p>
+
+<p>例如：<code>rubyTest.rb</code></p>
+
+<p>並在直接在內容輸入
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">hello</span> <span class="n">world!</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>存檔後</p>
+
+<p>開啟terminal</p>
+
+<p>輸入指令
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="err">$</span> <span class="n">ruby</span> <span class="n">rubyTest</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>結果是一樣的</p>
+
+<p>不過每改完一次還要再打開terminal輸入這個才能看到結果實在是太麻煩了</p>
+
+<p>所以可以直接在sublime text編輯畫面直接按下<code>command</code>+<code>B</code></p>
+
+<p>sublime text可以直接顯示輸出結果</p>
+
+<p>下個單元再來介紹ruby語言的基礎介紹</p>
+]]></content>
+  </entry>
+  
+</feed>
