@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Ruby | 林克融]]></title>
-  <link href="http://sayaku.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Rails | 林克融]]></title>
+  <link href="http://sayaku.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
   <updated>2016-01-23T18:09:08+08:00</updated>
   <id>http://sayaku.github.io/</id>

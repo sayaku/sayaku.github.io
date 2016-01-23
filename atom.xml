@@ -4,7 +4,7 @@
   <title><![CDATA[林克融]]></title>
   <link href="http://sayaku.github.io/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
-  <updated>2016-01-22T11:54:24+08:00</updated>
+  <updated>2016-01-23T18:09:08+08:00</updated>
   <id>http://sayaku.github.io/</id>
   <author>
     <name><![CDATA[sayaku]]></name>
@@ -14,7 +14,459 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Ruby on Rails入門筆記-開發前環境設定]]></title>
+    <title type="html"><![CDATA[Ruby on Rails入門筆記(1)-TodoMVC]]></title>
+    <link href="http://sayaku.github.io/blog/2016/01/22/railsScaffold/"/>
+    <updated>2016-01-22T16:17:28+08:00</updated>
+    <id>http://sayaku.github.io/blog/2016/01/22/railsScaffold</id>
+    <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Ruby_on_Rails_logo.jpg" alt="" /></p>
+
+<!--more-->
+
+
+<p>每一種網頁框架都會有一個簡單的todo的實作</p>
+
+<p>今天來介紹使用ruby on rails的scaffold(鷹架)快速製作一個簡單的Todo範例</p>
+
+<p>並且介紹rails的ＭＶＣ流程</p>
+
+<p>todo範例的內容通常會有讓使用者新增、修改、刪除資料的內容</p>
+
+<p>所以這個範例會做一個簡單通訊錄的內容</p>
+
+<p>使用者可以新增聯絡人然後修改內容或是刪除聯絡人</p>
+
+<p>至於ruby on rails的環境設定可以參考上一回:<a href="http://sayaku.github.io/blog/2016/01/20/learnruby/">Ruby on Rails入門筆記(0)-開發前環境設定</a></p>
+
+<p>在開始之前可以先介紹ruby on rails的哲學</p>
+
+<blockquote><p>-依照慣例來打造<br/>
+Convention over Configuration (CoC)</p>
+
+<p>-不做重複的事情<br/>
+Don&rsquo;t Repeat Yourself (DRY)</p>
+
+<p>-簡單實現資料庫的新增、搜尋、修改、刪除<br/>
+Create, Read, Update, Delete (CRUD)</p>
+
+<p>-使用設計模式的ＭＶＣ，讓程式碼分離！更好維護<br/>
+Model, View, Controller (MVC)</p></blockquote>
+
+<p>好！開始囉</p>
+
+<p>首先先安裝rails</p>
+
+<p>打開terminal終端機，使用gem來下載rails</p>
+
+<p>輸入指令</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>    <span class="nv">$ </span>gem install rails
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下載完後可以用<code>rails -v</code>來查看目前rails的版本</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4909233_2nsin36_l.png" alt="" /></p>
+
+<p>我的版本是4.2.5</p>
+
+<p>接下來創建一個rails的專案todo（當然名字不一定要是todo,隨你喜好命名也可）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>    <span class="nv">$ </span>rails new todo
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>rails會幫你建好專案會用到的資料夾</p>
+
+<p>建好以後還會順便幫你用bundle來更新你gemfile所指定套件的版本</p>
+
+<p>所以大概會花一些時間</p>
+
+<p>建好之後可以發現rails幫你建了一個名為todo的專案資料夾</p>
+
+<p>內容如下</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4909234_f7cpdtt_l.png" alt="" /></p>
+
+<p>接下來我們可以用我們上一回已經裝好的編輯器sublime text來開啟這個專案</p>
+
+<p>打開sublime text後直接將todo資料夾拖到sublime text</p>
+
+<p>就能開始開發專案了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4909235_zxg4hdg_l.png" alt="" />）</p>
+
+<p>現在我們將終端機工作目錄移到todo資料夾下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>    <span class="nv">$ </span><span class="nb">cd </span>todo
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然後開啟rails的測試伺服器</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>    <span class="nv">$ </span>rails server
+</span><span class='line'>
+</span><span class='line'>    //縮短寫法
+</span><span class='line'>    <span class="nv">$ </span>rails s
+</span><span class='line'>
+</span><span class='line'>    //如果是在cloud9上測試的話要用
+</span><span class='line'>    <span class="nv">$ </span>rails server -p <span class="nv">$PORT</span> -b <span class="nv">$IP</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這時候打開自己的瀏覽器輸入伺服器預設網址<code>127.0.0.1:3000</code></p>
+
+<p>成功的話，就可以預覽剛剛用rails所建出來的第一個網站</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4909261_7c1kufw_l.png" alt="" /></p>
+
+<p>如果想關閉伺服器的話可以在終端機輸入<code>ctrl+C</code></p>
+
+<p>或是直接關閉終端機</p>
+
+<p>一般狀況我會再多開一個終端機的視窗繼續作業</p>
+
+<p>先前我們有提到rails是使用MVC的架構，所以可以在app的資料夾裡看到這三個</p>
+
+<p>要熟悉rails的運作必須要先了解MVC的運作方式</p>
+
+<p>那rails的MVC架構是怎麼運作的呢？</p>
+
+<p>我們來看下圖(圖片與說明參考至<a href="https://ihower.tw/rails4/basic.html">ROR實戰聖經</a> )</p>
+
+<p><img src="https://ihower.tw/rails4/images/basic-mvc-diagram.png" alt="" /></p>
+
+<p>這張圖示中的執行步驟是：</p>
+
+<ol>
+<li>使用者在瀏覽器發出HTTP request請求給伺服器的Rails</li>
+<li>路由(Routing)收到瀏覽器端的請求
+根據收到網址的規則告訴要處理請求的Controller去處理資料</li>
+<li>Controller收到請求後看是否有需操作Model的資料並去撈取</li>
+<li>Model收到Controller的請求去存取資料庫或資料處理然後傳回給Controller</li>
+<li>Controller將得到的資料餵給View樣板</li>
+<li>回傳最後的HTML成品給瀏覽器</li>
+</ol>
+
+
+<p>其中，路由主要是根據HTTP Method方法(GET、POST或是PATCH、DELETE等)以及網址來決定派往到哪一個Controller的Action。</p>
+
+<p>上面主要是rails運作的流程</p>
+
+<h1>Scaffold</h1>
+
+<p>上面說到rails運作流程是用MVC去跑</p>
+
+<p>也就是說我們必須要MVC架構裡的元件一個一個自己去建構嗎？</p>
+
+<p>那也太麻煩了</p>
+
+<p>所以rails有提供一個scaffold可以讓使用者快速建構出自己要的ＭＶＣ架構</p>
+
+<p>再利用scaffold前我們要先確定我們要做通訊錄會有哪些欄位</p>
+
+<p>一般通訊錄大概會有<br/>
+1. 姓名<br/>
+2. 電話<br/>
+3. 電子郵件</p>
+
+<p>了不起加個地址等&hellip;.</p>
+
+<p>確定之後就可以開始用scaffold開始架構了</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>    //我們新增一個User的table裡面有name,email,tel的欄位
+</span><span class='line'>    <span class="nv">$ </span>rails generate scaffold User name:string email:string tel:string
+</span><span class='line'>
+</span><span class='line'>    //縮短寫法
+</span><span class='line'>    //如果欄位屬性不填屬性的話預設是string
+</span><span class='line'>    <span class="nv">$ </span>rails g scaffold User name email tel
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>按下確定後我們會看到rails幫你建了一大堆東西</p>
+
+<p>包含ＭＶＣ架構都一起建好了</p>
+
+<p>接下來我們到todo目錄下有一個db的資料夾，打開裡面migrate資料夾有我們</p>
+
+<p>創建資料表的欄位資訊
+<img src="http://pcdn1.rimg.tw/photos/4909628_iy1u568_l.png" alt="" /></p>
+
+<p>預設rails會幫你加一個唯一的id與時間戳記</p>
+
+<p>scaffold創建好ＭＶＣ架構，但是還沒幫你創造資料庫的實體並且去做關聯</p>
+
+<p>所以這時可以下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake db:migrate
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這時做好建構與關聯後</p>
+
+<p>這時回到瀏覽器上（記得要打開伺服器 <code>rails s</code>）</p>
+
+<p>網址輸入<code>127.0.0.1:3000/users</code></p>
+
+<p>就能看到我們建好的結果了</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4909640_uasm0dt_l.png" alt="" /></p>
+
+<p>這時你可以隨意在上面新增修改刪除你要的資料了</p>
+
+<p>當然你可能會覺得我明明在建立tabel時明明就是命名User</p>
+
+<p>他這邊的網址怎麼變成users複數了呢？</p>
+
+<p>這就是我們最上面講的rails的Convention over Configuration (CoC)</p>
+
+<p>依造慣例來打造</p>
+
+<p>因為rails認為這一頁會秀出所有的欄位資訊，所以應該是會有很多user</p>
+
+<p>所以就幫他加上複數</p>
+
+<p>那為什麼我會知道我用scallold建好的資料會在這個網站的users路徑下？</p>
+
+<h1>Route</h1>
+
+<p>這時我們在終端機輸入指令<code>rake routes</code></p>
+
+<p>會跑出以下預設這八種方法</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4909667_mkeqd8e_l.png" alt="" /></p>
+
+<p>Prefix：是前綴索引字，未來程式的控制會常用到 <br/>
+Verb：是瀏覽器傳送資料的方法，目前瀏覽器只有GET,POST兩種其他動作是rails幫我們定義的<br/>
+URI Pattern：對照網址的相對位置<br/>
+Controller#Action：則是每個route根據URI Pattern所對應到的位置指定controller的方法</p>
+
+<p>所有新增查詢修改刪除的動作我們會發現在使用rails scaffold時通通都幫我們做掉了</p>
+
+<p>那這個8個方法是怎麼來的？</p>
+
+<p>接下來我們可以到todo目錄下config資料夾打開routes.rb的檔案</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4909641_emlejei_l.png" alt="" /></p>
+
+<p>我們可以看到<code>resources :users</code></p>
+
+<p>resources會幫我們製造這八種方法</p>
+
+<p>後面的users是複數則是rails的慣例</p>
+
+<p>如果我們不想使用resources創造出來的八種方法</p>
+
+<p>也可以自己定義想要的名字進入指定的頁面</p>
+
+<p>我們回到routes.rb的檔案內</p>
+
+<p>加入</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">get</span> <span class="s1">&#39;/sayaku&#39;</span> <span class="p">,</span><span class="ss">to</span><span class="p">:</span> <span class="s1">&#39;users#index&#39;</span>
+</span><span class='line'>  <span class="c1">#另一種寫法是</span>
+</span><span class='line'>  <span class="c1">#get &#39;/sayaku&#39; =&gt; &#39;users#index&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這段的意思就是我在網址的路徑後面加上<code>sayaku</code>就會指定controller去做指定的方法</p>
+
+<p>所以我們打<code>127.0.0.1:3000/sayaku</code></p>
+
+<p>一樣會連到剛剛的那個頁面</p>
+
+<p>換個角度想如果想要打<code>127.0.0.1:3000</code>就直接進入這個頁面</p>
+
+<p>也可以下成</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="p">,</span><span class="ss">to</span><span class="p">:</span> <span class="s1">&#39;users#index&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>當然rails也提供另一個方法可以指定首頁</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">root</span> <span class="s1">&#39;users#index&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果也是一樣的</p>
+
+<p>當然也有人利用route來作惡搞</p>
+
+<p>例如利用route來偽裝成php或是asp做的網頁</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">get</span> <span class="s1">&#39;/sayaku.aspx&#39;</span> <span class="p">,</span><span class="ss">to</span><span class="p">:</span> <span class="s1">&#39;users#index&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>甚至還可以做傳接值的動作</p>
+
+<p>這樣別人不仔細看還以為是asp做的網站</p>
+
+<p>這就是rails裡面route的應用，其用途就是在接收到網址去找對應的controller</p>
+
+<h1>Controller</h1>
+
+<p>我們由上面得知rails在接收到訊息會找指定的Controller</p>
+
+<p>而這些Controller會放在todo目錄下app的資料夾</p>
+
+<p>app資料夾下面則包含了rails實作出來MVC</p>
+
+<p>而所有指定的controller會放到controllers的目錄下</p>
+
+<p>以剛剛route接收到訊息並且呼叫<code>users#index</code></p>
+
+<p>前面的<code>users</code>route會自己幫我們找在controllers下有沒有叫做users_controller.rb的檔案</p>
+
+<p>後面的<code>#index</code>，會在users_controller.rb裡面找有沒有叫做index的方法並且去執行它</p>
+
+<h1>Model</h1>
+
+<p>在rails運作時期不一定要有model才能運作</p>
+
+<p>如果Controller在使用過程中會存取到資料庫資訊時</p>
+
+<p>則會去尋找對應的Model</p>
+
+<p>因為這次我們有建構通訊錄欄位</p>
+
+<p>在用scallold建構時欄位時</p>
+
+<p>rails就有在app下面的models資料夾裡建構了一個user.rb</p>
+
+<p>這邊的命名又回到單數了，因為rails一個table只會有一個user</p>
+
+<p>所以這裡就是rails的慣例</p>
+
+<p>還記得我們剛剛所做好的通訊錄嗎？</p>
+
+<p>如果今天我們想要限制使用者如果沒有填特定資料就不給與寫入資料庫</p>
+
+<p>不然有人要惡搞的話就一直新增空白資料</p>
+
+<p>所以必須做個驗證</p>
+
+<p>以前的方法可能是直接在前端做判斷然後擋下來</p>
+
+<p>不過rails一樣也是有可以用簡單的方法來做過濾</p>
+
+<p>例如今天我希望姓名欄位不能留白</p>
+
+<p>我們可以在Model在寫入資料時做驗證</p>
+
+<p>我們可以在user.rb裡下驗證的語法</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">validates</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這個意思就是指定name欄位會去做驗證</p>
+
+<p>這邊有很多關於ruby的語法，改天會開一篇來介紹這邊就先不理他</p>
+
+<p>所以我們在打開瀏覽器新增一筆資料然後什麼都不填並且送出</p>
+
+<p>這時我們就會看到rails告訴你“你的名字欄位不能留白喔”等警告</p>
+
+<p><img src="http://pcdn1.rimg.tw/photos/4909700_q3jmrpk_l.png" alt="" /></p>
+
+<h1>View</h1>
+
+<p>剛剛有提到，在Rails的ＭＶＣ運作下Model是不一定要存在的</p>
+
+<p>以上面Model做驗證後會將資訊結果回傳給Controller</p>
+
+<p>但是Controller本身無法給使用者看到</p>
+
+<p>所以必須產出一個View讓使用者可以看到</p>
+
+<p>在rails的ＭＶＣ架構下只有view的檔案不是ruby的rb檔案</p>
+
+<p>而是html的樣板檔，所以如果想要達成前後端分離，</p>
+
+<p>前端工程師美術設計要修改就可以直接在view去做修改</p>
+
+<p>而產出的view預設會放在app的views的資料夾下</p>
+
+<p>裡面會有layout跟controller對應的view資料夾</p>
+
+<p>也就是我們一開始用scaffold時rails就一起幫我們建好了</p>
+
+<p>這是非常的方便</p>
+
+<p>scaffold雖然方便，但一次幫我們產出了我們很多不要的檔案</p>
+
+<p>所以後面的筆記會來記錄自己一步一步純手工打造</p>
+
+<p>而以目前做出來的todo範例，雖然該有的功能都有了，但整個介面實在是太醜了</p>
+
+<p>所以美化使用者介面則在下一個單元來做介紹</p>
+
+<h1>總結</h1>
+
+<p>回顧今天要快速建一個通訊錄我們要做的步驟如下</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>   //1.建構專案
+</span><span class='line'>   <span class="nv">$rails</span> new todo
+</span><span class='line'>   //2.建構欄位ＭＶＣ
+</span><span class='line'>   <span class="nv">$rails</span> g scaffold User name email tel
+</span><span class='line'>   //3.建立實體資料庫並作關聯
+</span><span class='line'>   <span class="nv">$rake</span> db:migrate
+</span><span class='line'>
+</span><span class='line'>   //結束
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>三個指令一次全部做完一個簡易通訊錄</p>
+
+<p>大概花不到十秒吧！</p>
+
+<p>在做個簡易的驗證還有頁面美化跟修改</p>
+
+<p>大概十分鐘就完成了</p>
+
+<p>rails真的很強大！！！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby on Rails入門筆記(0)-開發前環境設定]]></title>
     <link href="http://sayaku.github.io/blog/2016/01/20/learnruby/"/>
     <updated>2016-01-20T14:09:46+08:00</updated>
     <id>http://sayaku.github.io/blog/2016/01/20/learnruby</id>
