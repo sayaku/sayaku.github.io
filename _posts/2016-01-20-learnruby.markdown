@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Ruby on Rails入門筆記-開發前環境設定"
+title: "Ruby on Rails入門筆記(0)-開發前環境設定"
 date: 2016-01-20 14:09:46 +0800
 comments: true
-categories: [Ruby]
+categories: [Ruby,Rails,Ruby on Rails]
 ---
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Ruby_logo.png" width="300px">
 <!--more-->
