@@ -57,13 +57,16 @@
     <lastmod>2012-05-27T20:55:21+08:00</lastmod>
   </url>
   <url>
-    <loc>http://sayaku.github.io/blog/archives/</loc>
-  </url>
-  <url>
     <loc>http://sayaku.github.io/</loc>
   </url>
   <url>
+    <loc>http://sayaku.github.io/blog/archives/</loc>
+  </url>
+  <url>
     <loc>http://sayaku.github.io/about/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/searchResults/</loc>
   </url>
   <url>
     <loc>http://sayaku.github.io/experiment/</loc>

@@ -46,7 +46,6 @@ Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link rel="stylesheet" href="/javascripts/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 <script type="text/javascript" src="/javascripts/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 
-
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.fancybox-media').attr('rel', 'media-gallery').fancybox({
@@ -201,13 +200,19 @@ $(document).ready(function() {
   <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
+
+
+
   
-<form action="http://google.com/search" method="get">
+ 
+<!--<form action="http://google.com/search" method="get">-->
+<form action="/searchResults" method="get">
   <fieldset role="search">
     <input type="hidden" name="sitesearch" value="sayaku.github.io">
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    <input class="search" type="text" name="s" results="0" placeholder="Search"/>
   </fieldset>
 </form>
+
   
 <ul class="main-navigation">
   <li><a href="/">網誌</a></li>
@@ -215,6 +220,7 @@ $(document).ready(function() {
   <li><a href="/about">關於我</a></li>
   <li><a href="/portfolio">作品集</a></li>
   <li><a href="/experiment">實驗</a></li>
+
 </ul>
 
 </nav>
