@@ -3,7 +3,7 @@ layout: post
 title: "[筆記]Ruby的RVM,GEM,Bundler是什麼？"
 date: 2016-05-05 09:48:54 +0800
 comments: true
-categories: 
+categories: [Ruby,Rails,Ruby on Rails]
 ---
 初入門Ruby on Rails的時候在做環境設定時
 
@@ -78,7 +78,7 @@ categories:
     $ open /Users/sayaku/.rvm/rubies
 {% endcodeblock %}
 
-可以看到剛剛下載的<code>ruby-2.3.0</code>的資料夾
+就可以看到剛剛下載的<code>ruby-2.3.0</code>的資料夾
 
 
 
