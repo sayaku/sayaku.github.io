@@ -15,7 +15,7 @@ categories: [Ruby,Rails,Ruby on Rails]
 
 <!--more-->
 
-・RVM
+#RVM
 
 這個東西是用來管理Ruby這個程式語言版本的套件
 
@@ -84,7 +84,7 @@ categories: [Ruby,Rails,Ruby on Rails]
 
 
 
-・Gem
+#Gem
 
 在Ruby的世界，有很多用Ruby寫成的套件包或是框架可以用
 
@@ -115,7 +115,7 @@ categories: [Ruby,Rails,Ruby on Rails]
 
 
 
-・Bundler
+#Bundler
 
 bundler也是ruby的套件，可以從gem上面下載
 
