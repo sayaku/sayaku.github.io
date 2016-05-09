@@ -1,0 +1,334 @@
+---
+layout: post
+title: "[筆記]Ruby語言入門-方法與區塊"
+date: 2016-05-09 15:55:08 +0800
+comments: true
+categories: [Ruby]
+---
+繼上一篇[Ruby語言入門-基礎篇](http://sayaku.github.io/blog/2016/05/09/ruby_1/)
+
+這篇要來筆記Ruby的方法（Method）與區塊（Block）
+
+<!--more-->
+#方法 （Method）
+
+有些人會解釋成函數（Function）,Ruby這邊叫方法（Method）
+
+其實用久了我還比較喜歡叫方法
+
+方法的定義
+
+{% codeblock lang:ruby %}
+    #定義一個叫做hello的方法
+
+    def hello
+       puts "hi i am sayaku"
+    end
+
+    hello() #印出hi i am sayaku
+
+    #如果想要帶參數的話
+
+    def hello(name)
+       puts "hi i am #{name} "
+    end
+
+    hello("sayaku")  #印出hi i am sayaku
+
+
+{% endcodeblock %}
+
+在Ruby裡，方法的括號常常省略掉
+
+所以常常會看到有這樣的寫法
+{% codeblock lang:ruby %}
+
+    hello "sayaku"  
+
+{% endcodeblock %}
+
+這算是一個特色，而在Ruby裡面，方法還有一大特色是他的命名
+
+可以使用符號，例如  
+<code>?</code>   
+<code>!</code>     
+<code>=</code>    
+....等
+
+但必須附在名字後面
+
+{% codeblock lang:ruby %}
+
+    def is_adult?(age)
+        return age>=18     #可以省略return關鍵字，ruby預設會回傳最後一個結果
+    end
+    
+    p is_adilt?(29) #印出true    
+
+{% endcodeblock %}
+
+雖然Ruby可以讓你在方法名稱後面加這些符號，但在Ruby圈裡會有些慣例
+
+例如，在名稱後面加上<code>?</code>通常會回傳布林值  
+
+如果在名稱後面加上<code>!</code>通常會有帶有警告意味
+
+告訴你說，你用了這個方法可能會產生一些意想不到的後果喔
+
+舉個例子,Ruby的陣列有一個方法叫reverse
+
+它的用途是將陣列的順序整個反轉
+
+但同時他也有一個方法叫reverse!
+
+看到後面有接一個驚嘆號，是用了這個方法會有一些意想不到的效果與風險
+
+測測看這兩個差在哪邊
+
+{% codeblock lang:ruby %}
+
+    arr=[1,2,3,4,5,6,7]
+    
+    p arr.reverse #印出[7,6,5,4,3,2,1]
+    p arr         #印出[1,2,3,4,5,6,7]
+
+    #如果這時使用reverse! 呢？
+
+    p arr.reverse! #印出[7,6,5,4,3,2,1]
+    p arr          #印出[7,6,5,4,3,2,1]
+
+{% endcodeblock %}
+
+看了上面的例子發現到使用reverse!後也把原陣列的內容一起改變了
+
+所以通常附加驚嘆號的方法可能會有些風險
+
+而通常有驚嘆號版本的也通常會附一個普通正常的版本
+
+所以使用前請詳略公開說明書
+
+由於Ruby方法的括號可以省略，所以也造就了一些特殊的寫法
+
+例如，
+
+{% codeblock lang:ruby %}
+    hello "sayaku",18,tel: "091234567",email: "xxx@gmail.com"
+{% endcodeblock %}
+
+看完上面的例子，我們知道有一個hello的方法
+
+可以預期他應該是有4個參數
+
+但實際呢？
+
+{% codeblock lang:ruby %}
+    #還原
+    hello("sayaku",18,{tel: "091234567",email: "xxx@gmail.com"})
+    
+    #你以為hello有四個參數，實際上它只有三個參數
+    #如果最後一個參數是Hash的話則可以省略大括號
+
+    #所以就變成這樣
+    hello("sayaku",18,tel: "091234567",email: "xxx@gmail.com")
+    
+    #又ruby的括號可以省略掉，就變成
+    hello "sayaku",18,tel: "091234567",email: "xxx@gmail.com"
+    
+{% endcodeblock %}
+
+#區塊（Block）
+
+區塊在ruby裡面也是個蠻特殊的存在
+
+一直不明白他是怎麼運作的
+
+直到最近才知道他的運作原理
+
+比如我們上一篇在迴圈那邊有一個跑五遍"我是天才"的程式
+
+{% codeblock lang:ruby %}
+
+    5.times do 
+       puts "我是天才"
+    end
+    #結果會印出五遍
+{% endcodeblock %}
+
+可以預期猜想到有一個叫times的方法，但後面的do end又是什麼呢？
+
+而do end看起來也不像要填入方法的參數，這邊的do end 就是區塊的概念
+
+以下可以來實作
+{% codeblock lang:ruby %}
+   #首先單純定義一個hello的方法
+
+   def hello
+      puts "hello, ruby"
+   end
+
+   #這時照本宣科do end的寫法
+   hello do
+	    puts "hihi"
+   end
+   #會發現沒有作用
+{% endcodeblock %}
+
+如果想要讓上面的區塊有效用
+
+則必須寫
+
+{% codeblock lang:ruby %}
+
+   def hello
+     puts "first"
+     yield
+     puts "last"    # <=多印這行是用來觀察先後順序的
+   end
+
+   hello do
+	  puts "hihi"
+   end
+
+   #輸出
+   #first
+   #hihi
+   #last
+
+{% endcodeblock %}
+
+從上面發現
+
+方法裡多下了一個關鍵字<code>yield</code>
+
+並且也看到hello的區塊也執行了
+
+這個<code>yield</code>用途是將目前程式的行使權暫時給讓出來
+
+讓到哪邊？就讓到區塊那個區域，區塊結束後才繼續回到方法裡面繼續執行
+
+所以我們可以看到執行的順序是方法=>區塊=>方法
+
+另外區塊也是可以帶參數的
+{% codeblock lang:ruby %}
+
+   def hello
+     
+     yield "sayaku"
+     
+   end
+
+   #上面yield的參數會帶到下面區塊的|name|裡
+
+   hello do |name|
+	  puts "hi ! #{name} "
+   end
+
+   #輸出 hi ! sayaku
+   #當然！也可以帶多個參數
+
+   def hello
+     
+     yield 10,10
+     
+   end
+
+   hello do |x,y|
+	  p x+y
+   end
+   #輸出結果為20
+
+   #當然！hello本身也是可以帶參數的
+   def hello(name)
+     yield name
+   end
+
+   hello "sayaku" do |name|
+	  puts "my name is #{name}"
+   end
+   #輸出結果為my name is sayaku
+
+{% endcodeblock %}
+
+在上面的最後一個範例裡面
+
+如果我們已經定義好區塊了
+
+但如果之後只是單純寫
+{% codeblock lang:ruby %}
+    hello "sayaku"
+{% endcodeblock %}
+
+會發現程式壞掉了
+
+原因是因為yield出去的參數沒有區塊接
+
+所以就壞掉了
+
+那這時要怎麼判斷使用者有沒有寫區塊呢？
+
+Ruby有提供一個判斷方法
+{% codeblock lang:ruby %}
+    def hello (name)
+      if block_given? #判斷執行方法時後面有沒有跟區塊
+        yield name
+      end 
+    end
+
+     hello("hi")
+{% endcodeblock %}
+
+這樣寫的話就算沒實作區塊程式也不會壞了
+
+接下來練習自己定義怎麼讓區塊跑五次
+
+{% codeblock lang:ruby %}
+    def my_times(n)
+	    i=0
+	    while i < n
+		    yield n
+            i += 1
+	    end
+    end
+
+
+   #實作跑五次
+    my_times(5) do |x|
+	   puts "hi #{x}"
+    end
+
+{% endcodeblock %}
+
+
+另外do end還有幾種簡便的寫法
+
+{% codeblock lang:ruby %}
+    hello "sayaku" do 
+	      puts "hi"
+    end
+
+   #do end可以用{}代替
+    
+    hello "sayaku" { 
+	    puts "hi"
+    }
+
+{% endcodeblock %}
+
+在區塊裡{}雖然大部分可以等同do end
+
+某些狀況下還是有一些差別
+
+{% codeblock lang:ruby %}
+#do end與{}的差別
+#如果是單行的話建議使用{}
+#如果是多行會建議使用do end
+#另外{}的優先順序會比do end要優先
+p [*1..5].map {|x|  x * 2 }
+p [*1..5].map do |x|  x * 2 end #只會印出1,2,3,4,5因為他實際會先執行前面（[*1..5].map）
+#如果想要結果一樣可以寫成	p ([*1..5].map do |x|  x * 2 end)用括號整個包起來
+
+{% endcodeblock %}
+
+下一篇,Ruby的物件導向
+
+
