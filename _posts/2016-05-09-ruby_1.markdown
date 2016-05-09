@@ -1,0 +1,275 @@
+---
+layout: post
+title: "[筆記]Ruby語言入門-基礎篇"
+date: 2016-05-09 10:22:36 +0800
+comments: true
+categories: [Ruby]
+---
+基於上課時的Ruby而做的筆記
+
+邊寫邊練習，順便複習
+
+<!--more-->
+
+關於Ruby的介紹與環境設定可以參考前幾篇文章-[Ruby on Rails入門筆記(0)-開發前環境設定](http://sayaku.github.io/blog/2016/01/20/learnruby/)
+
+#變數與常數
+
+
+##變數
+首先介紹變數，變數就是會變的數（廢話）
+
+Ruby的寫法如下
+
+印出簡單的"hello world"
+
+{% codeblock lang:ruby %}
+    #不同於其他語言，ruby的變數不需宣告
+
+    name = "hello world"
+
+    puts name  #輸出“hello world”
+
+    #ruby支援萬用字元，所以你變數名稱也可以取中文
+
+    姓名 = "你好，世界"
+    
+    puts 姓名  #輸出"你好，世界"
+
+    お名前は　= "こんにちは、世界"
+
+    puts お名前は  #輸出"こんにちは、世界"
+
+{% endcodeblock %}
+
+##常數
+
+常數一般來說就是恆常的數，不變的數
+
+但是在Ruby裡的常數卻是可以被更改的
+
+常數在Ruby裡有個規定，就是開頭字母必須為大寫，或是全部為大寫
+
+所以常數的命名就不能用中文之類的語言啦
+{% codeblock lang:ruby %}
+   Pi = 3.1415926
+   puts Pi #3.1415926
+
+   #雖然在ruby裡面常數是能被改變的，但你在印出時他會給你警告
+
+   Pi = 1234567 #在其他如javascript語言這段就會報錯
+   puts Pi      #warning: already initialized constant Pi
+                #warning: previous definition of Pi was here
+                #還是印出1234567
+
+{% endcodeblock %}
+
+
+##印出結果
+ruby在終端機印出結果是用到幾個方法
+
+如<code>print</code>,<code>puts</code>,<code>p</code>等等
+
+他們的差別如下   
+<code>print</code>：印出結果不斷行  
+<code>puts</code>：印出結果後並斷行  
+<code>p</code>：完整的印出結果（包含型態，例如字串連""都一起印出來）後並斷行  
+
+{% codeblock lang:ruby %}
+   print "hi"
+   puts "hi" #是put string的縮寫，請唸成put・s,不要唸成“舖疵”
+   p "hi"
+
+   #印出結果如下
+   # hihih
+   # "hi"
+{% endcodeblock %}
+
+##印出結果帶參數
+
+如果想要在印出結果帶前面已定義好的變數可以用<code>#{ 值 }</code>
+
+{% codeblock lang:ruby %}
+  name = "sayaku"
+
+  puts "Hi my name is #{name}" #印出結果Hi my name is sayaku
+
+  #如果我今天想要印出#{}該怎麼寫？
+  #有兩種方法
+
+  puts "Hi my name is \#{name}" #使用跳脫字元"\"
+  puts 'Hi my name is #{name}' #字串使用單引號
+
+  #印出結果都是Hi my name is #{name}
+
+{% endcodeblock %}
+
+#陣列與雜湊
+
+##陣列（Array）
+
+與其他語言的概念一樣，就像櫃子一樣，每層抽屜就代表一個元素
+
+{% codeblock lang:ruby %}
+
+  array = [1,2,3,4,5,6,7]
+  puts array[0]  #印出陣列裡第一個元素 1
+  puts array[-1] #印出陣列裡最後一個元素 7
+
+  #有Ruby風格的寫法
+
+  puts array.first #印出陣列裡第一個元素 1
+  puts array.last  #印出陣列裡最後一個元素 7
+
+  #在ruby陣列裡每個元素可以是不同的型態，可以是數字也可以是字串，也可以是其他物件
+  array = [1,2,"hi",4]
+
+
+  #如果想快速寫出1~100的陣列元素
+  #其他語言的寫法大概是用迴圈的寫法，跑100遍然後塞值進陣列
+  #但ruby可以這樣寫
+  array = [*1..100]
+  #這種寫法叫splat
+
+
+  #塞值進陣列
+  array = []
+  array << 1
+  array << 2
+
+  p array  #印出[1,2]
+
+{% endcodeblock %}
+
+##雜湊（Hash）
+
+Hash是許多語言都有的寫法
+
+就像Json格式一樣，一個key然後搭配一個值
+
+這種一個蘿蔔一個坑的寫法，概念上大概就是沒有順序的陣列
+
+{% codeblock lang:ruby %}
+
+  hash={ name: "sayaku" }
+  #key值是name,他的值sayaku
+  
+  #當然也可以有很多的key值或是巢狀的寫法
+  hash={ name: "sayaku" , email: "XXX@gmail.com" }
+
+  #提取值的方法,在ruby比較特別
+  #如果是用
+  p hash["name"] #印出nil
+
+  #必須要寫成帶符號(Symbol)的寫法
+  p hash[:name] #印出“sayaku”
+
+  #實際上Ruby雜湊真正的寫法是
+  hash={ :name => "sayaku", :email => "XXX@gmail.com" }
+
+  #但因為不太好看，也不太好閱讀，所以新版的Ruby新增加了最上面這種寫法的語法糖衣
+  
+{% endcodeblock %}
+
+在上述<code>p hash["name"]</code>為什麼會印出<code>nil</code>
+
+跟ruby的符號(Symbol)的概念有關
+
+符號的概念可以參考龍哥的[這篇](http://kaochenlong.com/2016/04/25/string-and-symbol/)
+
+
+#迴圈與迭代
+
+會用到迴圈跟迭代，就是要用做處理重複的事情
+
+例如我想印出五遍<code>我是天才</code>
+
+在ruby的寫法可寫成
+
+{% codeblock lang:ruby %}
+
+  5.times  do
+	  puts "我是天才"
+  end
+
+  #印出
+  #我是天才
+  #我是天才
+  #我是天才
+  #我是天才
+  #我是天才
+  
+{% endcodeblock %}
+
+通常陣列都會搭配迴圈來使用
+
+因為你拿到一堆資料後，通常第一件事就是把資料全部印出來
+
+{% codeblock lang:ruby %}
+   array = [1,2,3,4,5]
+   
+
+   #for .. in迴圈
+   for f in array 
+      puts f
+   end
+   #意義是從array撈每個元素出來，並將每次撈出來的元素指定給f變數
+   #印出
+   #1
+   #2
+   #3
+   #4
+   #5
+
+   #另一種寫法，each迴圈
+
+   array.each do |f|
+      puts f
+   end
+
+   #印出
+   #1
+   #2
+   #3
+   #4
+   #5
+
+{% endcodeblock %}
+
+#判斷陳述式
+
+每個程式語言基本上的都有的判斷式
+
+判斷式就是告訴電腦，當我達成某條件就走Ａ路徑，否則就走Ｂ路徑
+
+就會有所謂的真假判斷，不是真就是假，就是所謂的true and false
+
+在ruby裡面，只有兩種物件會被判定為false,其他都是true
+
+這兩種物件是   
+1.<code>false</code>    
+2.<code>nil</code>      
+
+與其他程式語言不同的是，<code>0</code>在ruby裡面是判斷為true
+
+{% codeblock lang:ruby %}
+
+   #描述當我大於等於18會跑向true,否則跑向false
+	if(age >= 18 ) then
+       true
+	else
+       false       
+	end	
+	#如果if有寫成斷行，那then可以省略,但如果寫成單一行就一定要寫then
+
+
+	#另外！在ruby裡面的註解是用井字號#作為註解
+	#但也有人利用判斷式來寫註解
+	#例如
+    
+    if false
+       因為這邊條件是假，程式不會不會執行到這個區塊
+       所以這邊可以當成註解來寫
+       我是註解我是註解
+    end
+{% endcodeblock %}
