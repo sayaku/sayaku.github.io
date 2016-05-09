@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[筆記]Ruby語言入門-方法與區塊 - 林克融</title>
+  <meta name="author" content="sayaku">
+
+  
+  <meta name="description" content="繼上一篇Ruby語言入門-基礎篇 這篇要來筆記Ruby的方法（Method）與區塊（Block） 方法 （Method） 有些人會解釋成函數（Function）,Ruby這邊叫方法（Method） 其實用久了我還比較喜歡叫方法 方法的定義 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sayaku.github.io/blog/2016/05/09/ruby2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="林克融" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--
+Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!--fancybox plugin -->
+<script type="text/javascript" src="/javascripts/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="/javascripts/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="/javascripts/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="/javascripts/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="/javascripts/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="/javascripts/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="/javascripts/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="/javascripts/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.fancybox-media').attr('rel', 'media-gallery').fancybox({
+        openEffect : 'none',
+		closeEffect : 'none',
+        prevEffect : 'none',
+		nextEffect : 'none',
+        arrows : false,
+		helpers : {
+			media : {
+                    
+                     },
+            overlay : {
+		        closeClick : true,  // if true, fancyBox will be closed when user clicks on the overlay
+		        speedOut   : 200,
+		        showEarly  : false,  // indicates if should be opened immediately or wait until the content is ready
+		       css        : {},    // custom CSS properties
+		       locked     : true   // if true, the content will be locked into overlay
+	         },
+			buttons : {
+              },
+            title : {
+		            type : 'float'
+	                }
+		}
+	});
+
+    $('.fancybox-youtube').fancybox({
+        openEffect : 'none',
+		closeEffect : 'none',
+        aspectRatio : true,
+		helpers : {
+			media : {},
+            overlay : {
+		      closeClick : true,  // if true, fancyBox will be closed when user clicks on the overlay
+             
+		      speedOut   : 200,   // duration of fadeOut animation
+		      showEarly  : false,  // indicates if should be opened immediately or wait until the content is ready
+		      css        : {},    // custom CSS properties
+		      locked     : true   // if true, the content will be locked into overlay
+	        },
+            title : {
+		            type : 'float'
+	                }
+		}
+	});
+    
+
+
+   $("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : 'http://pcdn1.rimg.tw/photos/4345004_k4cthzh_l.jpg',
+						title : '牡丹'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345006_pp533mr_l.jpg',
+						title : '鰲魚'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345008_mhd0iju_l.png',
+                        title : '小三王'  
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345010_nvge79d_l.png',
+                        title : '四大天王'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345012_6o7xykw_l.png',
+                        title : '市上大吉'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345016_h4a7sja_l.png',
+                        title : '鹿乳奉親'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345018_5cq017x_l.png',
+                        title : '喜鵲報財'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+             $("#fancybox-manual-a").click(function() {
+				$.fancybox.open([
+					{
+						href : 'http://pcdn1.rimg.tw/photos/4346588_z8u4dhw_l.jpg',
+						title : 'Photoshop 2D Render 練習'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346594_p69xwui_l.jpg',
+						title : 'Photoshop 2D Render 練習'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346598_fyp748e_l.jpg',
+                        title : 'Photoshop 2D Render 練習'  
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346600_m1pvhc6_l.jpg',
+                        title : '桃園捷運LOGO競賽'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346590_xqskd8z_l.jpg',
+                        title : 'e-job形象人物設計'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346592_9dknqbo_l.jpg',
+                        title : '台哥大雲豹形象設計'
+					}, {
+						href : 'http://b1.rimg.tw/sayaku/f3f760f9.gif',
+                        title : '氣球女孩繪製過程'
+					}, {
+						href : 'http://b1.rimg.tw/sayaku/ac038e53.jpg',
+                        title : '氣球女孩'
+					}, {
+						href : 'https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-frc3/t1/397110_10151299971519687_2115497686_n.jpg',
+                        title : '水彩練習'
+					}, {
+						href : 'https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash2/t1/399279_10151299876174687_1691872990_n.jpg',
+                        title : '工筆練習'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+            $('.fancybox').fancybox();
+
+});
+
+</script>
+  
+
+</head>
+
+<body   >
+ <header role="banner">
+	       <div id="banner_text"> <hgroup>
+  <h1><a href="/">林克融</a></h1>
+  
+    <h2>喜歡等平交道、聽火車壓過魚尾板的聲音...</h2>
+  
+</hgroup>
+
+ </div>
+           <div id="banner_img"></div>
+  </header>
+  
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+
+
+  
+ 
+<!--<form action="http://google.com/search" method="get">-->
+<form action="/searchResults" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="sayaku.github.io">
+    <input class="search" type="text" name="s" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+  
+<ul class="main-navigation">
+  <li><a href="/">網誌</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/about">關於我</a></li>
+  <li><a href="/portfolio">作品集</a></li>
+  <li><a href="/experiment">實驗</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[筆記]Ruby語言入門-方法與區塊</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-09T15:55:08+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>3:55 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://sayaku.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>繼上一篇<a href="http://sayaku.github.io/blog/2016/05/09/ruby_1/">Ruby語言入門-基礎篇</a></p>
+
+<p>這篇要來筆記Ruby的方法（Method）與區塊（Block）</p>
+
+<!--more-->
+
+
+<h1>方法 （Method）</h1>
+
+<p>有些人會解釋成函數（Function）,Ruby這邊叫方法（Method）</p>
+
+<p>其實用久了我還比較喜歡叫方法</p>
+
+<p>方法的定義</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="c1">#定義一個叫做hello的方法</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>       <span class="nb">puts</span> <span class="s2">&quot;hi i am sayaku&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">hello</span><span class="p">()</span> <span class="c1">#印出hi i am sayaku</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#如果想要帶參數的話</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>       <span class="nb">puts</span> <span class="s2">&quot;hi i am </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;sayaku&quot;</span><span class="p">)</span>  <span class="c1">#印出hi i am sayaku</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在Ruby裡，方法的括號常常省略掉</p>
+
+<p>所以常常會看到有這樣的寫法</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這算是一個特色，而在Ruby裡面，方法還有一大特色是他的命名</p>
+
+<p>可以使用符號，例如<br/>
+<code>?</code> <br/>
+<code>!</code>   <br/>
+<code>=</code>  <br/>
+&hellip;.等</p>
+
+<p>但必須附在名字後面</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">is_adult?</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">age</span><span class="o">&gt;=</span><span class="mi">18</span>     <span class="c1">#可以省略return關鍵字，ruby預設會回傳最後一個結果</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">is_adilt?</span><span class="p">(</span><span class="mi">29</span><span class="p">)</span> <span class="c1">#印出true    </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>雖然Ruby可以讓你在方法名稱後面加這些符號，但在Ruby圈裡會有些慣例</p>
+
+<p>例如，在名稱後面加上<code>?</code>通常會回傳布林值</p>
+
+<p>如果在名稱後面加上<code>!</code>通常會有帶有警告意味</p>
+
+<p>告訴你說，你用了這個方法可能會產生一些意想不到的後果喔</p>
+
+<p>舉個例子,Ruby的陣列有一個方法叫reverse</p>
+
+<p>它的用途是將陣列的順序整個反轉</p>
+
+<p>但同時他也有一個方法叫reverse!</p>
+
+<p>看到後面有接一個驚嘆號，是用了這個方法會有一些意想不到的效果與風險</p>
+
+<p>測測看這兩個差在哪邊</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">arr</span><span class="o">=[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">arr</span><span class="o">.</span><span class="n">reverse</span> <span class="c1">#印出[7,6,5,4,3,2,1]</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">arr</span>         <span class="c1">#印出[1,2,3,4,5,6,7]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#如果這時使用reverse! 呢？</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">arr</span><span class="o">.</span><span class="n">reverse!</span> <span class="c1">#印出[7,6,5,4,3,2,1]</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">arr</span>          <span class="c1">#印出[7,6,5,4,3,2,1]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看了上面的例子發現到使用reverse!後也把原陣列的內容一起改變了</p>
+
+<p>所以通常附加驚嘆號的方法可能會有些風險</p>
+
+<p>而通常有驚嘆號版本的也通常會附一個普通正常的版本</p>
+
+<p>所以使用前請詳略公開說明書</p>
+
+<p>由於Ruby方法的括號可以省略，所以也造就了一些特殊的寫法</p>
+
+<p>例如，</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="ss">tel</span><span class="p">:</span> <span class="s2">&quot;091234567&quot;</span><span class="p">,</span><span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;xxx@gmail.com&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看完上面的例子，我們知道有一個hello的方法</p>
+
+<p>可以預期他應該是有4個參數</p>
+
+<p>但實際呢？</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="c1">#還原</span>
+</span><span class='line'>    <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;sayaku&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,{</span><span class="ss">tel</span><span class="p">:</span> <span class="s2">&quot;091234567&quot;</span><span class="p">,</span><span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;xxx@gmail.com&quot;</span><span class="p">})</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#你以為hello有四個參數，實際上它只有三個參數</span>
+</span><span class='line'>    <span class="c1">#如果最後一個參數是Hash的話則可以省略大括號</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#所以就變成這樣</span>
+</span><span class='line'>    <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;sayaku&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="ss">tel</span><span class="p">:</span> <span class="s2">&quot;091234567&quot;</span><span class="p">,</span><span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;xxx@gmail.com&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#又ruby的括號可以省略掉，就變成</span>
+</span><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="ss">tel</span><span class="p">:</span> <span class="s2">&quot;091234567&quot;</span><span class="p">,</span><span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;xxx@gmail.com&quot;</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>區塊（Block）</h1>
+
+<p>區塊在ruby裡面也是個蠻特殊的存在</p>
+
+<p>一直不明白他是怎麼運作的</p>
+
+<p>直到最近才知道他的運作原理</p>
+
+<p>比如我們上一篇在迴圈那邊有一個跑五遍"我是天才"的程式</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="mi">5</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>       <span class="nb">puts</span> <span class="s2">&quot;我是天才&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="c1">#結果會印出五遍</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以預期猜想到有一個叫times的方法，但後面的do end又是什麼呢？</p>
+
+<p>而do end看起來也不像要填入方法的參數，這邊的do end 就是區塊的概念</p>
+
+<p>以下可以來實作</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="c1">#首先單純定義一個hello的方法</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;hello, ruby&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#這時照本宣科do end的寫法</span>
+</span><span class='line'>   <span class="n">hello</span> <span class="k">do</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;hihi&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="c1">#會發現沒有作用</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果想要讓上面的區塊有效用</p>
+
+<p>則必須寫</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>     <span class="nb">puts</span> <span class="s2">&quot;first&quot;</span>
+</span><span class='line'>     <span class="k">yield</span>
+</span><span class='line'>     <span class="nb">puts</span> <span class="s2">&quot;last&quot;</span>    <span class="c1"># &lt;=多印這行是用來觀察先後順序的</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">hello</span> <span class="k">do</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;hihi&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#輸出</span>
+</span><span class='line'>   <span class="c1">#first</span>
+</span><span class='line'>   <span class="c1">#hihi</span>
+</span><span class='line'>   <span class="c1">#last</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>從上面發現</p>
+
+<p>方法裡多下了一個關鍵字<code>yield</code></p>
+
+<p>並且也看到hello的區塊也執行了</p>
+
+<p>這個<code>yield</code>用途是將目前程式的行使權暫時給讓出來</p>
+
+<p>讓到哪邊？就讓到區塊那個區域，區塊結束後才繼續回到方法裡面繼續執行</p>
+
+<p>所以我們可以看到執行的順序是方法=>區塊=>方法</p>
+
+<p>另外區塊也是可以帶參數的</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="k">yield</span> <span class="s2">&quot;sayaku&quot;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#上面yield的參數會帶到下面區塊的|name|裡</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">hello</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;hi ! </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#輸出 hi ! sayaku</span>
+</span><span class='line'>   <span class="c1">#當然！也可以帶多個參數</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="k">yield</span> <span class="mi">10</span><span class="p">,</span><span class="mi">10</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">hello</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="c1">#輸出結果為20</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#當然！hello本身也是可以帶參數的</span>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>     <span class="k">yield</span> <span class="nb">name</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;my name is </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="c1">#輸出結果為my name is sayaku</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在上面的最後一個範例裡面</p>
+
+<p>如果我們已經定義好區塊了</p>
+
+<p>但如果之後只是單純寫</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>會發現程式壞掉了</p>
+
+<p>原因是因為yield出去的參數沒有區塊接</p>
+
+<p>所以就壞掉了</p>
+
+<p>那這時要怎麼判斷使用者有沒有寫區塊呢？</p>
+
+<p>Ruby有提供一個判斷方法</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">hello</span> <span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nb">block_given?</span> <span class="c1">#判斷執行方法時後面有沒有跟區塊</span>
+</span><span class='line'>        <span class="k">yield</span> <span class="nb">name</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣寫的話就算沒實作區塊程式也不會壞了</p>
+
+<p>接下來練習自己定義怎麼讓區塊跑五次</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">my_times</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+</span><span class='line'>      <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span>
+</span><span class='line'>          <span class="k">yield</span> <span class="n">n</span>
+</span><span class='line'>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#實作跑五次</span>
+</span><span class='line'>    <span class="n">my_times</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>     <span class="nb">puts</span> <span class="s2">&quot;hi </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>另外do end還有幾種簡便的寫法</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="nb">puts</span> <span class="s2">&quot;hi&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#do end可以用{}代替</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;hi&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在區塊裡{}雖然大部分可以等同do end</p>
+
+<p>某些狀況下還是有一些差別</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#do end與{}的差別</span>
+</span><span class='line'><span class="c1">#如果是單行的話建議使用{}</span>
+</span><span class='line'><span class="c1">#如果是多行會建議使用do end</span>
+</span><span class='line'><span class="c1">#另外{}的優先順序會比do end要優先</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">[*</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="o">].</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span>  <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">}</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">[*</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="o">].</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>  <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">end</span> <span class="c1">#只會印出1,2,3,4,5因為他實際會先執行前面（[*1..5].map）</span>
+</span><span class='line'><span class="c1">#如果想要結果一樣可以寫成    p ([*1..5].map do |x|  x * 2 end)用括號整個包起來</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下一篇,Ruby的物件導向</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">sayaku</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-05-09T15:55:08+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>3:55 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://sayaku.github.io/blog/2016/05/09/ruby2/" data-via="" data-counturl="http://sayaku.github.io/blog/2016/05/09/ruby2/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/05/09/ruby_1/" title="Previous Post: [筆記]Ruby語言入門-基礎篇">&laquo; [筆記]Ruby語言入門-基礎篇</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    ﻿<section>
+<h1>關於我</h1>
+<img src="/images/logo.png"></br>
+<a href="/about">知道更多..</a>
+
+</p>
+
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/05/09/ruby2/">[筆記]Ruby語言入門-方法與區塊</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/05/09/ruby_1/">[筆記]Ruby語言入門-基礎篇</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/05/05/rubyde-rvm-gem-bundler/">[筆記]Ruby的RVM,GEM,Bundler是什麼？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/22/railsScaffold/">Ruby on Rails入門筆記(1)-TodoMVC</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/20/learnruby/">Ruby on Rails入門筆記(0)-開發前環境設定</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+  <h1>標籤雲</h1>
+    <span id="tag-cloud"><a href='/blog/categories/actionscript3-dot-0' style='font-size: 160.0%'>actionscript3.0(5)</a> <a href='/blog/categories/air' style='font-size: 124.0%'>air(2)</a> <a href='/blog/categories/away3d' style='font-size: 124.0%'>away3d(2)</a> <a href='/blog/categories/b-mobile' style='font-size: 112.0%'>b-mobile(1)</a> <a href='/blog/categories/c-plus-plus' style='font-size: 124.0%'>c++(2)</a> <a href='/blog/categories/kinect' style='font-size: 112.0%'>kinect(1)</a> <a href='/blog/categories/octopress' style='font-size: 112.0%'>octopress(1)</a> <a href='/blog/categories/rails' style='font-size: 136.0%'>rails(3)</a> <a href='/blog/categories/ruby' style='font-size: 160.0%'>ruby(5)</a> <a href='/blog/categories/ruby-on-rails' style='font-size: 136.0%'>ruby on rails(3)</a> <a href='/blog/categories/xiao-zhe-lu-xing' style='font-size: 124.0%'>小折旅行(2)</a> <a href='/blog/categories/ri-ben' style='font-size: 160.0%'>日本(5)</a> <a href='/blog/categories/ri-ben-lu-you' style='font-size: 148.0%'>日本旅遊(4)</a> <a href='/blog/categories/jia-zi-yuan' style='font-size: 112.0%'>甲子園(1)</a> </span>
+</section>
+<section>
+  <h1>最新回應</h1>
+  <div id="dsq-recentcomments" class="dsq-widget"><script type="text/javascript" src="http://disqus.com/forums/sayaku0210/recent_comments_widget.js?hide_avatars=1"></script></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - sayaku
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'sayaku0210';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sayaku.github.io/blog/2016/05/09/ruby2/';
+        var disqus_url = 'http://sayaku.github.io/blog/2016/05/09/ruby2/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

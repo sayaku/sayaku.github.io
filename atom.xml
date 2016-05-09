@@ -4,7 +4,7 @@
   <title><![CDATA[林克融]]></title>
   <link href="http://sayaku.github.io/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
-  <updated>2016-05-09T14:18:30+08:00</updated>
+  <updated>2016-05-09T17:42:14+08:00</updated>
   <id>http://sayaku.github.io/</id>
   <author>
     <name><![CDATA[sayaku]]></name>
@@ -12,6 +12,473 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[筆記]Ruby語言入門-方法與區塊]]></title>
+    <link href="http://sayaku.github.io/blog/2016/05/09/ruby2/"/>
+    <updated>2016-05-09T15:55:08+08:00</updated>
+    <id>http://sayaku.github.io/blog/2016/05/09/ruby2</id>
+    <content type="html"><![CDATA[<p>繼上一篇<a href="http://sayaku.github.io/blog/2016/05/09/ruby_1/">Ruby語言入門-基礎篇</a></p>
+
+<p>這篇要來筆記Ruby的方法（Method）與區塊（Block）</p>
+
+<!--more-->
+
+
+<h1>方法 （Method）</h1>
+
+<p>有些人會解釋成函數（Function）,Ruby這邊叫方法（Method）</p>
+
+<p>其實用久了我還比較喜歡叫方法</p>
+
+<p>方法的定義</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="c1">#定義一個叫做hello的方法</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>       <span class="nb">puts</span> <span class="s2">&quot;hi i am sayaku&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">hello</span><span class="p">()</span> <span class="c1">#印出hi i am sayaku</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#如果想要帶參數的話</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>       <span class="nb">puts</span> <span class="s2">&quot;hi i am </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;sayaku&quot;</span><span class="p">)</span>  <span class="c1">#印出hi i am sayaku</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在Ruby裡，方法的括號常常省略掉</p>
+
+<p>所以常常會看到有這樣的寫法</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這算是一個特色，而在Ruby裡面，方法還有一大特色是他的命名</p>
+
+<p>可以使用符號，例如<br/>
+<code>?</code> <br/>
+<code>!</code>   <br/>
+<code>=</code>  <br/>
+&hellip;.等</p>
+
+<p>但必須附在名字後面</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">is_adult?</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">age</span><span class="o">&gt;=</span><span class="mi">18</span>     <span class="c1">#可以省略return關鍵字，ruby預設會回傳最後一個結果</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">is_adilt?</span><span class="p">(</span><span class="mi">29</span><span class="p">)</span> <span class="c1">#印出true    </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>雖然Ruby可以讓你在方法名稱後面加這些符號，但在Ruby圈裡會有些慣例</p>
+
+<p>例如，在名稱後面加上<code>?</code>通常會回傳布林值</p>
+
+<p>如果在名稱後面加上<code>!</code>通常會有帶有警告意味</p>
+
+<p>告訴你說，你用了這個方法可能會產生一些意想不到的後果喔</p>
+
+<p>舉個例子,Ruby的陣列有一個方法叫reverse</p>
+
+<p>它的用途是將陣列的順序整個反轉</p>
+
+<p>但同時他也有一個方法叫reverse!</p>
+
+<p>看到後面有接一個驚嘆號，是用了這個方法會有一些意想不到的效果與風險</p>
+
+<p>測測看這兩個差在哪邊</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">arr</span><span class="o">=[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">arr</span><span class="o">.</span><span class="n">reverse</span> <span class="c1">#印出[7,6,5,4,3,2,1]</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">arr</span>         <span class="c1">#印出[1,2,3,4,5,6,7]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#如果這時使用reverse! 呢？</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">arr</span><span class="o">.</span><span class="n">reverse!</span> <span class="c1">#印出[7,6,5,4,3,2,1]</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">arr</span>          <span class="c1">#印出[7,6,5,4,3,2,1]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看了上面的例子發現到使用reverse!後也把原陣列的內容一起改變了</p>
+
+<p>所以通常附加驚嘆號的方法可能會有些風險</p>
+
+<p>而通常有驚嘆號版本的也通常會附一個普通正常的版本</p>
+
+<p>所以使用前請詳略公開說明書</p>
+
+<p>由於Ruby方法的括號可以省略，所以也造就了一些特殊的寫法</p>
+
+<p>例如，</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="ss">tel</span><span class="p">:</span> <span class="s2">&quot;091234567&quot;</span><span class="p">,</span><span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;xxx@gmail.com&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看完上面的例子，我們知道有一個hello的方法</p>
+
+<p>可以預期他應該是有4個參數</p>
+
+<p>但實際呢？</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="c1">#還原</span>
+</span><span class='line'>    <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;sayaku&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,{</span><span class="ss">tel</span><span class="p">:</span> <span class="s2">&quot;091234567&quot;</span><span class="p">,</span><span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;xxx@gmail.com&quot;</span><span class="p">})</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#你以為hello有四個參數，實際上它只有三個參數</span>
+</span><span class='line'>    <span class="c1">#如果最後一個參數是Hash的話則可以省略大括號</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#所以就變成這樣</span>
+</span><span class='line'>    <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;sayaku&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="ss">tel</span><span class="p">:</span> <span class="s2">&quot;091234567&quot;</span><span class="p">,</span><span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;xxx@gmail.com&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#又ruby的括號可以省略掉，就變成</span>
+</span><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="ss">tel</span><span class="p">:</span> <span class="s2">&quot;091234567&quot;</span><span class="p">,</span><span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;xxx@gmail.com&quot;</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>區塊（Block）</h1>
+
+<p>區塊在ruby裡面也是個蠻特殊的存在</p>
+
+<p>一直不明白他是怎麼運作的</p>
+
+<p>直到最近才知道他的運作原理</p>
+
+<p>比如我們上一篇在迴圈那邊有一個跑五遍"我是天才"的程式</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="mi">5</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>       <span class="nb">puts</span> <span class="s2">&quot;我是天才&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="c1">#結果會印出五遍</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以預期猜想到有一個叫times的方法，但後面的do end又是什麼呢？</p>
+
+<p>而do end看起來也不像要填入方法的參數，這邊的do end 就是區塊的概念</p>
+
+<p>以下可以來實作</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="c1">#首先單純定義一個hello的方法</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;hello, ruby&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#這時照本宣科do end的寫法</span>
+</span><span class='line'>   <span class="n">hello</span> <span class="k">do</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;hihi&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="c1">#會發現沒有作用</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果想要讓上面的區塊有效用</p>
+
+<p>則必須寫</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>     <span class="nb">puts</span> <span class="s2">&quot;first&quot;</span>
+</span><span class='line'>     <span class="k">yield</span>
+</span><span class='line'>     <span class="nb">puts</span> <span class="s2">&quot;last&quot;</span>    <span class="c1"># &lt;=多印這行是用來觀察先後順序的</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">hello</span> <span class="k">do</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;hihi&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#輸出</span>
+</span><span class='line'>   <span class="c1">#first</span>
+</span><span class='line'>   <span class="c1">#hihi</span>
+</span><span class='line'>   <span class="c1">#last</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>從上面發現</p>
+
+<p>方法裡多下了一個關鍵字<code>yield</code></p>
+
+<p>並且也看到hello的區塊也執行了</p>
+
+<p>這個<code>yield</code>用途是將目前程式的行使權暫時給讓出來</p>
+
+<p>讓到哪邊？就讓到區塊那個區域，區塊結束後才繼續回到方法裡面繼續執行</p>
+
+<p>所以我們可以看到執行的順序是方法=>區塊=>方法</p>
+
+<p>另外區塊也是可以帶參數的</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="k">yield</span> <span class="s2">&quot;sayaku&quot;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#上面yield的參數會帶到下面區塊的|name|裡</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">hello</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;hi ! </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#輸出 hi ! sayaku</span>
+</span><span class='line'>   <span class="c1">#當然！也可以帶多個參數</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">hello</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="k">yield</span> <span class="mi">10</span><span class="p">,</span><span class="mi">10</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">hello</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="c1">#輸出結果為20</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#當然！hello本身也是可以帶參數的</span>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>     <span class="k">yield</span> <span class="nb">name</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;my name is </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="c1">#輸出結果為my name is sayaku</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在上面的最後一個範例裡面</p>
+
+<p>如果我們已經定義好區塊了</p>
+
+<p>但如果之後只是單純寫</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>會發現程式壞掉了</p>
+
+<p>原因是因為yield出去的參數沒有區塊接</p>
+
+<p>所以就壞掉了</p>
+
+<p>那這時要怎麼判斷使用者有沒有寫區塊呢？</p>
+
+<p>Ruby有提供一個判斷方法</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">hello</span> <span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nb">block_given?</span> <span class="c1">#判斷執行方法時後面有沒有跟區塊</span>
+</span><span class='line'>        <span class="k">yield</span> <span class="nb">name</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣寫的話就算沒實作區塊程式也不會壞了</p>
+
+<p>接下來練習自己定義怎麼讓區塊跑五次</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">my_times</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+</span><span class='line'>      <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span>
+</span><span class='line'>          <span class="k">yield</span> <span class="n">n</span>
+</span><span class='line'>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#實作跑五次</span>
+</span><span class='line'>    <span class="n">my_times</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>     <span class="nb">puts</span> <span class="s2">&quot;hi </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>另外do end還有幾種簡便的寫法</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="nb">puts</span> <span class="s2">&quot;hi&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#do end可以用{}代替</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;hi&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在區塊裡{}雖然大部分可以等同do end</p>
+
+<p>某些狀況下還是有一些差別</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#do end與{}的差別</span>
+</span><span class='line'><span class="c1">#如果是單行的話建議使用{}</span>
+</span><span class='line'><span class="c1">#如果是多行會建議使用do end</span>
+</span><span class='line'><span class="c1">#另外{}的優先順序會比do end要優先</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">[*</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="o">].</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span>  <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">}</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">[*</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="o">].</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>  <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">end</span> <span class="c1">#只會印出1,2,3,4,5因為他實際會先執行前面（[*1..5].map）</span>
+</span><span class='line'><span class="c1">#如果想要結果一樣可以寫成    p ([*1..5].map do |x|  x * 2 end)用括號整個包起來</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下一篇,Ruby的物件導向</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[筆記]Ruby語言入門-基礎篇]]></title>
