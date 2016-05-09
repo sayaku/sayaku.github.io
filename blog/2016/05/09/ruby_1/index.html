@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[筆記]Ruby語言入門-基礎篇 - 林克融</title>
+  <meta name="author" content="sayaku">
+
+  
+  <meta name="description" content="基於上課時的Ruby而做的筆記 邊寫邊練習，順便複習 關於Ruby的介紹與環境設定可以參考前幾篇文章-Ruby on Rails入門筆記(0)-開發前環境設定 變數與常數 變數 首先介紹變數，變數就是會變的數（廢話） Ruby的寫法如下 印出簡單的"hello world" 1
+2
+3
+4
+5
+6 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sayaku.github.io/blog/2016/05/09/ruby_1/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="林克融" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--
+Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!--fancybox plugin -->
+<script type="text/javascript" src="/javascripts/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="/javascripts/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="/javascripts/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="/javascripts/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="/javascripts/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="/javascripts/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="/javascripts/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="/javascripts/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.fancybox-media').attr('rel', 'media-gallery').fancybox({
+        openEffect : 'none',
+		closeEffect : 'none',
+        prevEffect : 'none',
+		nextEffect : 'none',
+        arrows : false,
+		helpers : {
+			media : {
+                    
+                     },
+            overlay : {
+		        closeClick : true,  // if true, fancyBox will be closed when user clicks on the overlay
+		        speedOut   : 200,
+		        showEarly  : false,  // indicates if should be opened immediately or wait until the content is ready
+		       css        : {},    // custom CSS properties
+		       locked     : true   // if true, the content will be locked into overlay
+	         },
+			buttons : {
+              },
+            title : {
+		            type : 'float'
+	                }
+		}
+	});
+
+    $('.fancybox-youtube').fancybox({
+        openEffect : 'none',
+		closeEffect : 'none',
+        aspectRatio : true,
+		helpers : {
+			media : {},
+            overlay : {
+		      closeClick : true,  // if true, fancyBox will be closed when user clicks on the overlay
+             
+		      speedOut   : 200,   // duration of fadeOut animation
+		      showEarly  : false,  // indicates if should be opened immediately or wait until the content is ready
+		      css        : {},    // custom CSS properties
+		      locked     : true   // if true, the content will be locked into overlay
+	        },
+            title : {
+		            type : 'float'
+	                }
+		}
+	});
+    
+
+
+   $("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : 'http://pcdn1.rimg.tw/photos/4345004_k4cthzh_l.jpg',
+						title : '牡丹'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345006_pp533mr_l.jpg',
+						title : '鰲魚'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345008_mhd0iju_l.png',
+                        title : '小三王'  
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345010_nvge79d_l.png',
+                        title : '四大天王'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345012_6o7xykw_l.png',
+                        title : '市上大吉'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345016_h4a7sja_l.png',
+                        title : '鹿乳奉親'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4345018_5cq017x_l.png',
+                        title : '喜鵲報財'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+             $("#fancybox-manual-a").click(function() {
+				$.fancybox.open([
+					{
+						href : 'http://pcdn1.rimg.tw/photos/4346588_z8u4dhw_l.jpg',
+						title : 'Photoshop 2D Render 練習'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346594_p69xwui_l.jpg',
+						title : 'Photoshop 2D Render 練習'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346598_fyp748e_l.jpg',
+                        title : 'Photoshop 2D Render 練習'  
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346600_m1pvhc6_l.jpg',
+                        title : '桃園捷運LOGO競賽'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346590_xqskd8z_l.jpg',
+                        title : 'e-job形象人物設計'
+					}, {
+						href : 'http://pcdn1.rimg.tw/photos/4346592_9dknqbo_l.jpg',
+                        title : '台哥大雲豹形象設計'
+					}, {
+						href : 'http://b1.rimg.tw/sayaku/f3f760f9.gif',
+                        title : '氣球女孩繪製過程'
+					}, {
+						href : 'http://b1.rimg.tw/sayaku/ac038e53.jpg',
+                        title : '氣球女孩'
+					}, {
+						href : 'https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-frc3/t1/397110_10151299971519687_2115497686_n.jpg',
+                        title : '水彩練習'
+					}, {
+						href : 'https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash2/t1/399279_10151299876174687_1691872990_n.jpg',
+                        title : '工筆練習'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+            $('.fancybox').fancybox();
+
+});
+
+</script>
+  
+
+</head>
+
+<body   >
+ <header role="banner">
+	       <div id="banner_text"> <hgroup>
+  <h1><a href="/">林克融</a></h1>
+  
+    <h2>喜歡等平交道、聽火車壓過魚尾板的聲音...</h2>
+  
+</hgroup>
+
+ </div>
+           <div id="banner_img"></div>
+  </header>
+  
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+
+
+  
+ 
+<!--<form action="http://google.com/search" method="get">-->
+<form action="/searchResults" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="sayaku.github.io">
+    <input class="search" type="text" name="s" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+  
+<ul class="main-navigation">
+  <li><a href="/">網誌</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/about">關於我</a></li>
+  <li><a href="/portfolio">作品集</a></li>
+  <li><a href="/experiment">實驗</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[筆記]Ruby語言入門-基礎篇</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-09T10:22:36+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:22 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://sayaku.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>基於上課時的Ruby而做的筆記</p>
+
+<p>邊寫邊練習，順便複習</p>
+
+<!--more-->
+
+
+<p>關於Ruby的介紹與環境設定可以參考前幾篇文章-<a href="http://sayaku.github.io/blog/2016/01/20/learnruby/">Ruby on Rails入門筆記(0)-開發前環境設定</a></p>
+
+<h1>變數與常數</h1>
+
+<h2>變數</h2>
+
+<p>首先介紹變數，變數就是會變的數（廢話）</p>
+
+<p>Ruby的寫法如下</p>
+
+<p>印出簡單的"hello world"</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="c1">#不同於其他語言，ruby的變數不需宣告</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">puts</span> <span class="nb">name</span>  <span class="c1">#輸出“hello world”</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#ruby支援萬用字元，所以你變數名稱也可以取中文</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="err">姓名</span> <span class="o">=</span> <span class="s2">&quot;你好，世界&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">puts</span> <span class="err">姓名</span>  <span class="c1">#輸出&quot;你好，世界&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="err">お名前は　</span><span class="o">=</span> <span class="s2">&quot;こんにちは、世界&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">puts</span> <span class="err">お名前は</span>  <span class="c1">#輸出&quot;こんにちは、世界&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>常數</h2>
+
+<p>常數一般來說就是恆常的數，不變的數</p>
+
+<p>但是在Ruby裡的常數卻是可以被更改的</p>
+
+<p>常數在Ruby裡有個規定，就是開頭字母必須為大寫，或是全部為大寫</p>
+
+<p>所以常數的命名就不能用中文之類的語言啦</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="no">Pi</span> <span class="o">=</span> <span class="mi">3</span><span class="o">.</span><span class="mi">1415926</span>
+</span><span class='line'>   <span class="nb">puts</span> <span class="no">Pi</span> <span class="c1">#3.1415926</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#雖然在ruby裡面常數是能被改變的，但你在印出時他會給你警告</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="no">Pi</span> <span class="o">=</span> <span class="mi">1234567</span> <span class="c1">#在其他如javascript語言這段就會報錯</span>
+</span><span class='line'>   <span class="nb">puts</span> <span class="no">Pi</span>      <span class="c1">#warning: already initialized constant Pi</span>
+</span><span class='line'>                <span class="c1">#warning: previous definition of Pi was here</span>
+</span><span class='line'>                <span class="c1">#還是印出1234567</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>印出結果</h2>
+
+<p>ruby在終端機印出結果是用到幾個方法</p>
+
+<p>如<code>print</code>,<code>puts</code>,<code>p</code>等等</p>
+
+<p>他們的差別如下 <br/>
+<code>print</code>：印出結果不斷行<br/>
+<code>puts</code>：印出結果後並斷行<br/>
+<code>p</code>：完整的印出結果（包含型態，例如字串連"&ldquo;都一起印出來）後並斷行</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="nb">print</span> <span class="s2">&quot;hi&quot;</span>
+</span><span class='line'>   <span class="nb">puts</span> <span class="s2">&quot;hi&quot;</span> <span class="c1">#是put string的縮寫，請唸成put・s,不要唸成“舖疵”</span>
+</span><span class='line'>   <span class="nb">p</span> <span class="s2">&quot;hi&quot;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#印出結果如下</span>
+</span><span class='line'>   <span class="c1"># hihih</span>
+</span><span class='line'>   <span class="c1"># &quot;hi&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>印出結果帶參數</h2>
+
+<p>如果想要在印出結果帶前面已定義好的變數可以用<code>#{ 值 }</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="nb">name</span> <span class="o">=</span> <span class="s2">&quot;sayaku&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Hi my name is </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="c1">#印出結果Hi my name is sayaku</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#如果我今天想要印出#{}該怎麼寫？</span>
+</span><span class='line'>  <span class="c1">#有兩種方法</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Hi my name is </span><span class="se">\#</span><span class="s2">{name}&quot;</span> <span class="c1">#使用跳脫字元&quot;\&quot;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;Hi my name is #{name}&#39;</span> <span class="c1">#字串使用單引號</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#印出結果都是Hi my name is #{name}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>陣列與雜湊</h1>
+
+<h2>陣列（Array）</h2>
+
+<p>與其他語言的概念一樣，就像櫃子一樣，每層抽屜就代表一個元素</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="o">]</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>  <span class="c1">#印出陣列裡第一個元素 1</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">array</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span> <span class="c1">#印出陣列裡最後一個元素 7</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#有Ruby風格的寫法</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">array</span><span class="o">.</span><span class="n">first</span> <span class="c1">#印出陣列裡第一個元素 1</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">array</span><span class="o">.</span><span class="n">last</span>  <span class="c1">#印出陣列裡最後一個元素 7</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#在ruby陣列裡每個元素可以是不同的型態，可以是數字也可以是字串，也可以是其他物件</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span><span class="mi">4</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#如果想快速寫出1~100的陣列元素</span>
+</span><span class='line'>  <span class="c1">#其他語言的寫法大概是用迴圈的寫法，跑100遍然後塞值進陣列</span>
+</span><span class='line'>  <span class="c1">#但ruby可以這樣寫</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">=</span> <span class="o">[*</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">100</span><span class="o">]</span>
+</span><span class='line'>  <span class="c1">#這種寫法叫splat</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#塞值進陣列</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">array</span>  <span class="c1">#印出[1,2]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>雜湊（Hash）</h2>
+
+<p>Hash是許多語言都有的寫法</p>
+
+<p>就像Json格式一樣，一個key然後搭配一個值</p>
+
+<p>這種一個蘿蔔一個坑的寫法，概念上大概就是沒有順序的陣列</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="nb">hash</span><span class="o">=</span><span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;sayaku&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="c1">#key值是name,他的值sayaku</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#當然也可以有很多的key值或是巢狀的寫法</span>
+</span><span class='line'>  <span class="nb">hash</span><span class="o">=</span><span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;sayaku&quot;</span> <span class="p">,</span> <span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;XXX@gmail.com&quot;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#提取值的方法,在ruby比較特別</span>
+</span><span class='line'>  <span class="c1">#如果是用</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="nb">hash</span><span class="o">[</span><span class="s2">&quot;name&quot;</span><span class="o">]</span> <span class="c1">#印出nil</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#必須要寫成帶符號(Symbol)的寫法</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="nb">hash</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span> <span class="c1">#印出“sayaku”</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#實際上Ruby雜湊真正的寫法是</span>
+</span><span class='line'>  <span class="nb">hash</span><span class="o">=</span><span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;sayaku&quot;</span><span class="p">,</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">&quot;XXX@gmail.com&quot;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#但因為不太好看，也不太好閱讀，所以新版的Ruby新增加了最上面這種寫法的語法糖衣</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在上述<code>p hash[&ldquo;name&rdquo;]</code>為什麼會印出<code>nil</code></p>
+
+<p>跟ruby的符號(Symbol)的概念有關</p>
+
+<p>符號的概念可以參考龍哥的<a href="http://kaochenlong.com/2016/04/25/string-and-symbol/">這篇</a></p>
+
+<h1>迴圈與迭代</h1>
+
+<p>會用到迴圈跟迭代，就是要用做處理重複的事情</p>
+
+<p>例如我想印出五遍<code>我是天才</code></p>
+
+<p>在ruby的寫法可寫成</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="mi">5</span><span class="o">.</span><span class="n">times</span>  <span class="k">do</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;我是天才&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#印出</span>
+</span><span class='line'>  <span class="c1">#我是天才</span>
+</span><span class='line'>  <span class="c1">#我是天才</span>
+</span><span class='line'>  <span class="c1">#我是天才</span>
+</span><span class='line'>  <span class="c1">#我是天才</span>
+</span><span class='line'>  <span class="c1">#我是天才</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通常陣列都會搭配迴圈來使用</p>
+
+<p>因為你拿到一堆資料後，通常第一件事就是把資料全部印出來</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#for .. in迴圈</span>
+</span><span class='line'>   <span class="k">for</span> <span class="n">f</span> <span class="k">in</span> <span class="n">array</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="n">f</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="c1">#意義是從array撈每個元素出來，並將每次撈出來的元素指定給f變數</span>
+</span><span class='line'>   <span class="c1">#印出</span>
+</span><span class='line'>   <span class="c1">#1</span>
+</span><span class='line'>   <span class="c1">#2</span>
+</span><span class='line'>   <span class="c1">#3</span>
+</span><span class='line'>   <span class="c1">#4</span>
+</span><span class='line'>   <span class="c1">#5</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#另一種寫法，each迴圈</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">array</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="n">f</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#印出</span>
+</span><span class='line'>   <span class="c1">#1</span>
+</span><span class='line'>   <span class="c1">#2</span>
+</span><span class='line'>   <span class="c1">#3</span>
+</span><span class='line'>   <span class="c1">#4</span>
+</span><span class='line'>   <span class="c1">#5</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>判斷陳述式</h1>
+
+<p>每個程式語言基本上的都有的判斷式</p>
+
+<p>判斷式就是告訴電腦，當我達成某條件就走Ａ路徑，否則就走Ｂ路徑</p>
+
+<p>就會有所謂的真假判斷，不是真就是假，就是所謂的true and false</p>
+
+<p>在ruby裡面，只有兩種物件會被判定為false,其他都是true</p>
+
+<p>這兩種物件是 <br/>
+1.<code>false</code>  <br/>
+2.<code>nil</code></p>
+
+<p>與其他程式語言不同的是，<code>0</code>在ruby裡面是判斷為true</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="c1">#描述當我大於等於18會跑向true,否則跑向false</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="p">)</span> <span class="k">then</span>
+</span><span class='line'>       <span class="kp">true</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>       <span class="kp">false</span>
+</span><span class='line'>  <span class="k">end</span>  
+</span><span class='line'>  <span class="c1">#如果if有寫成斷行，那then可以省略,但如果寫成單一行就一定要寫then</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#另外！在ruby裡面的註解是用井字號#作為註解</span>
+</span><span class='line'>  <span class="c1">#但也有人利用判斷式來寫註解</span>
+</span><span class='line'>  <span class="c1">#例如</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="kp">false</span>
+</span><span class='line'>       <span class="err">因為這邊條件是假，程式不會不會執行到這個區塊</span>
+</span><span class='line'>       <span class="err">所以這邊可以當成註解來寫</span>
+</span><span class='line'>       <span class="err">我是註解我是註解</span>
+</span><span class='line'>    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">sayaku</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-05-09T10:22:36+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:22 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://sayaku.github.io/blog/2016/05/09/ruby_1/" data-via="" data-counturl="http://sayaku.github.io/blog/2016/05/09/ruby_1/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/05/05/rubyde-rvm-gem-bundler/" title="Previous Post: [筆記]Ruby的RVM,GEM,Bundler是什麼？">&laquo; [筆記]Ruby的RVM,GEM,Bundler是什麼？</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    ﻿<section>
+<h1>關於我</h1>
+<img src="/images/logo.png"></br>
+<a href="/about">知道更多..</a>
+
+</p>
+
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/05/09/ruby_1/">[筆記]Ruby語言入門-基礎篇</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/05/05/rubyde-rvm-gem-bundler/">[筆記]Ruby的RVM,GEM,Bundler是什麼？</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/22/railsScaffold/">Ruby on Rails入門筆記(1)-TodoMVC</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/20/learnruby/">Ruby on Rails入門筆記(0)-開發前環境設定</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/23/hirosima/">広島一日遊</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+  <h1>標籤雲</h1>
+    <span id="tag-cloud"><a href='/blog/categories/actionscript3-dot-0' style='font-size: 160.0%'>actionscript3.0(5)</a> <a href='/blog/categories/air' style='font-size: 124.0%'>air(2)</a> <a href='/blog/categories/away3d' style='font-size: 124.0%'>away3d(2)</a> <a href='/blog/categories/b-mobile' style='font-size: 112.0%'>b-mobile(1)</a> <a href='/blog/categories/c-plus-plus' style='font-size: 124.0%'>c++(2)</a> <a href='/blog/categories/kinect' style='font-size: 112.0%'>kinect(1)</a> <a href='/blog/categories/octopress' style='font-size: 112.0%'>octopress(1)</a> <a href='/blog/categories/rails' style='font-size: 136.0%'>rails(3)</a> <a href='/blog/categories/ruby' style='font-size: 148.0%'>ruby(4)</a> <a href='/blog/categories/ruby-on-rails' style='font-size: 136.0%'>ruby on rails(3)</a> <a href='/blog/categories/xiao-zhe-lu-xing' style='font-size: 124.0%'>小折旅行(2)</a> <a href='/blog/categories/ri-ben' style='font-size: 160.0%'>日本(5)</a> <a href='/blog/categories/ri-ben-lu-you' style='font-size: 148.0%'>日本旅遊(4)</a> <a href='/blog/categories/jia-zi-yuan' style='font-size: 112.0%'>甲子園(1)</a> </span>
+</section>
+<section>
+  <h1>最新回應</h1>
+  <div id="dsq-recentcomments" class="dsq-widget"><script type="text/javascript" src="http://disqus.com/forums/sayaku0210/recent_comments_widget.js?hide_avatars=1"></script></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - sayaku
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'sayaku0210';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sayaku.github.io/blog/2016/05/09/ruby_1/';
+        var disqus_url = 'http://sayaku.github.io/blog/2016/05/09/ruby_1/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
