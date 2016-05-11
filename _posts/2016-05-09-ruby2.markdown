@@ -43,7 +43,11 @@ categories: [Ruby]
 所以常常會看到有這樣的寫法
 {% codeblock lang:ruby %}
 
-    hello "sayaku"  
+    class Animal
+      def sleep
+        puts "zzz"
+      end
+    end 
 
 {% endcodeblock %}
 
