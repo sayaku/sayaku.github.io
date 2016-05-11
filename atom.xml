@@ -4,7 +4,7 @@
   <title><![CDATA[林克融]]></title>
   <link href="http://sayaku.github.io/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
-  <updated>2016-05-09T17:42:14+08:00</updated>
+  <updated>2016-05-11T17:57:33+08:00</updated>
   <id>http://sayaku.github.io/</id>
   <author>
     <name><![CDATA[sayaku]]></name>
@@ -12,6 +12,692 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[筆記]Ruby語言入門-物件]]></title>
+    <link href="http://sayaku.github.io/blog/2016/05/11/ruby3/"/>
+    <updated>2016-05-11T15:09:37+08:00</updated>
+    <id>http://sayaku.github.io/blog/2016/05/11/ruby3</id>
+    <content type="html"><![CDATA[<p>上回<a href="http://sayaku.github.io/blog/2016/05/09/ruby2/">Ruby語言入門-方法與區塊</a>之後</p>
+
+<p>這回要來筆記Ruby的物件</p>
+
+<!--more-->
+
+
+<p>在Ruby裡面，可以說幾乎所有東西都是物件</p>
+
+<p>每個物件都有他的狀態跟行為</p>
+
+<p>以下面這個前一回就有介紹過的ruby程式碼</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="mi">5</span><span class="o">.</span><span class="n">times</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這邊看到，"5"這個數字本身就是個物件</p>
+
+<p>然後它有一個方法叫做times</p>
+
+<p>以之前學到物件導向程式語言的概念</p>
+
+<p>我會認為是5這個物件上呼叫了times這個方法</p>
+
+<p>但實際上在Ruby他是用一個接收者傳遞訊息的概念</p>
+
+<p>5是接收者（recever）</p>
+
+<p>times是訊息(message)</p>
+
+<p>意義是我們對這個物件傳送一個訊息，並不是5這個物件上呼叫了times這個方法</p>
+
+<p>這概念來自smalltalk這個古老的語言，有類似概念的語言還有objective c</p>
+
+<h1>類別(Class)</h1>
+
+<p>類別在Ruby的樹狀結構圖裡本身也是個物件</p>
+
+<p>他的用意是在做物件的“分類”</p>
+
+<p>就像我們的世界也分類成界,門,綱,目,科,屬,種</p>
+
+<p>試著在ruby裡定義動物的類別</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1">#類別的命名有個規定，就是必須是常數</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面很簡單的就定義了一個動物的類別</p>
+
+<p>通常動物都會有睡覺的行為</p>
+
+<p>所以我們可以這樣幫動物定義睡覺的行為</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">sleep</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;zzz&quot;</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>由於類別本身是抽象的，沒有一個實體</p>
+
+<p>類別就像建築藍圖一樣，我們必須去依照這個藍圖去蓋一個建築物出來</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1">#定義好類別</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">sleep</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;zzz&quot;</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#實作類別實體</span>
+</span><span class='line'>  <span class="c1">#比如我們可以說“人”是動物的一種</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">person</span> <span class="o">=</span> <span class="no">Animal</span><span class="o">.</span><span class="n">new</span> <span class="c1">#實作一個叫做人的動物</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#因為動物裡面有定義了睡覺這個行為</span>
+</span><span class='line'>  <span class="c1">#以動物這個類別藍圖所建構出來的人理所當然也會有睡覺的行為</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">person</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span> <span class="c1">#輸出  zzz</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我們可以說上面的<code>person</code>是由Animal建構出來的類別實體</p>
+
+<h1>類別的繼承</h1>
+
+<p>雖然我們可以說人類是個動物</p>
+
+<p>但不代表動物一定就是人類</p>
+
+<p>所以我們可以自己去幫原本的動物類別做擴充</p>
+
+<p>以動物這個類別再去細分更多的類別</p>
+
+<p>例如我們可以再去細分一個“人類”的類別</p>
+
+<p>並且新增人類會有的行為</p>
+
+<p>我們可以這樣寫</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">sleep</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;zzz&quot;</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#定義人類的類別並且繼承擴充自動物</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Human</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">talk</span>
+</span><span class='line'>         <span class="nb">puts</span> <span class="s2">&quot;你好嗎？&quot;</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">person</span> <span class="o">=</span> <span class="no">Human</span><span class="o">.</span><span class="n">new</span> <span class="c1">#實作一個人</span>
+</span><span class='line'>  <span class="n">person</span><span class="o">.</span><span class="n">talk</span><span class="p">()</span> <span class="c1">#這個人會講話</span>
+</span><span class='line'>  <span class="c1">#由於人是由Animal擴充來的，自然也會睡覺了</span>
+</span><span class='line'>  <span class="n">person</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span> <span class="c1">#輸出  zzz</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣我們就能製造很多人了ＸＤ</p>
+
+<h1>實體變數</h1>
+
+<p>前面有說過一個物件是由狀態跟行為構成的</p>
+
+<p>比如說一個人，他現在的狀態是18歲的青少年，名字叫sayaku,他的行為有走路，跑步，講話等等</p>
+
+<p>在物件導向的程式語言裡，我們會稱這些狀態為物件的<code>屬性</code>,行為會稱為物件的<code>方法</code></p>
+
+<p>寫起來大概就像這樣</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="c1">#物件的屬性 </span>
+</span><span class='line'> <span class="n">person</span><span class="o">.</span><span class="n">age</span><span class="o">=</span><span class="mi">18</span>
+</span><span class='line'> <span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;sayaku&quot;</span>
+</span><span class='line'>
+</span><span class='line'> <span class="c1">#物件的方法</span>
+</span><span class='line'> <span class="n">person</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+</span><span class='line'> <span class="n">person</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</span><span class='line'> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>現在我們要來定義這個青少年的狀態</p>
+
+<p>希望在建構這個人的時候順便定義他的歲數</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Human</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>      <span class="c1">#實體建構時帶參數，預設會先去帶到initialize這個方法</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>           <span class="vi">@age</span> <span class="o">=</span> <span class="n">age</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">person</span> <span class="o">=</span> <span class="no">Human</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span> <span class="c1">#建構的時候帶18的參數</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上方的程式，我們看到在建構人類的實體時，順便告訴類別我的年齡是18歲</p>
+
+<p>並且指定到<code>@age</code>這個<code>實體變數</code></p>
+
+<p>所以在ruby的類別裡，多了一個前綴符號<code>@</code>就代表實體變數</p>
+
+<p>也就是說理論上我們使用下面這個方式應該能夠預期這個人的歲數是18</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>     <span class="nb">puts</span> <span class="n">person</span><span class="o">.</span><span class="n">age</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但不幸的，這樣子Ruby會跟你說person這個實體沒有age這個<code>“方法”</code></p>
+
+<p>那該怎麼辦？</p>
+
+<p>那就幫這個物件增加一個age的方法吧</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Human</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>           <span class="vi">@age</span> <span class="o">=</span> <span class="n">age</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">age</span>
+</span><span class='line'>         <span class="k">return</span> <span class="vi">@age</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">person</span> <span class="o">=</span> <span class="no">Human</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span> <span class="c1">#建構的時候帶18的參數</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">person</span><span class="o">.</span><span class="n">age</span>   <span class="c1">#輸出 18,</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面的<code>person.age</code>原本是<code>person.age()</code></p>
+
+<p>但因為在ruby裡括號是能省略，所以這邊看起來就像是屬性一樣</p>
+
+<p>那因為年齡會隨著時間流逝而改變</p>
+
+<p>所以我們可以期待改變年齡應該要這樣寫</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>     <span class="n">person</span><span class="o">.</span><span class="n">age</span><span class="o">=</span> <span class="mi">19</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="nb">puts</span> <span class="n">person</span><span class="o">.</span><span class="n">age</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>很不幸的，ruby又告訴你沒有<code>age=</code>這個<code>方法</code></p>
+
+<p>這邊就蠻有趣的，因為之前有說過，Ruby的方法命名是可以帶符號的</p>
+
+<p>所以這邊就生一個<code>age=</code>的方法出來</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Human</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>           <span class="vi">@age</span> <span class="o">=</span> <span class="n">age</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">age</span>
+</span><span class='line'>         <span class="k">return</span> <span class="vi">@age</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">age</span><span class="o">=</span> <span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>         <span class="vi">@age</span><span class="o">=</span><span class="n">age</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">person</span> <span class="o">=</span> <span class="no">Human</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">person</span><span class="o">.</span><span class="n">age</span>   <span class="c1">#輸出 18</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">person</span><span class="o">.</span><span class="n">age</span><span class="o">=</span><span class="mi">19</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">person</span><span class="o">.</span><span class="n">age</span>   <span class="c1">#輸出 19</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣就可以了！</p>
+
+<p>所以實際上person.age=19這一段，原本應該是長這樣<code>person.age= (19)</code></p>
+
+<p>從上面的實作過程中可以了解到，ruby其實是沒有實體的屬性，全部都是透過<code>方法</code>來達成</p>
+
+<p>在程式裡利用方法來存取屬性，我們可以稱為類別的封裝</p>
+
+<p>也是就是其他程式語言常看到的getter and setter</p>
+
+<p>另外我們也可以發現，要設定或是提取實體變數的值時都要個別的幫他定義方法，這實在太麻煩了</p>
+
+<p>所以裡面的<code>age</code>與<code>age=</code>這兩個方法可以再簡寫成</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Human</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kp">attr_reader</span> <span class="ss">:age</span>
+</span><span class='line'>      <span class="kp">attr_writer</span> <span class="ss">:age</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>           <span class="vi">@age</span> <span class="o">=</span> <span class="n">age</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣的效果也是一樣</p>
+
+<p>當然多加了這兩行又覺得太麻煩</p>
+
+<p>所以又可以再簡寫成一行</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Human</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kp">attr_accessor</span>  <span class="ss">:age</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>           <span class="vi">@age</span> <span class="o">=</span> <span class="n">age</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>類別方法</h1>
+
+<p>前面有說過，類別本身也是物件</p>
+
+<p>既然是物件，理當可以有自己的行為方法</p>
+
+<p>就好比類別是藍圖的紙，實體是依照藍圖蓋出來的建築物</p>
+
+<p>例如藍圖的紙可以被撕掉或是供人畫圖</p>
+
+<p>這些可以當作藍圖這張紙的方法</p>
+
+<p>那類別方法該怎麼定義？</p>
+
+<p>在定義之前我們可以看看Ruby的一個特性</p>
+
+<p>就是Ruby可以在任意物件上加入任意方法</p>
+
+<p>如下面</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="c1">#定義貓的類別</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">class</span> <span class="nc">Cat</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#實作出一隻貓</span>
+</span><span class='line'>   <span class="n">kitty</span><span class="o">=</span><span class="no">Cat</span><span class="o">.</span><span class="n">new</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果今天我們想讓這隻貓有會叫的方法</p>
+
+<p>我們除了在Cat類別裡面定義外還有其他的方法嗎？</p>
+
+<p>我們可以這樣做</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>   <span class="c1">#定義貓的類別</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">class</span> <span class="nc">Cat</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#實作出一隻貓</span>
+</span><span class='line'>   <span class="n">kitty</span><span class="o">=</span><span class="no">Cat</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">def</span> <span class="nc">kitty</span><span class="o">.</span><span class="nf">say_hello</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;hi&quot;</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">kitty</span><span class="o">.</span><span class="n">say_hello</span>  <span class="c1">#輸出hi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面可以看到，我們可以在<code>任意物件上加入任意方法</code></p>
+
+<p>所以這時這隻貓就有say hello的行為了</p>
+
+<p>當然這樣寫的，也只有這隻kitty貓有這種行為</p>
+
+<p>其他由Cat實作出來的貓就不會有這方法</p>
+
+<p>這在其他的程式語言又叫單體方法（Singleton method）</p>
+
+<p>Ruby可以很簡單的達成這種需求</p>
+
+<p>由於剛剛說的<code>Ruby可以在任意物件上加入任意方法</code></p>
+
+<p>類別本身又是物件</p>
+
+<p>所以可以寫成這樣</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Cat</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">Cat</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;我是類別的方法&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Cat</span><span class="o">.</span><span class="n">all</span>  <span class="c1">#輸出 我是類別的方法</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>所以實際上類別方法是作用在類別上的單體方法</p>
+
+<p>可以再簡化到類別自己的裡面</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Cat</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>         <span class="nb">puts</span> <span class="s2">&quot;我是類別的方法&quot;</span>
+</span><span class='line'>      <span class="k">end</span>  
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Cat</span><span class="o">.</span><span class="n">all</span>  <span class="c1">#輸出 我是類別的方法</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這邊的<code>self</code>會指向到類別本身</p>
+
+<p>如果我同時要定義好幾個類別方法，每個方法前都要寫self還蠻麻煩的</p>
+
+<p>所以你可以這樣寫</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Cat</span>
+</span><span class='line'>      <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>   
+</span><span class='line'>        <span class="c1">#放在lass &lt;&lt; self end裡面就不用再加self</span>
+</span><span class='line'>          <span class="k">def</span> <span class="nf">all</span>
+</span><span class='line'>             <span class="nb">puts</span> <span class="s2">&quot;我是類別的方法&quot;</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="o">.</span>
+</span><span class='line'>      <span class="o">.</span>
+</span><span class='line'>      <span class="o">.</span>
+</span><span class='line'>      <span class="o">.</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Cat</span><span class="o">.</span><span class="n">all</span>  <span class="c1">#輸出 我是類別的方法</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>開放類別(Open Class)</h1>
+
+<p>在ruby裡，如果同名的兩個類別，ruby會自動幫你做合併</p>
+
+<p>如果類別內有同名的方法，那後面定義的方法會複寫掉前面所定義的方法</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">AA</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">hi</span>
+</span><span class='line'>         <span class="nb">puts</span> <span class="s2">&quot;hi&quot;</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">AA</span>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">hi</span>
+</span><span class='line'>         <span class="nb">puts</span> <span class="s2">&quot;hihi&quot;</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="k">def</span> <span class="nf">okok</span>
+</span><span class='line'>         <span class="nb">puts</span> <span class="s2">&quot;okok&quot;</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>   <span class="c1">#以上ruby會把兩個AA合併起來，重複定義的方法會以後面定義的為主</span>
+</span><span class='line'>   <span class="n">a</span><span class="o">=</span><span class="no">AA</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>   <span class="n">a</span><span class="o">.</span><span class="n">hi</span>      <span class="c1">#輸出 hihi</span>
+</span><span class='line'>   <span class="n">a</span><span class="o">.</span><span class="n">okok</span>     <span class="c1">#輸出 okok</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>重複定義的方法會以後面定義的為主,但如果我想用被覆蓋前的方法定義可以用</p>
+
+<p><code>#alias_method</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">class</span> <span class="nc">BB</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">hi</span>
+</span><span class='line'>            <span class="nb">puts</span> <span class="s2">&quot;first&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">class</span> <span class="nc">BB</span>
+</span><span class='line'>      <span class="n">alias_method</span> <span class="ss">:old_hi</span><span class="p">,</span> <span class="ss">:hi</span> <span class="c1">#將上一個hi的方法對應到old_hi</span>
+</span><span class='line'>          <span class="k">def</span> <span class="nf">hi</span>
+</span><span class='line'>                  <span class="nb">puts</span> <span class="s2">&quot;last&quot;</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>  
+</span><span class='line'>
+</span><span class='line'>     <span class="n">b</span><span class="o">=</span><span class="no">BB</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>     <span class="n">b</span><span class="o">.</span><span class="n">hi</span>          <span class="c1">#輸出 last</span>
+</span><span class='line'>     <span class="n">b</span><span class="o">.</span><span class="n">old_hi</span>      <span class="c1">#輸出 first</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以用在如果原作者原方法寫很爛，但是又不得不用到他可以用這個方法，保留舊方法，用自己新的方法</p>
+
+<p>可以隨時把類別拿出來修改，這就叫開放類別</p>
+
+<p>但因為很容易複寫原本方法的定義，即使是內建的類別要拿出來惡搞複寫也可以</p>
+
+<p>所以這種特性是把雙面刃，有些人也不喜歡這樣，就稱為猴子補丁</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[筆記]Ruby語言入門-方法與區塊]]></title>
@@ -71,7 +757,15 @@
 <p>所以常常會看到有這樣的寫法</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="n">hello</span> <span class="s2">&quot;sayaku&quot;</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">class</span> <span class="nc">Animal</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">sleep</span>
+</span><span class='line'>        <span class="nb">puts</span> <span class="s2">&quot;zzz&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
