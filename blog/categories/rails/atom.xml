@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | 林克融]]></title>
   <link href="http://sayaku.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
-  <updated>2016-05-11T17:57:33+08:00</updated>
+  <updated>2016-06-03T22:36:33+09:00</updated>
   <id>http://sayaku.github.io/</id>
   <author>
     <name><![CDATA[sayaku]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[[筆記]Ruby的RVM,GEM,Bundler是什麼？]]></title>
     <link href="http://sayaku.github.io/blog/2016/05/05/rubyde-rvm-gem-bundler/"/>
-    <updated>2016-05-05T09:48:54+08:00</updated>
+    <updated>2016-05-05T10:48:54+09:00</updated>
     <id>http://sayaku.github.io/blog/2016/05/05/rubyde-rvm-gem-bundler</id>
     <content type="html"><![CDATA[<p>初入門Ruby on Rails的時候在做環境設定時</p>
 
@@ -198,7 +198,7 @@
   <entry>
     <title type="html"><![CDATA[Ruby on Rails入門筆記(1)-TodoMVC]]></title>
     <link href="http://sayaku.github.io/blog/2016/01/22/railsScaffold/"/>
-    <updated>2016-01-22T16:17:28+08:00</updated>
+    <updated>2016-01-22T17:17:28+09:00</updated>
     <id>http://sayaku.github.io/blog/2016/01/22/railsScaffold</id>
     <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Ruby_on_Rails_logo.jpg" alt="" /></p>
 
@@ -645,7 +645,7 @@ Controller#Action：則是每個route根據URI Pattern所對應到的位置指�
   <entry>
     <title type="html"><![CDATA[Ruby on Rails入門筆記(0)-開發前環境設定]]></title>
     <link href="http://sayaku.github.io/blog/2016/01/20/learnruby/"/>
-    <updated>2016-01-20T14:09:46+08:00</updated>
+    <updated>2016-01-20T15:09:46+09:00</updated>
     <id>http://sayaku.github.io/blog/2016/01/20/learnruby</id>
     <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Ruby_logo.png" width="300px"></p>
 

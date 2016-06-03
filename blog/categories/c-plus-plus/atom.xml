@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | 林克融]]></title>
   <link href="http://sayaku.github.io/blog/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
-  <updated>2016-05-11T17:57:33+08:00</updated>
+  <updated>2016-06-03T22:36:33+09:00</updated>
   <id>http://sayaku.github.io/</id>
   <author>
     <name><![CDATA[sayaku]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[使用AIR透過ANE連接原生C++操控滑鼠-Part 2]]></title>
     <link href="http://sayaku.github.io/blog/2012/10/17/anec2/"/>
-    <updated>2012-10-17T18:24:24+08:00</updated>
+    <updated>2012-10-17T19:24:24+09:00</updated>
     <id>http://sayaku.github.io/blog/2012/10/17/anec2</id>
     <content type="html"><![CDATA[<p>我們最後產出一個dll動態連結類別檔</p>
 
@@ -383,7 +383,7 @@ createExtensionContext的第一個參數是"識別用的ID"在這裡應該要是
   <entry>
     <title type="html"><![CDATA[使用AIR透過ANE連接原生C++操控滑鼠-Part 1]]></title>
     <link href="http://sayaku.github.io/blog/2012/10/17/anec1/"/>
-    <updated>2012-10-17T15:30:50+08:00</updated>
+    <updated>2012-10-17T16:30:50+09:00</updated>
     <id>http://sayaku.github.io/blog/2012/10/17/anec1</id>
     <content type="html"><![CDATA[<p><img src="http://pcdn1.rimg.tw/photos/3030609_smej5qs_l.jpg" alt="12" /></p>
 
