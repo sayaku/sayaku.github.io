@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Away3d | 林克融]]></title>
   <link href="http://sayaku.github.io/blog/categories/away3d/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
-  <updated>2016-06-09T21:49:22+09:00</updated>
+  <updated>2016-06-13T18:30:17+08:00</updated>
   <id>http://sayaku.github.io/</id>
   <author>
     <name><![CDATA[sayaku]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Away3D歐拉旋轉所造成的GimbalLock現象]]></title>
     <link href="http://sayaku.github.io/blog/2012/06/30/gimballock/"/>
-    <updated>2012-06-30T01:08:17+09:00</updated>
+    <updated>2012-06-30T00:08:17+08:00</updated>
     <id>http://sayaku.github.io/blog/2012/06/30/gimballock</id>
     <content type="html"><![CDATA[<iframe src="https://dl.dropboxusercontent.com/u/68443214/gimbalLock/GimbalLock.html" width="640" height="500" frameborder="o"></iframe>
 
@@ -97,7 +97,7 @@
   <entry>
     <title type="html"><![CDATA[Away3d Quaternion 使用四元數來處理空間中的旋轉]]></title>
     <link href="http://sayaku.github.io/blog/2012/05/27/quaternion/"/>
-    <updated>2012-05-27T21:55:21+09:00</updated>
+    <updated>2012-05-27T20:55:21+08:00</updated>
     <id>http://sayaku.github.io/blog/2012/05/27/quaternion</id>
     <content type="html"><![CDATA[<iframe src="https://dl.dropboxusercontent.com/u/68443214/QuaternionRotation/bin/index.html" width="640" height="480" frameborder="o"></iframe>
 
