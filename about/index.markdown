@@ -25,12 +25,17 @@ sayaku is my online alias
     </tr>
     <tr>
         <td> ⋅ Html/Css/JavaScript/Php/MySQL  </td>
-        <td class="tupai"> ★★★☆☆</td>
+        <td class="tupai"> ★★☆☆☆</td>
     </tr>
     <tr>
         <td> ⋅ Java/Objective-C  </td>
         <td class="tupai"> ★★☆☆☆ </td>
     </tr>
+     <tr>
+        <td> ⋅ Ruby/Ruby on Rails  </td>
+        <td class="tupai"> ★★☆☆☆ </td>
+    </tr>
+
 </table>
 ###Other Skills
 <table>
@@ -56,6 +61,17 @@ sayaku is my online alias
         <td class="tupai"> ★★★★★ </td>
     </tr>
 </table>
+###Works
+⋅ 宜蘭傳藝中心互動多媒體-穿越1920  
+⋅ 台中科學博物館探索背包與一般大眾行動APP開發  
+⋅ 新北市立圖書館-資訊方塊樓層導覽KIOSK  
+⋅ 故宮南院嘉義文史廳-文史年表互動機台  
+⋅ 國立公共資訊圖書館網頁遊戲開發  
+⋅ 股票博物館網頁遊戲開發  
+⋅ 北京海淀區園區機台ＫＩＯＳＫ設計  
+⋅ 陽明山中山樓3D樓層導覽互動機台開發  
+⋅ 中央銀行二字頭券幣網頁遊戲設計  
+
 ###Awards and Certifications
 ⋅ 國防部第47屆文藝金像獎-多媒體動畫短片類-銅獎  
 ⋅ EYE遊台灣創意元素設計競賽-銀獎  
@@ -63,6 +79,7 @@ sayaku is my online alias
 ⋅ AliasStudio 2008 Official Training-Level 2  
 ⋅ 國家技術士電腦軟體應用丙級
 ###Experiences
+⋅ 任職頑石創意多媒體工程師一職（2014.10至今）  
 ⋅ 留學日本(2014.3~2014.9)  
 ⋅ 國防部軍用App設計(2013.11)  
 ⋅ ふくしまGame Jam-[Weak up](http://fgj12.ecloud.nii.ac.jp/dokuwiki/doku.php?id=team:taipei_team_c) (2012.8.8)  

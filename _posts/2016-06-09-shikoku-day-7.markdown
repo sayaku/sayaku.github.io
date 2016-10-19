@@ -8,6 +8,8 @@ categories: [日本旅遊,日本,四國,單車]
 ![](http://pcdn1.rimg.tw/photos/4979244_980weav_l.jpg)
 <!-- more -->
 
+繼上一篇[單車環日本四國 Day-6 四万十->高知](http://sayaku.github.io/blog/2016/06/08/shikoku-day-6/)
+
 預報今天會下小雨
 
 早上起來高知是陰天，但不一會兒又出太陽...
@@ -25,7 +27,7 @@ categories: [日本旅遊,日本,四國,單車]
 看到了地球33番地
 
 就是指東經133度33分33秒  
-     北緯133度33分33秒   
+     北緯33度33分33秒   
 
 就是地球33番地
 
@@ -204,7 +206,7 @@ categories: [日本旅遊,日本,四國,單車]
 
 抵達今日住宿點室戶市（むろと、muroto）
 
-但想去最南端的室戶岬繞完之後再回來chech in
+但想去最南端的室戶岬繞完之後再回來check in
 
 ![](http://pcdn1.rimg.tw/photos/4979235_nowkap8_l.jpg)
 

@@ -46,18 +46,6 @@ sidebar: false
   <a href="https://dl.dropboxusercontent.com/u/68443214/mediaLab/media/index.html" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337158_dk0tzov_l.jpg" alt="MediaLab" border="0" /></a>
   <div class="title">MediaLab</div>
 </div>
-
-<div class="slide-deck">
-  <div class="date">2009.10.12</div>
-  <a href="http://www.flybrush.com/sayaku/" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337210_5qah5aa_l.png" alt="Rex Design" border="0" /></a>
-  <div class="title">Rex Design</div>
-</div>
-
-<div class="slide-deck">
-  <div class="date">2011.03.29</div>
-  <a name="done" href="#done"><img src="http://pcdn1.rimg.tw/photos/4343624_ptmrfih_l.jpg"  border="0" /></a>
-  <div class="title">斗六市鎮南國小與三峽區插角國小交流系統(已下線)</div>
-</div>
  
  <h1>iOS APP Project</h1>
 <div class="slide-deck">

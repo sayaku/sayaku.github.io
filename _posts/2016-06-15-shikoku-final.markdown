@@ -8,6 +8,8 @@ categories: [日本旅遊,日本,四國,單車]
 ![](http://pcdn1.rimg.tw/photos/4983404_di7u46v_l.jpg)
 <!-- more -->
 
+繼上一篇[單車環四國加碼 Day-9 和歌山->大阪](http://sayaku.github.io/blog/2016/06/14/shikoku-day-9/)
+
 今天是四國環島的最後一段行程
 
 這天終於到來

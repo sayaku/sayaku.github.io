@@ -7,6 +7,9 @@ categories: [日本旅遊,日本,四國,單車]
 ---
 ![](http://pcdn1.rimg.tw/photos/4981673_abdyb1e_l.jpg)
 <!-- more -->
+
+繼上一篇[單車環日本四國 Day-7 高知->室戶](http://sayaku.github.io/blog/2016/06/09/shikoku-day-7/)
+
 今天一早起來就是個好天氣！
 
 室戶是個好地方啊！！！（一到室戶就是好天氣）

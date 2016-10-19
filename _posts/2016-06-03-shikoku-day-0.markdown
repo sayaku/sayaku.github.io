@@ -114,7 +114,9 @@ categories: [日本旅遊,日本,四國,單車]
 1.馬鞍包  
 2.行李拖車  
 
-我後來選擇拖車（我是用Burley Travoy這）
+我後來選擇拖車（我是用Burley Travoy這個牌子的拖車：[官網](https://burley.com/product/travoy/)）
+
+![](https://www.bikeshophub.com/cart/images/1843/burley_travoy_yellow_on-bike_stock-1.jpg)
 
 原因如下
 
@@ -133,6 +135,7 @@ categories: [日本旅遊,日本,四國,單車]
 6.護體膏（騎久了衣物會與皮膚摩擦會很痛）  
 7.紙箱用快拆小輪組（這玩意很實用！）  
 8.studio A 11天日本無線上網卡（在日本上網用的）   
+9.潤滑油（雨騎後潤滑鏈條用的）
 
 大概是這樣了吧
 

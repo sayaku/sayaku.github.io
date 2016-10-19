@@ -7,6 +7,9 @@ categories: [日本旅遊,日本,四國,單車]
 ---
 ![](http://pcdn1.rimg.tw/photos/4978417_mnbagg9_l.jpg)
 <!-- more -->
+
+繼上一篇[單車環日本四國 Day-5 宇和島->四万十](http://sayaku.github.io/blog/2016/06/07/shikoku-day-5/)
+
 算算環四國也環了超過半圈了
 
 行程天數也過了一半了
@@ -169,7 +172,7 @@ categories: [日本旅遊,日本,四國,單車]
 
 ![](http://pcdn1.rimg.tw/photos/4978438_aa4e0vs_l.jpg)
 
-唯一一次做過路面電車的經驗在廣島
+唯一一次坐過路面電車的經驗在廣島
 
 但我比較喜歡拍電車ＸＤ
 
@@ -205,7 +208,7 @@ categories: [日本旅遊,日本,四國,單車]
 
 於是就變成公共的橋樑
 
-這一帶的商業有就發展起來
+這一帶的商業也就發展起來
 
 ![](http://pcdn1.rimg.tw/photos/4978442_mxejgg5_l.jpg)
 
