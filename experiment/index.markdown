@@ -6,7 +6,7 @@ sharing: true
 footer: true
 sidebar: false
 ---
-##Vedios
+##Videos
 <section class="slide-container">
 <div class="slide-deck">
   <div class="date">2014.06.16</div>

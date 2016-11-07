@@ -40,14 +40,8 @@ sidebar: false
   <div class="title">注視計畫</div>
 </div>
 
- <h1>Flash website</h1>
-<div class="slide-deck">
-  <div class="date">2012.04.12</div>
-  <a href="https://dl.dropboxusercontent.com/u/68443214/mediaLab/media/index.html" target="_blank"><img src="http://pcdn1.rimg.tw/photos/4337158_dk0tzov_l.jpg" alt="MediaLab" border="0" /></a>
-  <div class="title">MediaLab</div>
-</div>
  
- <h1>iOS APP Project</h1>
+ <h1>Mobile APP Project</h1>
 <div class="slide-deck">
   <div class="date">2012.8.6</div>
   <a class="fancybox-youtube" title="點不同-使用cocos2d開發的iOS專案，為雙人遊戲，比賽誰先點到畫面上形狀與其他不同的物件!" href="http://www.youtube.com/watch?v=C2dJp212iIY"><img src="http://pcdn1.rimg.tw/photos/4337164_bwjamb2_l.jpg"  border="0" /></a>
