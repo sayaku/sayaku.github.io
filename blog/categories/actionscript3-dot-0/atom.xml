@@ -4,7 +4,7 @@
   <title><![CDATA[Category: actionscript3.0 | 林克融]]></title>
   <link href="http://sayaku.github.io/blog/categories/actionscript3-dot-0/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
-  <updated>2017-09-23T10:37:24+08:00</updated>
+  <updated>2017-09-24T00:12:09+09:00</updated>
   <id>http://sayaku.github.io/</id>
   <author>
     <name><![CDATA[sayaku]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[AirKinect 簡易手指偵測]]></title>
     <link href="http://sayaku.github.io/blog/2013/01/29/airkinectdetec/"/>
-    <updated>2013-01-29T20:26:19+08:00</updated>
+    <updated>2013-01-29T21:26:19+09:00</updated>
     <id>http://sayaku.github.io/blog/2013/01/29/airkinectdetec</id>
     <content type="html"><![CDATA[<iframe class="youtube" width="640" height="360" src="//www.youtube.com/embed/DSHgjOvAFiA?rel=0" frameborder="0" allowfullscreen></iframe>
 
@@ -105,7 +105,7 @@
   <entry>
     <title type="html"><![CDATA[使用AIR透過ANE連接原生C++操控滑鼠-Part 2]]></title>
     <link href="http://sayaku.github.io/blog/2012/10/17/anec2/"/>
-    <updated>2012-10-17T18:24:24+08:00</updated>
+    <updated>2012-10-17T19:24:24+09:00</updated>
     <id>http://sayaku.github.io/blog/2012/10/17/anec2</id>
     <content type="html"><![CDATA[<p>我們最後產出一個dll動態連結類別檔</p>
 
@@ -472,7 +472,7 @@ createExtensionContext的第一個參數是"識別用的ID"在這裡應該要是
   <entry>
     <title type="html"><![CDATA[使用AIR透過ANE連接原生C++操控滑鼠-Part 1]]></title>
     <link href="http://sayaku.github.io/blog/2012/10/17/anec1/"/>
-    <updated>2012-10-17T15:30:50+08:00</updated>
+    <updated>2012-10-17T16:30:50+09:00</updated>
     <id>http://sayaku.github.io/blog/2012/10/17/anec1</id>
     <content type="html"><![CDATA[<p><img src="http://pcdn1.rimg.tw/photos/3030609_smej5qs_l.jpg" alt="12" /></p>
 
@@ -821,7 +821,7 @@ createExtensionContext的第一個參數是"識別用的ID"在這裡應該要是
   <entry>
     <title type="html"><![CDATA[Away3D歐拉旋轉所造成的GimbalLock現象]]></title>
     <link href="http://sayaku.github.io/blog/2012/06/30/gimballock/"/>
-    <updated>2012-06-30T00:08:17+08:00</updated>
+    <updated>2012-06-30T01:08:17+09:00</updated>
     <id>http://sayaku.github.io/blog/2012/06/30/gimballock</id>
     <content type="html"><![CDATA[<iframe src="https://dl.dropboxusercontent.com/u/68443214/gimbalLock/GimbalLock.html" width="640" height="500" frameborder="o"></iframe>
 
@@ -902,7 +902,7 @@ createExtensionContext的第一個參數是"識別用的ID"在這裡應該要是
   <entry>
     <title type="html"><![CDATA[Away3d Quaternion 使用四元數來處理空間中的旋轉]]></title>
     <link href="http://sayaku.github.io/blog/2012/05/27/quaternion/"/>
-    <updated>2012-05-27T20:55:21+08:00</updated>
+    <updated>2012-05-27T21:55:21+09:00</updated>
     <id>http://sayaku.github.io/blog/2012/05/27/quaternion</id>
     <content type="html"><![CDATA[<iframe src="https://dl.dropboxusercontent.com/u/68443214/QuaternionRotation/bin/index.html" width="640" height="480" frameborder="o"></iframe>
 
