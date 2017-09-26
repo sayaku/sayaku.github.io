@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://sayaku.github.io/blog/2017/09/26/nijohikone/</loc>
+    <lastmod>2017-09-26T21:32:09+09:00</lastmod>
+  </url>
+  <url>
     <loc>http://sayaku.github.io/blog/2017/09/25/nijomiyama/</loc>
     <lastmod>2017-09-25T21:12:40+09:00</lastmod>
   </url>
@@ -215,5 +219,23 @@
   </url>
   <url>
     <loc>http://sayaku.github.io/blog/categories/gui-chuan/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/blog/categories/zi-he/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/blog/categories/yan-gen/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/blog/categories/jin-jiang-ba-fan/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/posts/3/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/posts/4/</loc>
   </url>
 </urlset>
