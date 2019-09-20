@@ -1,84 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://sayaku.github.io/blog/2017/09/30/naraoosaka/</loc>
-    <lastmod>2017-09-30T21:21:01+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2017/09/29/kyotonara/</loc>
-    <lastmod>2017-09-29T08:56:16+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2017/09/28/takashimagojo/</loc>
-    <lastmod>2017-09-28T21:48:06+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2017/09/27/hikonetakashima/</loc>
-    <lastmod>2017-09-27T20:02:12+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2017/09/26/nijohikone/</loc>
-    <lastmod>2017-09-26T20:32:09+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2017/09/25/nijomiyama/</loc>
-    <lastmod>2017-09-25T20:12:40+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2017/09/24/sakaikyoto/</loc>
-    <lastmod>2017-09-24T20:17:03+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2017/09/23/kansaistart/</loc>
-    <lastmod>2017-09-23T20:31:18+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/24/shikoku-final/</loc>
-    <lastmod>2016-06-24T16:58:03+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/15/shikoku-final/</loc>
-    <lastmod>2016-06-15T20:54:22+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/14/shikoku-day-9/</loc>
-    <lastmod>2016-06-14T19:35:48+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/13/shikoku-day-8/</loc>
-    <lastmod>2016-06-13T14:50:26+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/09/shikoku-day-7/</loc>
-    <lastmod>2016-06-09T19:32:05+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/08/shikoku-day-6/</loc>
-    <lastmod>2016-06-08T19:45:44+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/07/shikoku-day-5/</loc>
-    <lastmod>2016-06-07T18:37:36+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/06/shikoku-day-4/</loc>
-    <lastmod>2016-06-06T19:46:06+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/05/shikoku-day-3/</loc>
-    <lastmod>2016-06-05T21:20:36+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/04/shikoku-day-2/</loc>
-    <lastmod>2016-06-04T19:13:18+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/03/shikoku-day-1/</loc>
-    <lastmod>2016-06-03T20:27:01+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2016/06/03/shikoku-day-0/</loc>
-    <lastmod>2016-06-03T19:18:08+08:00</lastmod>
+    <loc>http://sayaku.github.io/blog/2019/09/20/fujisan-ni-nobotta/</loc>
+    <lastmod>2019-09-20T23:56:12+08:00</lastmod>
   </url>
   <url>
     <loc>http://sayaku.github.io/blog/2016/05/11/ruby3/</loc>
@@ -105,52 +29,8 @@
     <lastmod>2016-01-20T14:09:46+08:00</lastmod>
   </url>
   <url>
-    <loc>http://sayaku.github.io/blog/2014/09/23/hirosima/</loc>
-    <lastmod>2014-09-23T13:25:22+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2014/09/22/kyoto/</loc>
-    <lastmod>2014-09-22T16:27:57+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2014/08/23/hiranotonara/</loc>
-    <lastmod>2014-08-23T18:56:22+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2014/06/18/kousien/</loc>
-    <lastmod>2014-06-18T22:02:52+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2014/04/26/wakayama/</loc>
-    <lastmod>2014-04-26T23:59:31+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2014/04/01/bmobile/</loc>
-    <lastmod>2014-04-01T19:29:47+08:00</lastmod>
-  </url>
-  <url>
     <loc>http://sayaku.github.io/blog/2014/02/09/my-first-octopress/</loc>
     <lastmod>2014-02-09T17:23:02+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2013/01/29/airkinectdetec/</loc>
-    <lastmod>2013-01-29T20:26:19+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2012/10/17/anec2/</loc>
-    <lastmod>2012-10-17T18:24:24+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2012/10/17/anec1/</loc>
-    <lastmod>2012-10-17T15:30:50+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2012/06/30/gimballock/</loc>
-    <lastmod>2012-06-30T00:08:17+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/2012/05/27/quaternion/</loc>
-    <lastmod>2012-05-27T20:55:21+08:00</lastmod>
   </url>
   <url>
     <loc>http://sayaku.github.io/</loc>
@@ -159,49 +39,19 @@
     <loc>http://sayaku.github.io/blog/archives/</loc>
   </url>
   <url>
+    <loc>http://sayaku.github.io/experiment/</loc>
+  </url>
+  <url>
     <loc>http://sayaku.github.io/about/</loc>
   </url>
   <url>
     <loc>http://sayaku.github.io/searchResults/</loc>
   </url>
   <url>
-    <loc>http://sayaku.github.io/experiment/</loc>
-  </url>
-  <url>
     <loc>http://sayaku.github.io/portfolio/</loc>
   </url>
   <url>
-    <loc>http://sayaku.github.io/blog/categories/away3d/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/actionscript3-dot-0/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/air/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/c-plus-plus/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/kinect/</loc>
-  </url>
-  <url>
     <loc>http://sayaku.github.io/blog/categories/octopress/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/b-mobile/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/ri-ben-lu-you/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/ri-ben/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/jia-zi-yuan/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/xiao-zhe-lu-xing/</loc>
   </url>
   <url>
     <loc>http://sayaku.github.io/blog/categories/ruby/</loc>
@@ -213,57 +63,6 @@
     <loc>http://sayaku.github.io/blog/categories/ruby-on-rails/</loc>
   </url>
   <url>
-    <loc>http://sayaku.github.io/blog/categories/si-guo/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/dan-che/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/guan-xi/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/da-ban/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/jing-du/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/mei-shan/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/bei-shan/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/gui-chuan/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/zi-he/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/yan-gen/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/jin-jiang-ba-fan/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/yu-wu-,-ao-pi-pa-hu/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/gao-dao/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/pi-pa-hu/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/blog/categories/nai-liang/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/posts/2/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://sayaku.github.io/posts/4/</loc>
+    <loc>http://sayaku.github.io/blog/categories/ri-ben-dan-che-lu-you/</loc>
   </url>
 </urlset>
