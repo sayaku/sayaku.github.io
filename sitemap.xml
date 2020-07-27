@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://sayaku.github.io/blog/2020/07/27/study-refactoring/</loc>
+    <lastmod>2020-07-27T18:58:57+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://sayaku.github.io/blog/2019/09/20/fujisan-ni-nobotta/</loc>
     <lastmod>2019-09-20T23:56:12+08:00</lastmod>
   </url>
@@ -64,5 +68,14 @@
   </url>
   <url>
     <loc>http://sayaku.github.io/blog/categories/ri-ben-dan-che-lu-you/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/blog/categories/du-shu-hui/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/blog/categories/zhong-gou/</loc>
+  </url>
+  <url>
+    <loc>http://sayaku.github.io/blog/categories/feng-zhuang/</loc>
   </url>
 </urlset>

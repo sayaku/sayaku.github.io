@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 重構 | 林克融]]></title>
+  <link href="http://sayaku.github.io/blog/categories/zhong-gou/atom.xml" rel="self"/>
+  <link href="http://sayaku.github.io/"/>
+  <updated>2020-07-27T20:50:24+08:00</updated>
+  <id>http://sayaku.github.io/</id>
+  <author>
+    <name><![CDATA[sayaku]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Study: Refactoring - Encapsulate]]></title>
+    <link href="http://sayaku.github.io/blog/2020/07/27/study-refactoring/"/>
+    <updated>2020-07-27T18:58:57+08:00</updated>
+    <id>http://sayaku.github.io/blog/2020/07/27/study-refactoring</id>
+    <content type="html"><![CDATA[<p>讀書會內容-第七節：Encapsulate（封裝）<br/>
+該章節提到重構的封裝有以下9種方法</p>
+
+<!-- more -->
+
+
+<blockquote><p><a href="#EncapsilateRecord">Encapsilate Record (封裝紀錄)</a><br/>
+<a href="#EncapsulateCollection">Encapsulate Collection (封裝集合)</a><br/>
+<a href="#ReplacePrimitivewithObject">Replace Primitive with Object (將基本元素轉換成物件)</a> <br/>
+<a href="#ReplaceTempwithQuery">Replace Temp with Query (將暫時變數轉換成查詢函式)</a>  <br/>
+<a href="#ExtractClass">Extract Class (提取類別) </a> <br/>
+<a href="#InlineClass">Inline Class (內聯類別)</a> <br/>
+<a href="#HideDelegate">Hide Delegate (隱藏委託)</a> <br/>
+<a href="#RemoveMiddleMan">Remove Middle Man (移除中間人)</a> <br/>
+<a href="#SubstituteAlgorithm">Substitute Algorithm (替換演算法)</a></p></blockquote>
+
+<h1>Encapsilate Record (封裝紀錄)<a name="EncapsilateRecord"></a></h1>
+
+<h2>before</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">organization</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">sayaku</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">country</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">Taiwan</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;};</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>after</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kr">class</span> <span class="nx">Organization</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">constructor</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">name</span><span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/em&gt;country= data.country;</span>
+</span><span class='line'>        <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>    <span class="nx">get</span> <span class="nx">name</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;}</span>
+</span><span class='line'>    <span class="nx">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">arg</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="o">=</span><span class="nx">arg</span><span class="p">;}</span>
+</span><span class='line'>    <span class="nx">get</span> <span class="nx">country</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">_country</span><span class="p">;}</span>
+</span><span class='line'>    <span class="nx">set</span> <span class="nx">country</span><span class="p">(</span><span class="nx">arg</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">_country</span><span class="o">=</span><span class="nx">arg</span><span class="p">;}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>Encapsulate Collection (封裝集合)<a name="EncapsulateCollection"></a></h1>
+
+<h2>before</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">get</span> <span class="nx">courses</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">courses</span><span class="p">;}</span>
+</span><span class='line'>        <span class="nx">set</span> <span class="nx">courses</span><span class="p">(</span><span class="nx">aList</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/em&gt;courses=aList;}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>after</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">get</span> <span class="nx">courses</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_courses</span><span class="p">.</span><span class="nx">slice</span><span class="p">();}</span>
+</span><span class='line'>        <span class="nx">addCourse</span><span class="p">(</span><span class="nx">aCourse</span><span class="p">)</span> <span class="p">{</span> <span class="o">&amp;</span><span class="nx">hellip</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>        <span class="nx">removeCourse</span><span class="p">(</span><span class="nx">aCourse</span><span class="p">)</span> <span class="p">{</span> <span class="o">&amp;</span><span class="nx">hellip</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>Replace Primitive with Object (將基本元素轉換成物件)<a name="ReplacePrimitivewithObject"></a></h1>
+
+<h2>before</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">order</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">o</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">high</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;</span> <span class="o">===</span> <span class="nx">o</span><span class="p">.</span><span class="nx">priority</span> <span class="o">||</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">rush</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;</span> <span class="o">===</span> <span class="nx">o</span><span class="p">.</span><span class="nx">priority</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>after</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">order</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">o</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">priority</span><span class="p">.</span><span class="nx">higherThan</span><span class="p">(</span><span class="k">new</span> <span class="nx">Priority</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">normal</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;)));</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>Replace Temp with Query (將暫時變數轉換成查詢函式)<a name="ReplaceTempwithQuery"></a></h1>
+
+<h2>before</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kr">const</span> <span class="nx">basePrice</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_itemPrice</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="p">(</span><span class="nx">basePrice</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1000</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">basePeice</span> <span class="o">*</span> <span class="p">.</span><span class="mi">95</span><span class="p">;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">basePrice</span> <span class="o">*</span> <span class="p">.</span><span class="mi">98</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>after</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">get</span> <span class="nx">basePrice</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_itemPrice</span><span class="p">;}</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="nx">hellip</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">basePrice</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">basePeice</span> <span class="o">*</span> <span class="p">.</span><span class="mi">95</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">basePrice</span> <span class="o">*</span> <span class="p">.</span><span class="mi">98</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>Extract Class (提取類別) <a name="ExtractClass"></a></h1>
+
+<h2>before</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">get</span> <span class="nx">officeAreaCode</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">officeAreaCode</span><span class="p">;}</span>
+</span><span class='line'>        <span class="nx">get</span> <span class="nx">officeNumber</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/em&gt;officeNumber;}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>after</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">get</span> <span class="nx">officeAreaCode</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">telephoneNumber</span><span class="p">.</span><span class="nx">areaCode</span><span class="p">;}</span>
+</span><span class='line'>        <span class="nx">get</span> <span class="nx">officeNumber</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/em&gt;telephoneNumber.number;}</span>
+</span><span class='line'>    <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kr">class</span> <span class="nx">Telephone</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">get</span> <span class="nx">areaCode</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_areaCode</span><span class="p">;}</span>
+</span><span class='line'>    <span class="nx">get</span> <span class="nx">number</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_number</span><span class="p">;}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>Inline Class (內聯類別)<a name="InlineClass"></a></h1>
+
+<h2>before</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">get</span> <span class="nx">officeAreaCode</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_telephoneNumber</span><span class="p">.</span><span class="nx">areaCode</span><span class="p">;}</span>
+</span><span class='line'>    <span class="nx">get</span> <span class="nx">officeNumber</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_telephoneNumber</span><span class="p">.</span><span class="nx">number</span><span class="p">;}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">class</span> <span class="nx">Telephone</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">get</span> <span class="nx">areaCode</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_areaCode</span><span class="p">;}</span>
+</span><span class='line'>    <span class="nx">get</span> <span class="nx">number</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_number</span><span class="p">;}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>after</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">get</span> <span class="nx">officeAreaCode</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">officeAreaCode</span><span class="p">;}</span>
+</span><span class='line'>        <span class="nx">get</span> <span class="nx">officeNumber</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/em&gt;officeNumber;}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>Hide Delegate (隱藏委託)<a name="HideDelegate"></a></h1>
+
+<h2>before</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">manager</span> <span class="o">=</span> <span class="nx">aPerson</span><span class="p">.</span><span class="nx">department</span><span class="p">.</span><span class="nx">manager</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>after</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">manager</span> <span class="o">=</span> <span class="nx">aPerson</span><span class="p">.</span><span class="nx">manager</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">get</span> <span class="nx">manager</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">depaetment</span><span class="p">.</span><span class="nx">manager</span><span class="p">;}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>Remove Middle Man (移除中間人)<a name="RemoveMiddleMan"></a></h1>
+
+<h2>before</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">manager</span> <span class="o">=</span> <span class="nx">aPerson</span><span class="p">.</span><span class="nx">manager</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">get</span> <span class="nx">manager</span><span class="p">(){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">depaetment</span><span class="p">.</span><span class="nx">manager</span><span class="p">;}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>after</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">manager</span> <span class="o">=</span> <span class="nx">aPerson</span><span class="p">.</span><span class="nx">department</span><span class="p">.</span><span class="nx">manager</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h1>Substitute Algorithm (替換演算法)<a name="SubstituteAlgorithm"></a></h1>
+
+<h2>before</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kd">function</span> <span class="nx">foundPerson</span> <span class="p">(</span><span class="nx">people</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="nx">people</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">people</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">Don</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;){</span>
+</span><span class='line'>                <span class="k">return</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">Don</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;;</span>
+</span><span class='line'>            <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>        <span class="k">if</span><span class="p">(</span><span class="nx">people</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;John&#39;</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">return</span> <span class="s1">&#39;John&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">people</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;Sayaku&#39;</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">return</span> <span class="s1">&#39;Sayaku&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>after</h2>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="kd">function</span> <span class="nx">foundPerson</span><span class="p">(</span><span class="nx">people</span><span class="p">){</span>
+</span><span class='line'>        <span class="kr">const</span> <span class="nx">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">Don</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">John</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">Sayaku</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;];</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">people</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="nx">candidates</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="o">||</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+</feed>
