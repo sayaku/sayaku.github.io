@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 重構 | 林克融]]></title>
   <link href="http://sayaku.github.io/blog/categories/zhong-gou/atom.xml" rel="self"/>
   <link href="http://sayaku.github.io/"/>
-  <updated>2020-07-27T20:50:24+08:00</updated>
+  <updated>2020-07-28T23:41:03+08:00</updated>
   <id>http://sayaku.github.io/</id>
   <author>
     <name><![CDATA[sayaku]]></name>
@@ -24,7 +24,7 @@
 <!-- more -->
 
 
-<blockquote><p><a href="#EncapsilateRecord">Encapsilate Record (封裝紀錄)</a><br/>
+<blockquote><p><a href="#EncapsilateRecord">Encapsulate Record (封裝紀錄)</a><br/>
 <a href="#EncapsulateCollection">Encapsulate Collection (封裝集合)</a><br/>
 <a href="#ReplacePrimitivewithObject">Replace Primitive with Object (將基本元素轉換成物件)</a> <br/>
 <a href="#ReplaceTempwithQuery">Replace Temp with Query (將暫時變數轉換成查詢函式)</a>  <br/>
@@ -74,6 +74,12 @@
 </span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
+<p>說明：<br/>
+1. 用class包裝紀錄變數，並且定義存取的getter, setter<br/>
+2. getter回傳原本資料的深副本而不是回傳原始紀錄<br/>
+3. 重構時注重setter更新的部分<br/>
+4. 自定義更語意化的函式</p>
+
 <h1>Encapsulate Collection (封裝集合)<a name="EncapsulateCollection"></a></h1>
 
 <h2>before</h2>
@@ -102,6 +108,11 @@
 </span><span class='line'>    <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
+<p>說明：<br/>
+1. 與前面Encapsilate Record 概念相同，但封裝的對象是集合<br/>
+2. 新增對集合操作（ＣＲＵＤ新增查詢修改移除）的函式<br/>
+3. 返回集合使用代理或是副本</p>
+
 <h1>Replace Primitive with Object (將基本元素轉換成物件)<a name="ReplacePrimitivewithObject"></a></h1>
 
 <h2>before</h2>
@@ -115,6 +126,11 @@
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">order</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">o</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">priority</span><span class="p">.</span><span class="nx">higherThan</span><span class="p">(</span><span class="k">new</span> <span class="nx">Priority</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">normal</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;)));</span>
 </span></code></pre></td></tr></table></div></figure></p>
+
+<p>說明：<br/>
+1. 對物件的屬性轉換成用物件的形式表示<br/>
+2. 語意化getter,setter函式取個不易讓人誤解的名稱,例如：回傳的值是toString()而不是原本預期的屬性,那函式名稱建議在後綴加上toString,語意上比較上是索取字串而不是原本的屬性<br/>
+3. 讓程式碼更清楚的表達目的</p>
 
 <h1>Replace Temp with Query (將暫時變數轉換成查詢函式)<a name="ReplaceTempwithQuery"></a></h1>
 
@@ -160,6 +176,10 @@
 </span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
+<p>說明：<br/>
+1. 暫時的變數可以儲存某些程式碼的值，將之語意化為唯讀函式<br/>
+2. 確定該變數被使用時不會產生不同的值，也就是最初他只會被賦值一次</p>
+
 <h1>Extract Class (提取類別) <a name="ExtractClass"></a></h1>
 
 <h2>before</h2>
@@ -201,6 +221,11 @@
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></p>
+
+<p>說明：<br/>
+1. 當類別裡已經複雜到需要拆解功能並分門別類時使用<br/>
+2. 類別必須是個清晰的抽象， 只應該處理一些明確的功能<br/>
+3. 一拆解出來的功能分成一個個子類別，並與父類別產生連結</p>
 
 <h1>Inline Class (內聯類別)<a name="InlineClass"></a></h1>
 
@@ -248,6 +273,11 @@
 </span><span class='line'>    <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
+<p>說明：<br/>
+1. 是Extract Class (提取類別)的反向操作<br/>
+2. 遇到沒什麼用途且不該存在的子類別，使用inline class合併之<br/>
+3. 通常是用於重構後，功能被拆分後移除沒用子類別的實作</p>
+
 <h1>Hide Delegate (隱藏委託)<a name="HideDelegate"></a></h1>
 
 <h2>before</h2>
@@ -276,6 +306,11 @@
 </span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
+<p>說明：<br/>
+1. 封裝用意是隱藏不需要被模組知道系統的其他部分<br/>
+2. 其實就是隱藏欄位，減少系統內部透明度<br/>
+3. 將委託的方法封裝起來，達成隱藏委託</p>
+
 <h1>Remove Middle Man (移除中間人)<a name="RemoveMiddleMan"></a></h1>
 
 <h2>before</h2>
@@ -303,6 +338,11 @@
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'>    <span class="nx">manager</span> <span class="o">=</span> <span class="nx">aPerson</span><span class="p">.</span><span class="nx">department</span><span class="p">.</span><span class="nx">manager</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure></p>
+
+<p>說明：<br/>
+1. 該模式是Hide Delegate (隱藏委託)的逆向操作<br/>
+2. 當委託方法越來越多，會發現每新增一個委託方法就要多一個轉傳機制，
+方法一多便難以管理,故可以逆向操作使用移除中間人模式來重構</p>
 
 <h1>Substitute Algorithm (替換演算法)<a name="SubstituteAlgorithm"></a></h1>
 
@@ -359,6 +399,10 @@
 </span><span class='line'>        <span class="k">return</span> <span class="nx">people</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="nx">candidates</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="o">||</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;;</span>
 </span><span class='line'>    <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></p>
+
+<p>說明：<br/>
+1. 發現重複且枯燥的方法可以重構成明確易懂的方法時使用<br/>
+2. 困難化作簡單</p>
 ]]></content>
   </entry>
   
