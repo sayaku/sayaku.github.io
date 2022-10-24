@@ -1,0 +1,27 @@
+{
+  "unversionedId": "intro/intro",
+  "id": "intro/intro",
+  "title": "關於這個網站",
+  "description": "施工中！",
+  "source": "@site/docs/00-intro/index.md",
+  "sourceDirName": "00-intro",
+  "slug": "/intro/",
+  "permalink": "/docs/intro/",
+  "draft": false,
+  "editUrl": "https://github.com/sayaku/sayaku.github.io/edit/main/docs/00-intro/index.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "sayaku lin",
+  "lastUpdatedAt": 1666540800,
+  "formattedLastUpdatedAt": "2022年10月23日",
+  "frontMatter": {
+    "title": "關於這個網站",
+    "author": "sayaku",
+    "id": "intro",
+    "last_update": {
+      "date": "2022/10/24",
+      "author": "sayaku lin"
+    }
+  },
+  "sidebar": "tutorialSidebar"
+}

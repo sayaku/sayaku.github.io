@@ -36,7 +36,7 @@ function BlogPostPageContent({ sidebar, children }: { sidebar: BlogSidebar; chil
 
       {!no_comments && (
         <DiscussionEmbed
-          shortname="ouch1978"
+          shortname="sayaku0210"
           config={{
             identifier: slug,
             title: title,

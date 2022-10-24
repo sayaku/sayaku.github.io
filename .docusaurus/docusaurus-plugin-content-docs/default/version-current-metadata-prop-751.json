@@ -1,0 +1,28 @@
+{
+  "pluginId": "default",
+  "version": "current",
+  "label": "Next",
+  "banner": null,
+  "badge": false,
+  "noIndex": false,
+  "className": "docs-version-current",
+  "isLast": true,
+  "docsSidebars": {
+    "tutorialSidebar": [
+      {
+        "type": "link",
+        "label": "關於這個網站",
+        "href": "/docs/intro/",
+        "docId": "intro/intro"
+      }
+    ]
+  },
+  "docs": {
+    "intro/intro": {
+      "id": "intro/intro",
+      "title": "關於這個網站",
+      "description": "施工中！",
+      "sidebar": "tutorialSidebar"
+    }
+  }
+}
