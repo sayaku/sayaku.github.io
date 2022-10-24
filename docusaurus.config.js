@@ -40,19 +40,22 @@ function unwrapCategory(items) {
 
   return newItems;
 }
+const projectName = 'sayaku.github.io';
+const MAIN_URL = `https://${projectName}`;
+const editUrl = `https://github.com/sayaku/${projectName}/edit/main`
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "OUCH1978@GITHUB",
-  tagline: "不務正業的架構師",
-  url: "https://ouch1978.github.io", //process.env.URL,
+  title: "SAYAKU",
+  tagline: "喜歡鐵道單車咖啡的前端碼農",
+  url: MAIN_URL, //process.env.URL,
   baseUrl: "/", //process.env.BASE_URL,
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   trailingSlash: false,
-  organizationName: "Ouch1978", // Usually your GitHub org/user name.
-  projectName: "ouch1978.github.io", // Usually your repo name.
+  organizationName: "sayaku", // Usually your GitHub org/user name.
+  projectName: projectName, // Usually your repo name.
   i18n: {
     defaultLocale: 'zh-TW',
     locales: ['zh-TW'],
@@ -89,12 +92,12 @@ module.exports = {
         hideable: true,
       },
     },
-    algolia: {
-      appId: 'XA2FZH7CHR',
-      apiKey: '52ba1dbf6e599f15075a60d464318d01',
-      indexName: 'ouch1978',
-      contextualSearch: true,
-    },
+    // algolia: {
+    //   appId: 'XA2FZH7CHR',
+    //   apiKey: '52ba1dbf6e599f15075a60d464318d01',
+    //   indexName: 'ouch1978',
+    //   contextualSearch: true,
+    // },
     zoom: {
       selector: '.markdown :not(em,a) > img',
       config: {
@@ -110,7 +113,7 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
     navbar: {
-      title: "OUCH1978@GITHUB",
+      title: "SAYAKU",
       logo: {
         alt: "Site Logo",
         src: "img/logo.png",
@@ -135,7 +138,7 @@ module.exports = {
     },
     footer: {
       style: "dark",
-      copyright: `Copyright © ${new Date().getFullYear()} Ouch Liu(劉耀群). Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Sayaku Lin(林克融). Built with Docusaurus.`,
     },
   },
   presets: [
@@ -148,7 +151,7 @@ module.exports = {
         },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/ouch1978/ouch1978.github.io/edit/main",
+          editUrl: editUrl,
           remarkPlugins: [math, remarkGridTables],
           rehypePlugins: [
             [katex, {
@@ -172,7 +175,7 @@ module.exports = {
           blogSidebarCount: 0,
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: "https://github.com/ouch1978/ouch1978.github.io/edit/main",
+          editUrl: editUrl,
           remarkPlugins: [math, remarkGridTables],
           rehypePlugins: [
             [katex, {
