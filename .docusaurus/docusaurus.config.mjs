@@ -10,7 +10,7 @@ export default {
   "baseUrl": "/",
   "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
-  "favicon": "img/favicon.ico",
+  "favicon": "img/favicon.png",
   "trailingSlash": false,
   "organizationName": "sayaku",
   "projectName": "sayaku.github.io",
@@ -59,6 +59,14 @@ export default {
         "autoCollapseCategories": false
       },
       "versionPersistence": "localStorage"
+    },
+    "algolia": {
+      "appId": "IIW4FDIYXZ",
+      "apiKey": "4dd40488b1c8259b9828b02d578db323",
+      "indexName": "dev_sayaku",
+      "contextualSearch": true,
+      "searchParameters": {},
+      "searchPagePath": "search"
     },
     "zoom": {
       "selector": ".markdown :not(em,a) > img",
@@ -352,11 +360,6 @@ export default {
           "to": "/blog",
           "label": "部落格",
           "position": "left"
-        },
-        {
-          "to": "pathname:///slides",
-          "label": "投影片",
-          "position": "right"
         }
       ],
       "hideOnScroll": false

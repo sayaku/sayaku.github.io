@@ -11,7 +11,7 @@ export function Hero() {
           <h3>{siteConfig.tagline}</h3>
           <br />
         </div>
-       <div className="bg"></div>
+       {/* <div className="bg"></div> */}
         
       </section>
     </header>

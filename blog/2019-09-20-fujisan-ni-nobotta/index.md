@@ -247,7 +247,7 @@ date: 2019-09-20 23:56:12 +0800
 ![](fujisan/23-2.jpg)
 到終點後雨下更大了
 
-![](fujisan/25.jpg)
+![](fujisan/25.jpg)  
 吃個冰淇淋壓壓驚
 
 ![](fujisan/26.jpg)

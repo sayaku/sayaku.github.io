@@ -52,7 +52,7 @@ module.exports = {
   baseUrl: "/", //process.env.BASE_URL,
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicon.png",
   trailingSlash: false,
   organizationName: "sayaku", // Usually your GitHub org/user name.
   projectName: projectName, // Usually your repo name.
@@ -92,12 +92,12 @@ module.exports = {
         hideable: true,
       },
     },
-    // algolia: {
-    //   appId: 'XA2FZH7CHR',
-    //   apiKey: '52ba1dbf6e599f15075a60d464318d01',
-    //   indexName: 'ouch1978',
-    //   contextualSearch: true,
-    // },
+    algolia: {
+      appId: 'IIW4FDIYXZ',
+      apiKey: '4dd40488b1c8259b9828b02d578db323',
+      indexName: 'dev_sayaku',
+      contextualSearch: true,
+    },
     zoom: {
       selector: '.markdown :not(em,a) > img',
       config: {
@@ -129,11 +129,6 @@ module.exports = {
           label: "部落格",
           position: "left",
         },
-        {
-          to: "pathname:///slides",
-          label: "投影片",
-          position: "right",
-        }
       ],
     },
     footer: {

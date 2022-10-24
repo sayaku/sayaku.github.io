@@ -32,6 +32,11 @@
       "name": "@docusaurus/theme-classic",
       "version": "2.1.0"
     },
+    "docusaurus-theme-search-algolia": {
+      "type": "package",
+      "name": "@docusaurus/theme-search-algolia",
+      "version": "2.1.0"
+    },
     "docusaurus-plugin-image-zoom": {
       "type": "package",
       "name": "docusaurus-plugin-image-zoom",

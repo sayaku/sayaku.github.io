@@ -70,6 +70,12 @@
     },
     "archive": "archive---blog-archiveb-2-f-393"
   },
+  "/search-4bd": {
+    "__comp": "__comp---theme-search-page-1-a-4-d6f",
+    "__context": {
+      "plugin": "plugin---searchd-4-c-71a"
+    }
+  },
   "/docs-518": {
     "__comp": "__comp---theme-doc-page-1-be-9be",
     "__context": {
