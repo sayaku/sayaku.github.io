@@ -1,0 +1,14 @@
+.achievements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.achievementsSvg {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+
