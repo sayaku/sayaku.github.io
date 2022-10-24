@@ -22,9 +22,9 @@
       "name": "@docusaurus/plugin-google-analytics",
       "version": "2.1.0"
     },
-    "docusaurus-plugin-sitemap": {
+    "docusaurus-plugin-debug": {
       "type": "package",
-      "name": "@docusaurus/plugin-sitemap",
+      "name": "@docusaurus/plugin-debug",
       "version": "2.1.0"
     },
     "docusaurus-theme-classic": {
@@ -46,6 +46,9 @@
       "type": "package",
       "name": "docusaurus2-dotenv",
       "version": "1.4.0"
+    },
+    "docusaurus-tailwindcss": {
+      "type": "local"
     },
     "docusaurus-theme-github-codeblock": {
       "type": "package",

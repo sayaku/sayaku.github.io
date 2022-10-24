@@ -67,7 +67,18 @@ module.exports = {
       {
         systemvars: true, // Set to true if you would rather load all system variables as well (useful for CI purposes)
       },
-    ]
+    ],
+    async function myPlugin(context, options) {
+      return {
+        name: "docusaurus-tailwindcss",
+        configurePostCss(postcssOptions) {
+          // Appends TailwindCSS and AutoPrefixer.
+          postcssOptions.plugins.push(require("tailwindcss"));
+          postcssOptions.plugins.push(require("autoprefixer"));
+          return postcssOptions;
+        },
+      };
+    },
   ],
   themes: ['@saucelabs/theme-github-codeblock'],
   themeConfig: {
