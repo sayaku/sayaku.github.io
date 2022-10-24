@@ -56,6 +56,7 @@ module.exports = {
   trailingSlash: false,
   organizationName: "sayaku", // Usually your GitHub org/user name.
   projectName: projectName, // Usually your repo name.
+  deploymentBranch: "master",
   i18n: {
     defaultLocale: 'zh-TW',
     locales: ['zh-TW'],

@@ -14,6 +14,7 @@ export default {
   "trailingSlash": false,
   "organizationName": "sayaku",
   "projectName": "sayaku.github.io",
+  "deploymentBranch": "master",
   "i18n": {
     "defaultLocale": "zh-TW",
     "locales": [

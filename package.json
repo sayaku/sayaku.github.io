@@ -9,7 +9,7 @@
     "start": "set TZ=Asia/Taipei && set URL=http://localhost&& set BASE_URL=/&& yarn new && docusaurus start -p 9527",
     "build": "set TZ=Asia/Taipei && set URL=https://sayaku.github.io&& set BASE_URL=/&&docusaurus build",
     "swizzle": "set URL=http://localhost&& set BASE_URL=/&& docusaurus swizzle",
-    "deploy": "docusaurus deploy",
+    "deploy": "USE_SSH=true docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
