@@ -42,13 +42,16 @@
       "plugin": "plugin---docusaurus-debugc-7-b-ab9"
     }
   },
-  "/blog-ef8": {
+  "/blog-ab5": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
       "plugin": "plugin---blogf-73-66b"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
+      {
+        "content": "content---bloge-0-f-2a7"
+      },
       {
         "content": "content---blog-8-dd-dad"
       },
@@ -73,6 +76,14 @@
     },
     "sidebar": "sidebar---blog-814-8ac",
     "content": "content---blog-2020-07-27-study-refactoring-4-bc-047"
+  },
+  "/blog/2022/11/08/build-project-react-with-vite-393": {
+    "__comp": "__comp---theme-blog-post-pageccc-cab",
+    "__context": {
+      "plugin": "plugin---blogf-73-66b"
+    },
+    "sidebar": "sidebar---blog-814-8ac",
+    "content": "content---blog-2022-11-08-build-project-react-with-vite-6-bf-381"
   },
   "/blog/archive-7cb": {
     "__comp": "__comp---theme-blog-archive-page-9-e-4-1d8",

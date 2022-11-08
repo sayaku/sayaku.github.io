@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', 'ef8'),
+    component: ComponentCreator('/blog', 'ab5'),
     exact: true
   },
   {
@@ -50,6 +50,11 @@ export default [
   {
     path: '/blog/2020/07/27/study-refactoring',
     component: ComponentCreator('/blog/2020/07/27/study-refactoring', 'cd5'),
+    exact: true
+  },
+  {
+    path: '/blog/2022/11/08/build-project-react-with-vite',
+    component: ComponentCreator('/blog/2022/11/08/build-project-react-with-vite', '393'),
     exact: true
   },
   {

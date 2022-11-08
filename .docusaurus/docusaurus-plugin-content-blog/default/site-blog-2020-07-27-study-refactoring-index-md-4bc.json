@@ -14,6 +14,10 @@
     "title": "Study: Refactoring - Encapsulate",
     "date": "2020-07-27 18:58:57 +0800"
   },
+  "prevItem": {
+    "title": "製作vite+react+typescript+prettier+eslint",
+    "permalink": "/blog/2022/11/08/build-project-react-with-vite"
+  },
   "nextItem": {
     "title": "2019-Mt.富士ヒルクライムに挑戦！",
     "permalink": "/blog/2019/09/20/fujisan-ni-nobotta"
