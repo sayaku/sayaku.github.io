@@ -2,7 +2,7 @@
   "permalink": "/blog/2022/11/08/build-project-react-with-vite",
   "editUrl": "https://github.com/sayaku/sayaku.github.io/edit/main/blog/2022-11-08-build-project-react-with-vite/index.md",
   "source": "@site/blog/2022-11-08-build-project-react-with-vite/index.md",
-  "title": "製作vite+react+typescript+prettier+eslint",
+  "title": "vite+react+typescript+prettier+eslint",
   "description": "測試寫一個搭配vite的react專案模板",
   "date": "2022-11-08T10:00:12.000Z",
   "formattedDate": "2022年11月8日",
@@ -11,7 +11,7 @@
   "hasTruncateMarker": true,
   "authors": [],
   "frontMatter": {
-    "title": "製作vite+react+typescript+prettier+eslint",
+    "title": "vite+react+typescript+prettier+eslint",
     "date": "2022-11-08 10:00:12 +0800"
   },
   "nextItem": {

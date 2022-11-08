@@ -1,5 +1,5 @@
 ---
-title: "製作vite+react+typescript+prettier+eslint"
+title: "vite+react+typescript+prettier+eslint"
 date: 2022-11-08 10:00:12 +0800
 ---
 測試寫一個搭配vite的react專案模板
