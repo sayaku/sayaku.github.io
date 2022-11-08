@@ -2,7 +2,13 @@
 title: "vite+react+typescript+prettier+eslint"
 date: 2022-11-08 10:00:12 +0800
 ---
-測試寫一個搭配vite的react專案模板
+每次要寫一個新的專案都要重新設定一次環境
+
+久了也是很煩
+
+不如寫一個範本模板來使用
+
+這次試著建立搭配vite的react專案模板
 
 <!--truncate-->
 
@@ -41,6 +47,17 @@ $ cd reactSample && yarn install
 恩！
 
 到目前為止vite/react/typescript都已經裝好了
+
+可議簡單的測試
+
+```bash
+$ yarn run dev
+```
+
+恩！正常作動！！
+
+![](images/20.png)
+
 
 接下來裝開發時需要的靜態檢查工具
 
