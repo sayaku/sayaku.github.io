@@ -8,7 +8,7 @@
     <subtitle>SAYAKU Blog</subtitle>
     <icon>https://sayaku.github.io/img/favicon.png</icon>
     <entry>
-        <title type="html"><![CDATA[製作vite+react+typescript+prettier+eslint]]></title>
+        <title type="html"><![CDATA[vite+react+typescript+prettier+eslint]]></title>
         <id>/2022/11/08/build-project-react-with-vite</id>
         <link href="https://sayaku.github.io/blog/2022/11/08/build-project-react-with-vite"/>
         <updated>2022-11-08T10:00:12.000Z</updated>

@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-TW</language>
         <item>
-            <title><![CDATA[製作vite+react+typescript+prettier+eslint]]></title>
+            <title><![CDATA[vite+react+typescript+prettier+eslint]]></title>
             <link>https://sayaku.github.io/blog/2022/11/08/build-project-react-with-vite</link>
             <guid>/2022/11/08/build-project-react-with-vite</guid>
             <pubDate>Tue, 08 Nov 2022 10:00:12 GMT</pubDate>
