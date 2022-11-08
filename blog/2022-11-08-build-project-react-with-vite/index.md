@@ -262,3 +262,47 @@ macOS請用<code>⇧Shift</code>+<code>⌥Option</code>+<code>F</code>
 
 你會看到prettier幫你把縮排縮好,遺失的句尾分號也補上去了
 
+## 製作範本
+使用[degit](https://github.com/Rich-Harris/degit)這樣的工具
+
+只要github上的repo都可以當成範本,當然其他的gitlab之類的repo也可
+
+以往我們可能會用clone來搭建項目的範本,但往往我們不需要它裡面的git紀錄
+
+現在可以很單純的使用degit來拉我們想的範本快速搭建專案骨架
+
+使用方法
+
+```bash
+$ npx degit [template repository]#[branch|tag|commit hash] [your_new_proj]
+```
+＃號後面接的可以是分支名或tag或commit
+
+不寫的話預設是master | main 分支
+
+例如我剛剛推上去的reactSample就可以當成template
+
+可以寫成
+
+```bash
+$ npx degit sayaku/reactSample new_react_project
+```
+
+或是網址
+
+```bash
+$ npx degit https://github.com/sayaku/reactSample new_react_project
+```
+這樣就可以快速把我原本寫好的範本拿來開新的專案了
+
+其實我這篇寫了這麼多
+
+在社群裡面早就有人寫了很實用的template可以直接當專案範本了
+
+可以參考[Awesome Vite.js](https://github.com/vitejs/awesome-vite#templates)
+
+
+##Refs
+[vite](https://vitejs.dev/)
+[ESLint + Prettier + Typescript and React in 2022](https://blog.devgenius.io/eslint-prettier-typescript-and-react-in-2022-e5021ebca2b1)
+[Awesome Vite.js](https://github.com/vitejs/awesome-vite#templates)
