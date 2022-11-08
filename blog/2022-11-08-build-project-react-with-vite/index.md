@@ -319,7 +319,10 @@ $ npx degit https://github.com/sayaku/reactSample new_react_project
 可以參考[Awesome Vite.js](https://github.com/vitejs/awesome-vite#templates)
 
 
-##Refs
-[vite](https://vitejs.dev/)
-[ESLint + Prettier + Typescript and React in 2022](https://blog.devgenius.io/eslint-prettier-typescript-and-react-in-2022-e5021ebca2b1)
+##Refs 
+
+[vite](https://vitejs.dev/) 
+
+[ESLint + Prettier + Typescript and React in 2022](https://blog.devgenius.io/eslint-prettier-typescript-and-react-in-2022-e5021ebca2b1) 
+
 [Awesome Vite.js](https://github.com/vitejs/awesome-vite#templates)
