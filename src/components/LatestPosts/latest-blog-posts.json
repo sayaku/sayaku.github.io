@@ -2,7 +2,7 @@
   {
     "title": "vite+react+typescript+prettier+eslint",
     "permalink": "/blog/2022/11/08/build-project-react-with-vite",
-    "description": "測試寫一個搭配vite的react專案模板",
+    "description": "每次要寫一個新的專案都要重新設定一次環境",
     "tags": [],
     "date": "2022-11-08T10:00:12.000Z",
     "yearMonth": "2022年11月",

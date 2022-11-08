@@ -48,7 +48,7 @@ $ cd reactSample && yarn install
 
 到目前為止vite/react/typescript都已經裝好了
 
-可議簡單的測試
+可以簡單的測試
 
 ```bash
 $ yarn run dev
