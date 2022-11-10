@@ -28,6 +28,21 @@ export default [
     exact: true
   },
   {
+    path: '/blog/tags',
+    component: ComponentCreator('/blog/tags', '7f1'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/react',
+    component: ComponentCreator('/blog/tags/react', '2c0'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/vite',
+    component: ComponentCreator('/blog/tags/vite', '1eb'),
+    exact: true
+  },
+  {
     path: '/search',
     component: ComponentCreator('/search', '4bd'),
     exact: true

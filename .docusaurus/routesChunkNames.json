@@ -49,6 +49,42 @@
     },
     "archive": "b2f554cd"
   },
+  "/blog/tags-7f1": {
+    "__comp": "01a85c17",
+    "__context": {
+      "plugin": "f73b3a79"
+    },
+    "sidebar": "814f3328",
+    "tags": "a7023ddc"
+  },
+  "/blog/tags/react-2c0": {
+    "__comp": "6875c492",
+    "__context": {
+      "plugin": "f73b3a79"
+    },
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "e0f24c46"
+      }
+    ],
+    "tag": "986f7180",
+    "listMetadata": "76d5d095"
+  },
+  "/blog/tags/vite-1eb": {
+    "__comp": "6875c492",
+    "__context": {
+      "plugin": "f73b3a79"
+    },
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "e0f24c46"
+      }
+    ],
+    "tag": "d0857a4d",
+    "listMetadata": "6bfe000f"
+  },
   "/search-4bd": {
     "__comp": "1a4e3797",
     "__context": {

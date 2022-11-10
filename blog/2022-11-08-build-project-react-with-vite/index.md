@@ -1,6 +1,7 @@
 ---
 title: "vite+react+typescript+prettier+eslint"
 date: 2022-11-08 10:00:12 +0800
+tags: [vite, react]
 ---
 每次要寫一個新的專案都要重新設定一次環境
 
