@@ -27,6 +27,10 @@
       "react"
     ]
   },
+  "prevItem": {
+    "title": "MTB Hopper Lite",
+    "permalink": "/blog/2022/11/10/mtb-hopper-ramp-lite"
+  },
   "nextItem": {
     "title": "Study: Refactoring - Encapsulate",
     "permalink": "/blog/2020/07/27/study-refactoring"

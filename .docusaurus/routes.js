@@ -4,7 +4,7 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/blog',
-    component: ComponentCreator('/blog', 'ab5'),
+    component: ComponentCreator('/blog', '15e'),
     exact: true
   },
   {
@@ -23,6 +23,11 @@ export default [
     exact: true
   },
   {
+    path: '/blog/2022/11/10/mtb-hopper-ramp-lite',
+    component: ComponentCreator('/blog/2022/11/10/mtb-hopper-ramp-lite', '50c'),
+    exact: true
+  },
+  {
     path: '/blog/archive',
     component: ComponentCreator('/blog/archive', '7cb'),
     exact: true
@@ -30,6 +35,16 @@ export default [
   {
     path: '/blog/tags',
     component: ComponentCreator('/blog/tags', '7f1'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/mtb',
+    component: ComponentCreator('/blog/tags/mtb', '8eb'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/mtb-hopper',
+    component: ComponentCreator('/blog/tags/mtb-hopper', 'c07'),
     exact: true
   },
   {
