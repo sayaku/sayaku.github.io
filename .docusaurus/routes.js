@@ -4,7 +4,7 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/blog',
-    component: ComponentCreator('/blog', '15e'),
+    component: ComponentCreator('/blog', '916'),
     exact: true
   },
   {
@@ -28,6 +28,11 @@ export default [
     exact: true
   },
   {
+    path: '/blog/2022/11/16/vite-react-extension',
+    component: ComponentCreator('/blog/2022/11/16/vite-react-extension', 'f8a'),
+    exact: true
+  },
+  {
     path: '/blog/archive',
     component: ComponentCreator('/blog/archive', '7cb'),
     exact: true
@@ -35,6 +40,11 @@ export default [
   {
     path: '/blog/tags',
     component: ComponentCreator('/blog/tags', '7f1'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/axios-observable',
+    component: ComponentCreator('/blog/tags/axios-observable', 'c3f'),
     exact: true
   },
   {
@@ -48,13 +58,38 @@ export default [
     exact: true
   },
   {
+    path: '/blog/tags/observable-hooks',
+    component: ComponentCreator('/blog/tags/observable-hooks', '578'),
+    exact: true
+  },
+  {
     path: '/blog/tags/react',
-    component: ComponentCreator('/blog/tags/react', '2c0'),
+    component: ComponentCreator('/blog/tags/react', '6c2'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/redux',
+    component: ComponentCreator('/blog/tags/redux', 'ede'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/redux-observable',
+    component: ComponentCreator('/blog/tags/redux-observable', '044'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/rxjs',
+    component: ComponentCreator('/blog/tags/rxjs', 'c09'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/tailwindcss',
+    component: ComponentCreator('/blog/tags/tailwindcss', 'ff8'),
     exact: true
   },
   {
     path: '/blog/tags/vite',
-    component: ComponentCreator('/blog/tags/vite', '1eb'),
+    component: ComponentCreator('/blog/tags/vite', '633'),
     exact: true
   },
   {

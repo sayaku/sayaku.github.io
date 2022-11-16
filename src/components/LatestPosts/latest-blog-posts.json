@@ -1,5 +1,48 @@
 [
   {
+    "title": "vite-react-extension",
+    "permalink": "/blog/2022/11/16/vite-react-extension",
+    "description": "繼上一次vite-react範本設定",
+    "tags": [
+      {
+        "label": "vite",
+        "permalink": "/blog/tags/vite"
+      },
+      {
+        "label": "react",
+        "permalink": "/blog/tags/react"
+      },
+      {
+        "label": "tailwindcss",
+        "permalink": "/blog/tags/tailwindcss"
+      },
+      {
+        "label": "redux",
+        "permalink": "/blog/tags/redux"
+      },
+      {
+        "label": "redux-observable",
+        "permalink": "/blog/tags/redux-observable"
+      },
+      {
+        "label": "rxjs",
+        "permalink": "/blog/tags/rxjs"
+      },
+      {
+        "label": "observable-hooks",
+        "permalink": "/blog/tags/observable-hooks"
+      },
+      {
+        "label": "axios-observable",
+        "permalink": "/blog/tags/axios-observable"
+      }
+    ],
+    "date": "2022-11-16T12:00:12.000Z",
+    "yearMonth": "2022年11月",
+    "day": "16",
+    "formattedDate": "2022年11月16日"
+  },
+  {
     "title": "MTB Hopper Lite",
     "permalink": "/blog/2022/11/10/mtb-hopper-ramp-lite",
     "description": "網路上看到這個有趣的產品- MTB HOPPER",
