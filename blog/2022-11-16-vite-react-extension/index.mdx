@@ -1,0 +1,179 @@
+---
+title: "vite-react-extension"
+date: 2022-11-16 12:00:12 +0800
+tags: [vite, react, sass, tailwindcss, redux, redux-observable, rxjs, observable-hooks, axios-observable]
+---
+
+繼上一次[vite-react範本設定](/blog/2022/11/08/build-project-react-with-vite)
+
+這次要來擴充這個範本
+
+作成我工作上習慣的配置環境
+
+<!--truncate-->
+
+## extension
++ sass / tailwindcss 3 / postcss
++ jest / storybook
++ husky
++ rxjs / observable-hooks
++ redux / redux-observable
++ axios-observable
+
+首先拉上一次建好的範本再另外做一個擴充版本的範本
+
+```bash
+$ npx degit sayaku/reactSample viteReactTemplate
+```
+
+下載後進到資料夾
+
+```bash
+$ cd viteReactTemplate
+```
+
+## install sass / tailwindcss 3 / postcss
+
+首先安裝跟tailwindcss相關的依賴
+
+```bash
+$ yarn add sass tailwindcss postcss autoprefixer --dev
+```
+
+裝完後初始化tailwindcss與postcss的設定檔
+
+```bash
+$ npx tailwindcss init -p
+```
+這時目錄下會多兩個設定檔<code>postcss.config.cjs</code>, <code>tailwindcss.config.cjs</code>出來
+
+![](images/01.png)
+
+兩個檔案需要變動如下
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="postcss.config" label="postcss.config.cjs">
+
+```js
+module.exports= {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+```
+
+</TabItem>
+
+<TabItem value="tailwindcss.config" label="tailwindcss.config.cjs">
+
+```js {2-5}
+module.exports= {
+  mode: "jit", // 開啟jit模式可以用自訂數字來定義寬高或間距
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+```
+
+</TabItem>
+</Tabs>
+
+vite預設會去找有沒有符合postcss-load-config的檔案並且去套用它
+
+符合postcss-load-config檔名與副檔名可參考:[這裡](https://github.com/postcss/postcss-load-config#postcssrcjs-or-postcssconfigjs)
+
+postcss的config裡關於tailwindcss如果沒特別設定,預設會去抓<code>tailwindcss.config</code>
+
+也就是我們把vite給run起來的時候就會一起去跑postcss與tailwindcss的設定了
+
+vite設定真的少很多（望向webpack還要寫一堆loader...）
+
+預處理css的部分
+
+vite預設有支援sass, 不用另外像webpack來裝sass的loader, 但vite要另外裝sass的依賴（所以我們上面先裝過sass了）
+
+就算你不用sass, vite也預設支援<code>postcss-import</code>與<code>postcss-nesting</code>
+
+讓你可以在css上import其他css以及在css裡面像sass那樣能寫巢狀css
+
+這邊我們先去引入基本的tailwindcss
+
+然後在<code>App.tsx</code>做一些class的修改(套用tailwindcss class)
+
+<Tabs>
+<TabItem value="tailwind" label="/src/style/tailwind.scss">
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+</TabItem>
+
+<TabItem value="index" label="src/index.scss">
+
+```css
+@import 'style/tailwind';
+
+```
+
+</TabItem>
+
+<TabItem value="app" label="src/App.tsx">
+
+```tsx {7-19}
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className="flex flex-col">
+      <div className="w-full flex justify-around p-10">
+        <a href="https://vitejs.dev" target="_blank" className="basis-1/4">
+          <img src="/vite.svg" className="w-full aspect-square" alt="Vite logo" />
+        </a>
+        <a href="https://reactjs.org" target="_blank" className="basis-1/4">
+          <img src={reactLogo} className="w-full aspect-square" alt="React logo" />
+        </a>
+      </div>
+      <h1 className="self-center text-lg mx-5">Vite + React + Tailwindcss</h1>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+</TabItem>
+</Tabs>
+
+接下來正式跑一下
+
+```bash
+$ yarn run dev
+```
+
+跑起來發現我們的tailwindcss都套用上去了
+
+![](images/02.png)
+
+到這邊基本的style的部分都設定好了
+
+
+## jest / storybook
+

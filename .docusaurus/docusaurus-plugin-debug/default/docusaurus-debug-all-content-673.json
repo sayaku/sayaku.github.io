@@ -66,29 +66,156 @@
       "blogSidebarTitle": "最新文章",
       "blogPosts": [
         {
+          "id": "/2022/11/16/vite-react-extension",
+          "metadata": {
+            "permalink": "/blog/2022/11/16/vite-react-extension",
+            "editUrl": "https://github.com/sayaku/sayaku.github.io/edit/main/blog/2022-11-16-vite-react-extension/index.mdx",
+            "source": "@site/blog/2022-11-16-vite-react-extension/index.mdx",
+            "title": "vite-react-extension",
+            "description": "繼上一次vite-react範本設定",
+            "date": "2022-11-16T12:00:12.000Z",
+            "formattedDate": "2022年11月16日",
+            "tags": [
+              {
+                "label": "vite",
+                "permalink": "/blog/tags/vite"
+              },
+              {
+                "label": "react",
+                "permalink": "/blog/tags/react"
+              },
+              {
+                "label": "tailwindcss",
+                "permalink": "/blog/tags/tailwindcss"
+              },
+              {
+                "label": "redux",
+                "permalink": "/blog/tags/redux"
+              },
+              {
+                "label": "redux-observable",
+                "permalink": "/blog/tags/redux-observable"
+              },
+              {
+                "label": "rxjs",
+                "permalink": "/blog/tags/rxjs"
+              },
+              {
+                "label": "observable-hooks",
+                "permalink": "/blog/tags/observable-hooks"
+              },
+              {
+                "label": "axios-observable",
+                "permalink": "/blog/tags/axios-observable"
+              }
+            ],
+            "readingTime": 2.915,
+            "hasTruncateMarker": true,
+            "authors": [],
+            "frontMatter": {
+              "title": "vite-react-extension",
+              "date": "2022-11-16 12:00:12 +0800",
+              "tags": [
+                "vite",
+                "react",
+                "tailwindcss",
+                "redux",
+                "redux-observable",
+                "rxjs",
+                "observable-hooks",
+                "axios-observable"
+              ]
+            },
+            "nextItem": {
+              "title": "MTB Hopper Lite",
+              "permalink": "/blog/2022/11/10/mtb-hopper-ramp-lite"
+            }
+          },
+          "content": "繼上一次[vite-react範本設定](/blog/2022/11/08/build-project-react-with-vite)\n\n這次要來擴充這個範本\n\n作成我工作上習慣的配置環境\n\n<!--truncate-->\n\n## extension\n+ sass / tailwindcss 3 / postcss\n+ jest / storybook\n+ husky\n+ rxjs / observable-hooks\n+ redux / redux-observable\n+ axios-observable\n\n首先先拉上一次建好的範本再另外做一個擴充版本的範本\n\n```bash\n$ npx degit sayaku/reactSample viteReactTemplate\n```\n\n下載後進到資料夾\n\n```bash\n$ cd viteReactTemplate\n```\n\n## install sass / tailwindcss 3 / postcss\n\n首先安裝跟tailwindcss相關的依賴\n\n```bash\n$ yarn add sass tailwindcss postcss autoprefixer --dev\n```\n\n裝完後初始化tailwindcss與postcss的設定檔\n\n```bash\n$ npx tailwindcss init -p\n```\n這時目錄下會多兩個設定檔<code>postcss.config.cjs</code>, <code>tailwindcss.config.cjs</code>出來\n\n![](images/01.png)\n\n兩個檔案需要變動如下\n\nimport Tabs from '@theme/Tabs';\nimport TabItem from '@theme/TabItem';\n\n<Tabs>\n<TabItem value=\"postcss.config\" label=\"postcss.config.cjs\">\n\n```js\nmodule.exports= {\n  plugins: {\n    tailwindcss: {},\n    autoprefixer: {},\n  },\n}\n\n```\n\n</TabItem>\n\n<TabItem value=\"tailwindcss.config\" label=\"tailwindcss.config.cjs\">\n\n```js {2-5}\nmodule.exports= {\n  content: [\n    \"./index.html\",\n    \"./src/**/*.{js,ts,jsx,tsx}\",\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}\n\n```\n\n</TabItem>\n</Tabs>\n\nvite預設會去找有沒有符合postcss-load-config的檔案並且去套用它\n\n符合postcss-load-config檔名與副檔名可參考:[這裡](https://github.com/postcss/postcss-load-config#postcssrcjs-or-postcssconfigjs)\n\npostcss的config裡關於tailwindcss如果沒特別設定,預設會去抓<code>tailwindcss.config</code>\n\n也就是我們把vite給run起來的時候就會一起去跑postcss與tailwindcss的設定了\n\nvite設定真的少很多（望向webpack還要寫一堆loader...）\n\n預處理css的部分\n\nvite預設有支援sass, 不用另外像webpack來裝sass的loader, 但vite要另外裝sass的依賴（所以我們上面先裝過sass了）\n\n就算你不用sass, vite也預設支援<code>postcss-import</code>與<code>postcss-nesting</code>\n\n讓你可以在css上import其他css以及在css裡面像sass那樣能寫巢狀css\n\n這邊我們先去引入基本的tailwindcss\n\n然後在<code>App.tsx</code>做一些class的修改(套用tailwindcss class)\n\n<Tabs>\n<TabItem value=\"tailwind\" label=\"/src/style/tailwind.scss\">\n\n```css\n@tailwind base;\n@tailwind components;\n@tailwind utilities;\n```\n\n</TabItem>\n\n<TabItem value=\"index\" label=\"src/index.scss\">\n\n```css\n@import 'style/tailwind';\n\n```\n\n</TabItem>\n\n<TabItem value=\"app\" label=\"src/App.tsx\">\n\n```tsx {7-19}\nimport { useState } from \"react\";\nimport reactLogo from \"./assets/react.svg\";\n\nfunction App() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div className=\"flex flex-col\">\n      <div className=\"w-full flex justify-around p-10\">\n        <a href=\"https://vitejs.dev\" target=\"_blank\" className=\"basis-1/4\">\n          <img src=\"/vite.svg\" className=\"w-full aspect-square\" alt=\"Vite logo\" />\n        </a>\n        <a href=\"https://reactjs.org\" target=\"_blank\" className=\"basis-1/4\">\n          <img src={reactLogo} className=\"w-full aspect-square\" alt=\"React logo\" />\n        </a>\n      </div>\n      <h1 className=\"self-center text-lg mx-5\">Vite + React + Tailwindcss</h1>\n    </div>\n  );\n}\n\nexport default App;\n\n```\n\n</TabItem>\n</Tabs>\n\n接下來正式跑一下\n\n```bash\n$ yarn run dev\n```\n\n跑起來發現我們的tailwindcss都套用上去了\n\n![](images/02.png)\n\n到這邊基本的style的部分都設定好了"
+        },
+        {
+          "id": "/2022/11/10/mtb-hopper-ramp-lite",
+          "metadata": {
+            "permalink": "/blog/2022/11/10/mtb-hopper-ramp-lite",
+            "editUrl": "https://github.com/sayaku/sayaku.github.io/edit/main/blog/2022-11-10-mtb-hopper-ramp-lite/index.md",
+            "source": "@site/blog/2022-11-10-mtb-hopper-ramp-lite/index.md",
+            "title": "MTB Hopper Lite",
+            "description": "網路上看到這個有趣的產品- MTB HOPPER",
+            "date": "2022-11-10T16:00:12.000Z",
+            "formattedDate": "2022年11月10日",
+            "tags": [
+              {
+                "label": "mtb",
+                "permalink": "/blog/tags/mtb"
+              },
+              {
+                "label": "mtb-hopper",
+                "permalink": "/blog/tags/mtb-hopper"
+              }
+            ],
+            "readingTime": 3.415,
+            "hasTruncateMarker": true,
+            "authors": [],
+            "frontMatter": {
+              "title": "MTB Hopper Lite",
+              "date": "2022-11-10 16:00:12 +0800",
+              "tags": [
+                "mtb",
+                "mtb-hopper"
+              ]
+            },
+            "prevItem": {
+              "title": "vite-react-extension",
+              "permalink": "/blog/2022/11/16/vite-react-extension"
+            },
+            "nextItem": {
+              "title": "vite+react+typescript+prettier+eslint",
+              "permalink": "/blog/2022/11/08/build-project-react-with-vite"
+            }
+          },
+          "content": "![](images/cover.jpeg)\n\n網路上看到這個有趣的產品- MTB HOPPER\n\n簡單來說就是個可以簡易組合拆裝方便攜帶的行動跳台\n\n實際操作網路上搜尋MTB HOPPER應該會有一堆範例影片\n\n這邊主要紀錄他怎麼組合與收納\n<!--truncate-->\n## Unboxing / Assembly\n![](images/01.png)\n\n送來時就是個簡單的紙箱\n\n![](images/02.png)\n\n開箱內容就是一張很簡單的說明書\n\n內容官網有一份pdf可供[下載](https://cdn.shopify.com/s/files/1/2484/8112/files/LITE.pdf?v=1613927342)\n\n![](images/03.png)\n\n拿出來就像一個小公事包\n\n重量約五公斤\n\n另一面有雙肩背帶\n\n騎MTB背個5KG應該沒啥問題\n\n公事包打開後會有這些零件\n\n![](images/04.png)\n\n基本上非常好組\n\n不用看說明書慢慢摸索都知道怎麼組\n\n零件上面也有對應接合的編號\n\n按照號碼接起來基本上不會接錯\n\n接好以後就是個跳台的樣子\n\n這個跳台可以調高度\n\n最低的高度就是長這個樣子\n\n![](images/05.png)\n\n\n這樣看好像還好\n\n等你真的騎上車往跳台看過去會覺得\n\n媽呀這好像有點高有點陡\n\n我承認第一次跳真的要克服恐懼\n\n什麼跳台要領: 平衡, 蹲低, 起跳\n\n早就忘了...\n\n記得重心不要往前面，不然起跳後腳會被彈飛（第一次跳台不知道就是這樣飛出去的）\n\n所以才買這個產品來練跳台\n\n起跳時重心會在後輪上, 屁股位置應該會在後輪軸心的正上方（官網建議的）\n\n多跳幾次好像就抓到要領了\n\n<iframe width=\"320\" height=\"560\" src=\"https://www.youtube.com/embed/OtP-bDZb22Q\" title=\"November 16, 2022\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n\n\n慢動作\n\n<iframe width=\"320\" height=\"560\" src=\"https://www.youtube.com/embed/Iv9SkHC57vo\" title=\"November 16, 2022\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n\n## Disassembly / Fold\n\n其實會裝就會拆\n\n問題是拆了以後我忘記當初是怎麼放的\n\n這邊記錄一下\n\n中間兩片支架放最下面\n\n然後兩個側腳折起來交疊\n\n最後是正面可調高度的大腳放最上面\n\n![](images/06.png)\n\n這樣就可以完整收合\n\n![](images/07.png)\n\n那要怎麼固定收合呢？\n\n當初這邊卡關卡超久\n\n原來是上方那一條繩子拉到那個洞洞卡住就完成固定了\n\n看下面分解圖\n\n![](images/09.png)\n\n![](images/10.png)\n\n兩邊都做一樣的動作\n\n這樣就完成固定了\n\n\n完成！！這是有雙肩背帶的那一面\n\n一樣也是可以調背帶鬆緊\n\n![](images/11.jpeg)\n\n這個跳台整體來說真的設計得很棒\n\n可攜式跳台真是一大誘因\n\n背著騎到哪就能組跳台玩飛跳\n\nyoutube上有展示此跳台的很多應用\n\n有看到拿去玩街攀的各種誇張技巧\n\n![](images/cover2.jpg)"
+        },
+        {
           "id": "/2022/11/08/build-project-react-with-vite",
           "metadata": {
             "permalink": "/blog/2022/11/08/build-project-react-with-vite",
             "editUrl": "https://github.com/sayaku/sayaku.github.io/edit/main/blog/2022-11-08-build-project-react-with-vite/index.md",
             "source": "@site/blog/2022-11-08-build-project-react-with-vite/index.md",
             "title": "vite+react+typescript+prettier+eslint",
-            "description": "測試寫一個搭配vite的react專案模板",
+            "description": "每次要寫一個新的專案都要重新設定一次環境",
             "date": "2022-11-08T10:00:12.000Z",
             "formattedDate": "2022年11月8日",
-            "tags": [],
-            "readingTime": 7.675,
+            "tags": [
+              {
+                "label": "vite",
+                "permalink": "/blog/tags/vite"
+              },
+              {
+                "label": "react",
+                "permalink": "/blog/tags/react"
+              }
+            ],
+            "readingTime": 7.97,
             "hasTruncateMarker": true,
             "authors": [],
             "frontMatter": {
               "title": "vite+react+typescript+prettier+eslint",
-              "date": "2022-11-08 10:00:12 +0800"
+              "date": "2022-11-08 10:00:12 +0800",
+              "tags": [
+                "vite",
+                "react"
+              ]
+            },
+            "prevItem": {
+              "title": "MTB Hopper Lite",
+              "permalink": "/blog/2022/11/10/mtb-hopper-ramp-lite"
             },
             "nextItem": {
               "title": "Study: Refactoring - Encapsulate",
               "permalink": "/blog/2020/07/27/study-refactoring"
             }
           },
-          "content": "測試寫一個搭配vite的react專案模板\n\n<!--truncate-->\n\n## Install vite/react/typescript\n按照官網起手式\n\n``` bash\n$ yarn create vite\n```\n安裝過程中會問你\n\n1. 專案名稱,名稱就先叫reactSample吧\n2. 要搭配哪個前端框架\n3. 要選用js還是ts\n\n\n![](images/01.png)\n\n如果你不想那麼囉唆也可以下以下指令\n\n```bash\n$ yarn create vite reactSample --template react-ts\n```\n\n之後會建構一個名為reactSample的資料夾，資料夾結構如下\n\n![](images/02.png)\n\n看得出來還沒安裝依賴的node_modules\n\n裝一下(記得要先進到剛剛創建好的reactSample目錄裡)\n\n```bash\n$ cd reactSample && yarn install\n```\n恩！\n\n到目前為止vite/react/typescript都已經裝好了\n\n接下來裝開發時需要的靜態檢查工具\n\n## Install Eslint\n\n靜態檢查工具可以在開發階段就先檢測出你的程式碼是否有簡單邏輯或是格式甚至於拼字上的錯誤\n\ntypescript有tslint的靜態檢查工具, 但功能跟eslint大同小異\n\n後來靜態檢查功能就跟eslint合併然後tslint就被棄用了（幫QQ）\n\n那我們來裝eslint吧\n\n```bash\n$ yarn add -D eslint\n```\n配置初始設定文件檔\n\n```bash\n$ npx eslint --init\n```\n過程中過程中安裝小幫手會問幾個選項\n\n![](images/03.png)\n\n選第二項<code>To check syntax and find problems</code>\n\n我們晚點會使用prettier來強制執行這個設定\n\n![](images/04.png)\n\n我們用react+typescript那當然就是選第一個囉\n\n![](images/05.png)\n\n這邊會問你以下這些依賴套件要一起安裝,你是否要一起安裝？\n\n但因為這邊安裝的套件是使用NPM,我們使用的是yarn,所以先選擇<code>NO</code>\n\n改用下面yarn的寫法\n```bash\n$ yarn add -D eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest\n```\n基本上你的基礎eslint設定檔已經建出來了\n\n![](images/06.png)\n\n對了！在上面小幫手設定過程中他會問你設定檔要用什麼格式,可以自己習慣用什麼格式而定\n\n我這邊是用<code>json</code>, 所以產出一個<code>.eslintrc.json</code>的檔案\n\n接著安裝一些依賴套件讓eslint跟typescript關聯\n\n```bash\n$ yarn add -D eslint-plugin-import @typescript-eslint/parser eslint-import-resolver-typescript\n```\n\n## Install Prettier\n\nPrettier是一個程式碼格式化的套件\n\n本身並不像Eslint去執行靜態檢查\n\n我們code寫久了常常縮排跑掉或是括號少個空格等等\n\n尤其是團隊寫code時大家寫的風格不一樣,看起來就很難閱讀\n\n所以有個可以統一風格的工具是很重要的\n\n所以廢話不多說\n\n直接安裝相關的套件\n\n```bash\n$ yarn add -D prettier eslint-config-prettier eslint-plugin- prettier eslint-plugin-react-hooks\n```\n\n裝完後新增一個空白的prettier設定檔<code>.prettierrc</code>\n\n```bash\n$ touch .prettierrc\n```\n\n如下圖\n\n![](images/07.png)\n\n再來是vscode也要安裝相關插件,這樣有錯誤時才會幫你高亮出來ＸＤ\n\n插件百百種\n\n我自己是用星星數最多的拉\n\n![](images/16.png)\n\n裝完啟用後應該在資訊列會有prettier的圖示選項\n\n![](images/17.png)\n\n## eslintrc setting\n\n創建完<code>.prettierrc</code>後可以來設定eslintrc擴充部分\n\n在extends部分添加prettier\n\n![](images/08.png)\n\n關於eslint的rules的部分\n\n通常是根據團隊的習慣自己去制定\n\n[可以參考相關eslint的規則](https://eslint.org/docs/latest/rules/)\n\n在plugin的部分也記得要添加prettier相關的插件\n\n![](images/09.png)\n\n最後一個設定是設定typescript的import解析器\n\n![](images/10.png)\n\n這樣就差不多設定完了\n\n可以來測試一下\n\n我們在<code>package.json</code>的script增加幾個指令\n\n![](images/11.png)\n\n設定完後\n\n隨便在任何一隻檔案裡面添加一個明顯不會通過規則的錯誤\n\n例如我在App.tsx新增一個<code>let a= 0</code>\n\n![](images/12.png)\n\n其實在寫的當下編輯器已經出現紅色毛毛蟲警告你這邊會有問題了\n\n但這邊先不理他\n\n接著我們打指令\n\n```bash\n$ yarn run lint\n```\n\n這時eslint就會告訴你哪個檔案哪一行的程式碼沒有通過驗證\n\n![](images/13.png)\n\n當然eslint也會提示你可以使用<code>--fix</code>參數\n\n來自動幫你修正錯誤\n\n可以試著執行剛剛在package.json裡的script另外新增的<code>lint:fix</code>\n\n```bash\n$ yarn run lint:fix\n```\n會發現eslint會幫你根據規則把錯誤修復\n\n![](images/14.png)\n\n但原則上這功能還是少用, 因為還是自己手動看錯誤自己改才比較踏實\n\n## eslintignore\n\n這時候還能再另外設定哪些檔案不想被檢查\n\n可以另外創建<code>.eslintignore</code>\n\n```bash\n$ touch .eslintignore\n```\n像是如果剛剛的App.tsx不想被檢查的話\n\n可以直接寫\n\n![](images/15.png)\n\n這樣eslint就會略過不檢查這個檔案\n\n## prettier setting\n\nprettier設定的部分\n\n可以根據團隊使用習慣在<code>.prettierrc</code>加上規則\n\n規則的部分可以參考官網:[點我](https://prettier.io/playground/)\n\n我自己的設定是這樣拉\n\n```json\n{\n  \"semi\": true,\n  \"tabWidth\": 4,\n  \"printWidth\": 100,\n  \"singleQuote\": true,\n  \"trailingComma\": \"all\",\n  \"jsxSingleQuote\": true,\n  \"bracketSpacing\": true\n}\n```\n\n接下來做測試\n\n隨便拿個檔案這次找<code>main.tsx</code>\n\n刻意把裡面的格式打亂然後縮排亂凸\n\n![](images/18.png)\n\n這時候按下鍵盤<code>shift</code>+<code>alt</code>+<code>F</code>\n\nmacOS請用<code>⇧Shift</code>+<code>⌥Option</code>+<code>F</code>\n\n![](images/19.png)\n\n你會看到prettier幫你把縮排縮好,遺失的句尾分號也補上去了\n\n## 製作範本\n使用[degit](https://github.com/Rich-Harris/degit)這樣的工具\n\n只要github上的repo都可以當成範本,當然其他的gitlab之類的repo也可\n\n以往我們可能會用clone來搭建項目的範本,但往往我們不需要它裡面的git紀錄\n\n現在可以很單純的使用degit來拉我們想的範本快速搭建專案骨架\n\n使用方法\n\n```bash\n$ npx degit [template repository]#[branch|tag|commit hash] [your_new_proj]\n```\n＃號後面接的可以是分支名或tag或commit\n\n不寫的話預設是master | main 分支\n\n例如我剛剛推上去的reactSample就可以當成template\n\n可以寫成\n\n```bash\n$ npx degit sayaku/reactSample new_react_project\n```\n\n或是網址\n\n```bash\n$ npx degit https://github.com/sayaku/reactSample new_react_project\n```\n這樣就可以快速把我原本寫好的範本拿來開新的專案了\n\n其實我這篇寫了這麼多\n\n在社群裡面早就有人寫了很實用的template可以直接當專案範本了\n\n可以參考[Awesome Vite.js](https://github.com/vitejs/awesome-vite#templates)\n\n\n##Refs\n[vite](https://vitejs.dev/)\n[ESLint + Prettier + Typescript and React in 2022](https://blog.devgenius.io/eslint-prettier-typescript-and-react-in-2022-e5021ebca2b1)\n[Awesome Vite.js](https://github.com/vitejs/awesome-vite#templates)"
+          "content": "每次要寫一個新的專案都要重新設定一次環境\n\n久了也是很煩\n\n不如寫一個範本模板來使用\n\n這次試著建立搭配vite的react專案模板\n\n<!--truncate-->\n\n## Install vite/react/typescript\n按照官網起手式\n\n``` bash\n$ yarn create vite\n```\n安裝過程中會問你\n\n1. 專案名稱,名稱就先叫reactSample吧\n2. 要搭配哪個前端框架\n3. 要選用js還是ts\n\n\n![](images/01.png)\n\n如果你不想那麼囉唆也可以下以下指令\n\n```bash\n$ yarn create vite reactSample --template react-ts\n```\n\n之後會建構一個名為reactSample的資料夾，資料夾結構如下\n\n![](images/02.png)\n\n看得出來還沒安裝依賴的node_modules\n\n裝一下(記得要先進到剛剛創建好的reactSample目錄裡)\n\n```bash\n$ cd reactSample && yarn install\n```\n恩！\n\n到目前為止vite/react/typescript都已經裝好了\n\n可以簡單的測試\n\n```bash\n$ yarn run dev\n```\n\n恩！正常作動！！\n\n![](images/20.png)\n\n\n接下來裝開發時需要的靜態檢查工具\n\n## Install Eslint\n\n靜態檢查工具可以在開發階段就先檢測出你的程式碼是否有簡單邏輯或是格式甚至於拼字上的錯誤\n\ntypescript有tslint的靜態檢查工具, 但功能跟eslint大同小異\n\n後來靜態檢查功能就跟eslint合併然後tslint就被棄用了（幫QQ）\n\n那我們來裝eslint吧\n\n```bash\n$ yarn add -D eslint\n```\n配置初始設定文件檔\n\n```bash\n$ npx eslint --init\n```\n過程中過程中安裝小幫手會問幾個選項\n\n![](images/03.png)\n\n選第二項<code>To check syntax and find problems</code>\n\n我們晚點會使用prettier來強制執行這個設定\n\n![](images/04.png)\n\n我們用react+typescript那當然就是選第一個囉\n\n![](images/05.png)\n\n這邊會問你以下這些依賴套件要一起安裝,你是否要一起安裝？\n\n但因為這邊安裝的套件是使用NPM,我們使用的是yarn,所以先選擇<code>NO</code>\n\n改用下面yarn的寫法\n```bash\n$ yarn add -D eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest\n```\n基本上你的基礎eslint設定檔已經建出來了\n\n![](images/06.png)\n\n對了！在上面小幫手設定過程中他會問你設定檔要用什麼格式,可以自己習慣用什麼格式而定\n\n我這邊是用<code>json</code>, 所以產出一個<code>.eslintrc.json</code>的檔案\n\n接著安裝一些依賴套件讓eslint跟typescript關聯\n\n```bash\n$ yarn add -D eslint-plugin-import @typescript-eslint/parser eslint-import-resolver-typescript\n```\n\n## Install Prettier\n\nPrettier是一個程式碼格式化的套件\n\n本身並不像Eslint去執行靜態檢查\n\n我們code寫久了常常縮排跑掉或是括號少個空格等等\n\n尤其是團隊寫code時大家寫的風格不一樣,看起來就很難閱讀\n\n所以有個可以統一風格的工具是很重要的\n\n所以廢話不多說\n\n直接安裝相關的套件\n\n```bash\n$ yarn add -D prettier eslint-config-prettier eslint-plugin- prettier eslint-plugin-react-hooks\n```\n\n裝完後新增一個空白的prettier設定檔<code>.prettierrc</code>\n\n```bash\n$ touch .prettierrc\n```\n\n如下圖\n\n![](images/07.png)\n\n再來是vscode也要安裝相關插件,這樣有錯誤時才會幫你高亮出來ＸＤ\n\n插件百百種\n\n我自己是用星星數最多的拉\n\n![](images/16.png)\n\n裝完啟用後應該在資訊列會有prettier的圖示選項\n\n![](images/17.png)\n\n## eslintrc setting\n\n創建完<code>.prettierrc</code>後可以來設定eslintrc擴充部分\n\n在extends部分添加prettier\n\n![](images/08.png)\n\n關於eslint的rules的部分\n\n通常是根據團隊的習慣自己去制定\n\n[可以參考相關eslint的規則](https://eslint.org/docs/latest/rules/)\n\n在plugin的部分也記得要添加prettier相關的插件\n\n![](images/09.png)\n\n最後一個設定是設定typescript的import解析器\n\n![](images/10.png)\n\n這樣就差不多設定完了\n\n可以來測試一下\n\n我們在<code>package.json</code>的script增加幾個指令\n\n![](images/11.png)\n\n設定完後\n\n隨便在任何一隻檔案裡面添加一個明顯不會通過規則的錯誤\n\n例如我在App.tsx新增一個<code>let a= 0</code>\n\n![](images/12.png)\n\n其實在寫的當下編輯器已經出現紅色毛毛蟲警告你這邊會有問題了\n\n但這邊先不理他\n\n接著我們打指令\n\n```bash\n$ yarn run lint\n```\n\n這時eslint就會告訴你哪個檔案哪一行的程式碼沒有通過驗證\n\n![](images/13.png)\n\n當然eslint也會提示你可以使用<code>--fix</code>參數\n\n來自動幫你修正錯誤\n\n可以試著執行剛剛在package.json裡的script另外新增的<code>lint:fix</code>\n\n```bash\n$ yarn run lint:fix\n```\n會發現eslint會幫你根據規則把錯誤修復\n\n![](images/14.png)\n\n但原則上這功能還是少用, 因為還是自己手動看錯誤自己改才比較踏實\n\n## eslintignore\n\n這時候還能再另外設定哪些檔案不想被檢查\n\n可以另外創建<code>.eslintignore</code>\n\n```bash\n$ touch .eslintignore\n```\n像是如果剛剛的App.tsx不想被檢查的話\n\n可以直接寫\n\n![](images/15.png)\n\n這樣eslint就會略過不檢查這個檔案\n\n## prettier setting\n\nprettier設定的部分\n\n可以根據團隊使用習慣在<code>.prettierrc</code>加上規則\n\n規則的部分可以參考官網:[點我](https://prettier.io/playground/)\n\n我自己的設定是這樣拉\n\n```json\n{\n  \"semi\": true,\n  \"tabWidth\": 4,\n  \"printWidth\": 100,\n  \"singleQuote\": true,\n  \"trailingComma\": \"all\",\n  \"jsxSingleQuote\": true,\n  \"bracketSpacing\": true\n}\n```\n\n接下來做測試\n\n隨便拿個檔案這次找<code>main.tsx</code>\n\n刻意把裡面的格式打亂然後縮排亂凸\n\n![](images/18.png)\n\n這時候按下鍵盤<code>shift</code>+<code>alt</code>+<code>F</code>\n\nmacOS請用<code>⇧Shift</code>+<code>⌥Option</code>+<code>F</code>\n\n![](images/19.png)\n\n你會看到prettier幫你把縮排縮好,遺失的句尾分號也補上去了\n\n## 製作範本\n使用[degit](https://github.com/Rich-Harris/degit)這樣的工具\n\n只要github上的repo都可以當成範本,當然其他的gitlab之類的repo也可\n\n以往我們可能會用clone來搭建項目的範本,但往往我們不需要它裡面的git紀錄\n\n現在可以很單純的使用degit來拉我們想的範本快速搭建專案骨架\n\n使用方法\n\n```bash\n$ npx degit [template repository]#[branch|tag|commit hash] [your_new_proj]\n```\n＃號後面接的可以是分支名或tag或commit\n\n不寫的話預設是master | main 分支\n\n例如我剛剛推上去的reactSample就可以當成template\n\n可以寫成\n\n```bash\n$ npx degit sayaku/reactSample new_react_project\n```\n\n或是網址\n\n```bash\n$ npx degit https://github.com/sayaku/reactSample new_react_project\n```\n這樣就可以快速把我原本寫好的範本拿來開新的專案了\n\n其實我這篇寫了這麼多\n\n在社群裡面早就有人寫了很實用的template可以直接當專案範本了\n\n可以參考[Awesome Vite.js](https://github.com/vitejs/awesome-vite#templates)\n\n\n## Refs \n\n[vite](https://vitejs.dev/) \n\n[ESLint + Prettier + Typescript and React in 2022](https://blog.devgenius.io/eslint-prettier-typescript-and-react-in-2022-e5021ebca2b1) \n\n[Awesome Vite.js](https://github.com/vitejs/awesome-vite#templates)"
         },
         {
           "id": "/2020/07/27/study-refactoring",
@@ -148,6 +275,8 @@
       "blogListPaginated": [
         {
           "items": [
+            "/2022/11/16/vite-react-extension",
+            "/2022/11/10/mtb-hopper-ramp-lite",
             "/2022/11/08/build-project-react-with-vite",
             "/2020/07/27/study-refactoring",
             "/2019/09/20/fujisan-ni-nobotta"
@@ -157,13 +286,248 @@
             "page": 1,
             "postsPerPage": 10,
             "totalPages": 1,
-            "totalCount": 3,
+            "totalCount": 5,
             "blogDescription": "部落格",
             "blogTitle": "部落格"
           }
         }
       ],
-      "blogTags": {},
+      "blogTags": {
+        "/blog/tags/vite": {
+          "label": "vite",
+          "items": [
+            "/2022/11/16/vite-react-extension",
+            "/2022/11/08/build-project-react-with-vite"
+          ],
+          "permalink": "/blog/tags/vite",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/16/vite-react-extension",
+                "/2022/11/08/build-project-react-with-vite"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/vite",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 2,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/blog/tags/react": {
+          "label": "react",
+          "items": [
+            "/2022/11/16/vite-react-extension",
+            "/2022/11/08/build-project-react-with-vite"
+          ],
+          "permalink": "/blog/tags/react",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/16/vite-react-extension",
+                "/2022/11/08/build-project-react-with-vite"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/react",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 2,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/blog/tags/tailwindcss": {
+          "label": "tailwindcss",
+          "items": [
+            "/2022/11/16/vite-react-extension"
+          ],
+          "permalink": "/blog/tags/tailwindcss",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/16/vite-react-extension"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/tailwindcss",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/blog/tags/redux": {
+          "label": "redux",
+          "items": [
+            "/2022/11/16/vite-react-extension"
+          ],
+          "permalink": "/blog/tags/redux",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/16/vite-react-extension"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/redux",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/blog/tags/redux-observable": {
+          "label": "redux-observable",
+          "items": [
+            "/2022/11/16/vite-react-extension"
+          ],
+          "permalink": "/blog/tags/redux-observable",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/16/vite-react-extension"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/redux-observable",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/blog/tags/rxjs": {
+          "label": "rxjs",
+          "items": [
+            "/2022/11/16/vite-react-extension"
+          ],
+          "permalink": "/blog/tags/rxjs",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/16/vite-react-extension"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/rxjs",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/blog/tags/observable-hooks": {
+          "label": "observable-hooks",
+          "items": [
+            "/2022/11/16/vite-react-extension"
+          ],
+          "permalink": "/blog/tags/observable-hooks",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/16/vite-react-extension"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/observable-hooks",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/blog/tags/axios-observable": {
+          "label": "axios-observable",
+          "items": [
+            "/2022/11/16/vite-react-extension"
+          ],
+          "permalink": "/blog/tags/axios-observable",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/16/vite-react-extension"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/axios-observable",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/blog/tags/mtb": {
+          "label": "mtb",
+          "items": [
+            "/2022/11/10/mtb-hopper-ramp-lite"
+          ],
+          "permalink": "/blog/tags/mtb",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/10/mtb-hopper-ramp-lite"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/mtb",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/blog/tags/mtb-hopper": {
+          "label": "mtb-hopper",
+          "items": [
+            "/2022/11/10/mtb-hopper-ramp-lite"
+          ],
+          "permalink": "/blog/tags/mtb-hopper",
+          "pages": [
+            {
+              "items": [
+                "/2022/11/10/mtb-hopper-ramp-lite"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/mtb-hopper",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        }
+      },
       "blogTagsListPath": "/blog/tags"
     }
   },

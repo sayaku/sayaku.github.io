@@ -4,7 +4,7 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/blog',
-    component: ComponentCreator('/blog', '916'),
+    component: ComponentCreator('/blog', 'c5a'),
     exact: true
   },
   {
@@ -29,7 +29,7 @@ export default [
   },
   {
     path: '/blog/2022/11/16/vite-react-extension',
-    component: ComponentCreator('/blog/2022/11/16/vite-react-extension', 'f8a'),
+    component: ComponentCreator('/blog/2022/11/16/vite-react-extension', '042'),
     exact: true
   },
   {
@@ -44,7 +44,7 @@ export default [
   },
   {
     path: '/blog/tags/axios-observable',
-    component: ComponentCreator('/blog/tags/axios-observable', 'c3f'),
+    component: ComponentCreator('/blog/tags/axios-observable', '958'),
     exact: true
   },
   {
@@ -59,37 +59,42 @@ export default [
   },
   {
     path: '/blog/tags/observable-hooks',
-    component: ComponentCreator('/blog/tags/observable-hooks', '578'),
+    component: ComponentCreator('/blog/tags/observable-hooks', '1ef'),
     exact: true
   },
   {
     path: '/blog/tags/react',
-    component: ComponentCreator('/blog/tags/react', '6c2'),
+    component: ComponentCreator('/blog/tags/react', '9ad'),
     exact: true
   },
   {
     path: '/blog/tags/redux',
-    component: ComponentCreator('/blog/tags/redux', 'ede'),
+    component: ComponentCreator('/blog/tags/redux', '03e'),
     exact: true
   },
   {
     path: '/blog/tags/redux-observable',
-    component: ComponentCreator('/blog/tags/redux-observable', '044'),
+    component: ComponentCreator('/blog/tags/redux-observable', 'c0b'),
     exact: true
   },
   {
     path: '/blog/tags/rxjs',
-    component: ComponentCreator('/blog/tags/rxjs', 'c09'),
+    component: ComponentCreator('/blog/tags/rxjs', '7ca'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/sass',
+    component: ComponentCreator('/blog/tags/sass', '965'),
     exact: true
   },
   {
     path: '/blog/tags/tailwindcss',
-    component: ComponentCreator('/blog/tags/tailwindcss', 'ff8'),
+    component: ComponentCreator('/blog/tags/tailwindcss', '69a'),
     exact: true
   },
   {
     path: '/blog/tags/vite',
-    component: ComponentCreator('/blog/tags/vite', '633'),
+    component: ComponentCreator('/blog/tags/vite', '202'),
     exact: true
   },
   {

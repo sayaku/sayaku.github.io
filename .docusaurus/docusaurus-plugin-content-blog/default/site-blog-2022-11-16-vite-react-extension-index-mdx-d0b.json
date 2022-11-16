@@ -1,0 +1,69 @@
+{
+  "permalink": "/blog/2022/11/16/vite-react-extension",
+  "editUrl": "https://github.com/sayaku/sayaku.github.io/edit/main/blog/2022-11-16-vite-react-extension/index.mdx",
+  "source": "@site/blog/2022-11-16-vite-react-extension/index.mdx",
+  "title": "vite-react-extension",
+  "description": "繼上一次vite-react範本設定",
+  "date": "2022-11-16T12:00:12.000Z",
+  "formattedDate": "2022年11月16日",
+  "tags": [
+    {
+      "label": "vite",
+      "permalink": "/blog/tags/vite"
+    },
+    {
+      "label": "react",
+      "permalink": "/blog/tags/react"
+    },
+    {
+      "label": "sass",
+      "permalink": "/blog/tags/sass"
+    },
+    {
+      "label": "tailwindcss",
+      "permalink": "/blog/tags/tailwindcss"
+    },
+    {
+      "label": "redux",
+      "permalink": "/blog/tags/redux"
+    },
+    {
+      "label": "redux-observable",
+      "permalink": "/blog/tags/redux-observable"
+    },
+    {
+      "label": "rxjs",
+      "permalink": "/blog/tags/rxjs"
+    },
+    {
+      "label": "observable-hooks",
+      "permalink": "/blog/tags/observable-hooks"
+    },
+    {
+      "label": "axios-observable",
+      "permalink": "/blog/tags/axios-observable"
+    }
+  ],
+  "readingTime": 3.04,
+  "hasTruncateMarker": true,
+  "authors": [],
+  "frontMatter": {
+    "title": "vite-react-extension",
+    "date": "2022-11-16 12:00:12 +0800",
+    "tags": [
+      "vite",
+      "react",
+      "sass",
+      "tailwindcss",
+      "redux",
+      "redux-observable",
+      "rxjs",
+      "observable-hooks",
+      "axios-observable"
+    ]
+  },
+  "nextItem": {
+    "title": "MTB Hopper Lite",
+    "permalink": "/blog/2022/11/10/mtb-hopper-ramp-lite"
+  }
+}

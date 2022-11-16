@@ -4,8 +4,8 @@
       "id": "/2022/11/16/vite-react-extension",
       "metadata": {
         "permalink": "/blog/2022/11/16/vite-react-extension",
-        "editUrl": "https://github.com/sayaku/sayaku.github.io/edit/main/blog/2022-11-16-vite-react-extension/index.md",
-        "source": "@site/blog/2022-11-16-vite-react-extension/index.md",
+        "editUrl": "https://github.com/sayaku/sayaku.github.io/edit/main/blog/2022-11-16-vite-react-extension/index.mdx",
+        "source": "@site/blog/2022-11-16-vite-react-extension/index.mdx",
         "title": "vite-react-extension",
         "description": "繼上一次vite-react範本設定",
         "date": "2022-11-16T12:00:12.000Z",
@@ -18,6 +18,10 @@
           {
             "label": "react",
             "permalink": "/blog/tags/react"
+          },
+          {
+            "label": "sass",
+            "permalink": "/blog/tags/sass"
           },
           {
             "label": "tailwindcss",
@@ -44,7 +48,7 @@
             "permalink": "/blog/tags/axios-observable"
           }
         ],
-        "readingTime": 0.445,
+        "readingTime": 3.04,
         "hasTruncateMarker": true,
         "authors": [],
         "frontMatter": {
@@ -53,6 +57,7 @@
           "tags": [
             "vite",
             "react",
+            "sass",
             "tailwindcss",
             "redux",
             "redux-observable",
@@ -66,7 +71,7 @@
           "permalink": "/blog/2022/11/10/mtb-hopper-ramp-lite"
         }
       },
-      "content": "繼上一次[vite-react範本設定](/blog/2022/11/08/build-project-react-with-vite)\n\n這次要來擴充這個範本\n\n作成我工作上習慣的配置環境\n\n<!--truncate-->\n\n## extension\n+ tailwindcss 3 / postcss\n+ jest / storybook\n+ husky\n+ rxjs / observable-hooks\n+ redux / redux-observable\n+ axios-observable\n\n首先先拉上一次建好的範本再另外做一個擴充版本的範本\n\n```bash\n$ npx degit sayaku/reactSample viteReactTemplate\n```"
+      "content": "繼上一次[vite-react範本設定](/blog/2022/11/08/build-project-react-with-vite)\n\n這次要來擴充這個範本\n\n作成我工作上習慣的配置環境\n\n<!--truncate-->\n\n## extension\n+ sass / tailwindcss 3 / postcss\n+ jest / storybook\n+ husky\n+ rxjs / observable-hooks\n+ redux / redux-observable\n+ axios-observable\n\n首先拉上一次建好的範本再另外做一個擴充版本的範本\n\n```bash\n$ npx degit sayaku/reactSample viteReactTemplate\n```\n\n下載後進到資料夾\n\n```bash\n$ cd viteReactTemplate\n```\n\n## install sass / tailwindcss 3 / postcss\n\n首先安裝跟tailwindcss相關的依賴\n\n```bash\n$ yarn add sass tailwindcss postcss autoprefixer --dev\n```\n\n裝完後初始化tailwindcss與postcss的設定檔\n\n```bash\n$ npx tailwindcss init -p\n```\n這時目錄下會多兩個設定檔<code>postcss.config.cjs</code>, <code>tailwindcss.config.cjs</code>出來\n\n![](images/01.png)\n\n兩個檔案需要變動如下\n\nimport Tabs from '@theme/Tabs';\nimport TabItem from '@theme/TabItem';\n\n<Tabs>\n<TabItem value=\"postcss.config\" label=\"postcss.config.cjs\">\n\n```js\nmodule.exports= {\n  plugins: {\n    tailwindcss: {},\n    autoprefixer: {},\n  },\n}\n\n```\n\n</TabItem>\n\n<TabItem value=\"tailwindcss.config\" label=\"tailwindcss.config.cjs\">\n\n```js {2-5}\nmodule.exports= {\n  mode: \"jit\", // 開啟jit模式可以用自訂數字來定義寬高或間距\n  content: [\n    \"./index.html\",\n    \"./src/**/*.{js,ts,jsx,tsx}\",\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}\n\n```\n\n</TabItem>\n</Tabs>\n\nvite預設會去找有沒有符合postcss-load-config的檔案並且去套用它\n\n符合postcss-load-config檔名與副檔名可參考:[這裡](https://github.com/postcss/postcss-load-config#postcssrcjs-or-postcssconfigjs)\n\npostcss的config裡關於tailwindcss如果沒特別設定,預設會去抓<code>tailwindcss.config</code>\n\n也就是我們把vite給run起來的時候就會一起去跑postcss與tailwindcss的設定了\n\nvite設定真的少很多（望向webpack還要寫一堆loader...）\n\n預處理css的部分\n\nvite預設有支援sass, 不用另外像webpack來裝sass的loader, 但vite要另外裝sass的依賴（所以我們上面先裝過sass了）\n\n就算你不用sass, vite也預設支援<code>postcss-import</code>與<code>postcss-nesting</code>\n\n讓你可以在css上import其他css以及在css裡面像sass那樣能寫巢狀css\n\n這邊我們先去引入基本的tailwindcss\n\n然後在<code>App.tsx</code>做一些class的修改(套用tailwindcss class)\n\n<Tabs>\n<TabItem value=\"tailwind\" label=\"/src/style/tailwind.scss\">\n\n```css\n@tailwind base;\n@tailwind components;\n@tailwind utilities;\n```\n\n</TabItem>\n\n<TabItem value=\"index\" label=\"src/index.scss\">\n\n```css\n@import 'style/tailwind';\n\n```\n\n</TabItem>\n\n<TabItem value=\"app\" label=\"src/App.tsx\">\n\n```tsx {7-19}\nimport { useState } from \"react\";\nimport reactLogo from \"./assets/react.svg\";\n\nfunction App() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div className=\"flex flex-col\">\n      <div className=\"w-full flex justify-around p-10\">\n        <a href=\"https://vitejs.dev\" target=\"_blank\" className=\"basis-1/4\">\n          <img src=\"/vite.svg\" className=\"w-full aspect-square\" alt=\"Vite logo\" />\n        </a>\n        <a href=\"https://reactjs.org\" target=\"_blank\" className=\"basis-1/4\">\n          <img src={reactLogo} className=\"w-full aspect-square\" alt=\"React logo\" />\n        </a>\n      </div>\n      <h1 className=\"self-center text-lg mx-5\">Vite + React + Tailwindcss</h1>\n    </div>\n  );\n}\n\nexport default App;\n\n```\n\n</TabItem>\n</Tabs>\n\n接下來正式跑一下\n\n```bash\n$ yarn run dev\n```\n\n跑起來發現我們的tailwindcss都套用上去了\n\n![](images/02.png)\n\n到這邊基本的style的部分都設定好了\n\n\n## jest / storybook"
     },
     {
       "id": "/2022/11/10/mtb-hopper-ramp-lite",
