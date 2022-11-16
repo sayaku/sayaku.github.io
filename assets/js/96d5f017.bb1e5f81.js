@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksayaku=self.webpackChunksayaku||[]).push([[2043],{9688:function(a){a.exports=JSON.parse('{"label":"mtb","permalink":"/blog/tags/mtb","allTagsPath":"/blog/tags","count":1}')}}]);

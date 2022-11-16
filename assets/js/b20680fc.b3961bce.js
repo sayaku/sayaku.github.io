@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksayaku=self.webpackChunksayaku||[]).push([[5860],{5607:function(s){s.exports=JSON.parse('{"permalink":"/blog/tags/tailwindcss","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

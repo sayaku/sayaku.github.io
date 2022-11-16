@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksayaku=self.webpackChunksayaku||[]).push([[1648],{8621:function(a){a.exports=JSON.parse('{"label":"redux-observable","permalink":"/blog/tags/redux-observable","allTagsPath":"/blog/tags","count":1}')}}]);

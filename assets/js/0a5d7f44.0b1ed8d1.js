@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksayaku=self.webpackChunksayaku||[]).push([[5340],{7597:function(a){a.exports=JSON.parse('{"label":"axios-observable","permalink":"/blog/tags/axios-observable","allTagsPath":"/blog/tags","count":1}')}}]);

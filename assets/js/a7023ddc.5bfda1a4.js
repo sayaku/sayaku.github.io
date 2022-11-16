@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksayaku=self.webpackChunksayaku||[]).push([[713],{3457:function(a){a.exports=JSON.parse('[{"label":"mtb","permalink":"/blog/tags/mtb","count":1},{"label":"mtb-hopper","permalink":"/blog/tags/mtb-hopper","count":1},{"label":"vite","permalink":"/blog/tags/vite","count":1},{"label":"react","permalink":"/blog/tags/react","count":1}]')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksayaku=self.webpackChunksayaku||[]).push([[1480],{5147:function(a){a.exports=JSON.parse('{"label":"observable-hooks","permalink":"/blog/tags/observable-hooks","allTagsPath":"/blog/tags","count":1}')}}]);
