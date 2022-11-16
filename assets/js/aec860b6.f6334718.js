@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksayaku=self.webpackChunksayaku||[]).push([[6229],{4066:function(s){s.exports=JSON.parse('{"label":"sass","permalink":"/blog/tags/sass","allTagsPath":"/blog/tags","count":1}')}}]);
