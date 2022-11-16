@@ -3,7 +3,7 @@ title: "MTB Hopper Lite"
 date: 2022-11-10 16:00:12 +0800
 tags: [mtb, mtb-hopper]
 ---
-![](images/cover.png)
+![](images/cover.jpeg)
 網路上看到這個有趣的產品- MTB HOPPER
 
 簡單來說就是個可以簡易組合拆裝方便攜帶的行動跳台
@@ -133,5 +133,7 @@ tags: [mtb, mtb-hopper]
 youtube上有展示此跳台的很多應用
 
 有看到拿去玩街攀的各種誇張技巧
+
+![](images/cover2.jpg)
 
 
