@@ -14,7 +14,7 @@ tags: [vite, react, sass, tailwindcss, redux, redux-observable, rxjs, observable
 
 ## extension
 + sass / tailwindcss 3 / postcss
-+ jest / storybook
++ swc / jest
 + husky
 + rxjs / observable-hooks
 + redux / redux-observable
@@ -175,5 +175,19 @@ $ yarn run dev
 到這邊基本的style的部分都設定好了
 
 
-## jest / storybook
+## swc / jest
+
+以前在使用jest搭配typescript都必須要透過babel轉譯
+
+jest是使用CommonJS modules
+
+而vite / typescript則是使用ECMAScript Modules（簡稱ESM）
+
+所以以往都是透過babel將ESM轉成CommonJS
+
+在jest還沒有出ESM版本前, 現在有幾個選擇
+
++ 使用babel
++ 使用esbuild,開發者是figma(已被Adobe併購幫ＱＱ)的創始人之一, 用go寫的
++ 使用swc, 開發者是個韓國人，使用Rust寫的
 
