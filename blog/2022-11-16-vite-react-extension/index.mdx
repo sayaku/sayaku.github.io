@@ -15,9 +15,9 @@ tags: [vite, react, sass, tailwindcss, redux, redux-observable, rxjs, observable
 ## extension
 + sass / tailwindcss 3 / postcss
 + rxjs / observable-hooks
-+ redux-toolkit / redux-observable
++ redux-toolkit
++ redux-observable / axios-observable
 + husky
-+ axios-observable
 
 首先拉上一次建好的範本再另外做一個擴充版本的範本
 
@@ -207,7 +207,7 @@ $yarn add observable-hooks rxjs
 
 如何使用請參考[官網](https://observable-hooks.js.org/guide/#usage)範例（懂的就知道怎麼用了）
 
-## redux-toolkit / redux-observable
+## redux-toolkit
 
 接下來就是做全域狀態管理
 
@@ -403,6 +403,247 @@ export default App;
 run起來後應該會長這樣, 可以正常運作
 
 ![](./images/03.png)
+
+## redux-observable / axios-observable
+
+現在專案裡的Redux都是做同步處理
+
+如果今天要加入打API等非同步處理雖然可以透過redux-toolkit裡的createAsyncThunk
+
+但我們既然都使用rx了, 就統一都使用rx來串接非同步這塊
+
+畢竟非同步就是rx的強項
+
+當然你也可以在createAsyncThunk裡面使用rx
+
+但我實在不喜歡使用rx還要在那邊轉成promise還有async/await
+
+所以這邊透過Redux Middleware來處理非同步這一塊
+
+而Middleware我們使用redux-observable來處理非同步
+
+首先安裝redux-observable
+
+```bash
+$yarn add redux-observable -D
+```
+
+之後新增與修改下列檔案
+
+
+<Tabs>
+<TabItem value="todo.slice.ts-2" label="store/slices/todo.slice.ts">
+
+```ts {3,13,16,19-25}
+import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { filter, map, mergeMap } from "rxjs";
+import { AppEpic } from "../store.config";
+
+const initialState: { count: number; name: string } = {
+  count: 0,
+  name: "sayaku",
+};
+
+// Actions
+export const increment = createAction<number>("todo/INCREMENT");
+export const decrement = createAction<number>("todo/DECREMENT");
+export const updateName = createAction<string>("todo/UPDATE_NAME");
+
+// Async Actions
+export const fetchData = createAction<undefined>("todo/FETCH_DATA");
+
+// Epics
+export const fetchUserEpic: AppEpic = (action$, store, { getUserName }) =>
+  action$.pipe(
+    filter(fetchData.match),
+    mergeMap((action) =>
+      getUserName().pipe(map((response) => updateName(response.name)))
+    )
+  );
+
+/**
+ * Slice
+ */
+export const todoSlice = createSlice({
+  name: "todo",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(increment, (state, action: PayloadAction<number>) => {
+        return {
+          ...state,
+          count: state.count + action.payload,
+        };
+      })
+      .addCase(decrement, (state, action: PayloadAction<number>) => {
+        return {
+          ...state,
+          count: state.count - action.payload,
+        };
+      })
+      .addCase(updateName, (state, action: PayloadAction<string>) => {
+        return {
+          ...state,
+          name: action.payload,
+        };
+      });
+  },
+});
+
+/**
+ * Reducer
+ */
+export default todoSlice.reducer;
+
+```
+
+</TabItem>
+
+<TabItem value="epics" label="store/epics.ts">
+
+```ts
+import { combineEpics } from "redux-observable";
+import { fetchUserEpic as TodoFetchUserEpic } from "./slices/todo.slice";
+
+export const rootEpic = combineEpics(TodoFetchUserEpic);
+
+
+```
+
+</TabItem>
+
+<TabItem value="fakeApi" label="store/fakeApi.ts">
+
+```ts
+import { map, timer } from "rxjs";
+
+export const fakeApi = {
+  getUserName: () =>
+    timer(2000).pipe(map(() => ({ name: "Monica" }))),
+};
+
+```
+
+</TabItem>
+
+<TabItem value="store-config" label="store/store.config.ts">
+
+```ts
+import { fakeApi } from "./fakeApi";
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./reducers";
+import { createEpicMiddleware, Epic } from "redux-observable";
+import { Action } from "@reduxjs/toolkit";
+import { rootEpic } from "./epics";
+
+// type definition
+export type AppState = ReturnType<typeof rootReducer>; // for useSelector
+export type AppDispatch = typeof store.dispatch;
+export type AppEpic = Epic<Action, Action, AppState, typeof fakeApi>;
+
+export const epicMiddleware = createEpicMiddleware<
+  Action,
+  Action,
+  AppState,
+  typeof fakeApi
+>({
+  dependencies: fakeApi,
+});
+
+// 透過 configureStore() 建立 Redux Store
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware(),
+    epicMiddleware,
+  ],
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+
+// epicMiddleware執行必須要在初始store之後
+epicMiddleware.run(rootEpic);
+
+
+```
+
+</TabItem>
+</Tabs>
+
+在Redux裡面的Middleware執行點是Dispatch Action後與進到Reducer之前
+
+所以非同步的動作我們都會在Middleware裡面實作
+
+我們這邊非同步使用redux-observable裡的Epic
+
+這個如果在Angular上使用的ngrx裡是相當於effect的角色
+
+特點在於Action in Action out
+
+他的生命週期大概是這樣
+
+![](./images/04.png)
+
+回到<code>App.tsx</code>這邊做修改
+
+```tsx {10, 19-29}
+import { useObservable, useObservableState } from "observable-hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { map } from "rxjs";
+import reactLogo from "./assets/react.svg";
+import { decrement, fetchData, increment } from "./store/slices/todo.slice";
+import { RootState } from "./store/store.config";
+
+function App() {
+  const count = useSelector((state: RootState) => state.todoStore.count);
+  const name = useSelector((state: RootState) => state.todoStore.name);
+  const dispatch = useDispatch();
+  const twiceCount = useObservableState(
+    useObservable((obs$) => obs$.pipe(map(([v]) => v * 2)), [count])
+  );
+
+  return (
+    <div className="flex flex-col">
+      ...
+      <div className="w-full flex justify-around p-10">
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => dispatch(fetchData())}
+        >
+          launch api
+        </button>
+
+        <div>name: {name}</div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+這邊就完成redux裡打Api等非同步處理的動作了
+
+在畫面上按下launch api, 兩秒後會更新store, 預期會看到name從sayaku換成monica
+
+這邊我們的api是做假的
+
+而實際上真實要打Api我會另外使用axios
+
+axios-observable則是使用rxjs將axios包裝起來
+
+同時也能做攔截器
+
+是個很方便的套件
+
+一樣也是把它裝起來
+
+```bash
+$yarn add axios axios-observable
+```
+
 
 
 
