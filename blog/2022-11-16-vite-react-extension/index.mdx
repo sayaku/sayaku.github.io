@@ -15,8 +15,7 @@ tags: [vite, react, sass, tailwindcss, redux, redux-observable, rxjs, observable
 ## extension
 + sass / tailwindcss 3 / postcss
 + rxjs / observable-hooks
-+ redux / redux-observable
-+ swc / jest
++ redux-toolkit / redux-observable
 + husky
 + axios-observable
 
@@ -206,23 +205,207 @@ $ yarn run dev
 $yarn add observable-hooks rxjs
 ```
 
-如何使用其實參考[官網](https://observable-hooks.js.org/guide/#usage)範例（懂的就知道怎麼用了）
+如何使用請參考[官網](https://observable-hooks.js.org/guide/#usage)範例（懂的就知道怎麼用了）
+
+## redux-toolkit / redux-observable
+
+接下來就是做全域狀態管理
+
+我們都熟悉使用redux, 但寫起來實在是很麻煩
+
+所以我們用redux-toolkit來簡化寫redux的流程
+
+首先安裝
+
+```bash
+$yarn add @reduxjs/toolkit react-redux
+```
+
+建立slice, 這裡面同時包含init state, action, reducer
+
+專案上是否要把action, reducer或是epic分檔案寫可由團隊決定
+
+新增資料夾與檔案如下
+
+<Tabs>
+<TabItem value="todo.slice.ts" label="store/slices/todo.slice.ts">
+
+```ts
+import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+const initialState: { count: number; name: string } = {
+  count: 0,
+  name: "sayaku",
+};
+
+// Actions
+export const increment = createAction<number>("todo/INCREMENT");
+export const decrement = createAction<number>("todo/DECREMENT");
+
+/**
+ * Slice
+ */
+export const todoSlice = createSlice({
+  name: "todo",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(increment, (state, action: PayloadAction<number>) => {
+        return {
+          ...state,
+          count: state.count + action.payload,
+        };
+      })
+      .addCase(decrement, (state, action: PayloadAction<number>) => {
+        return {
+          ...state,
+          count: state.count - action.payload,
+        };
+      });
+  },
+});
+
+
+/**
+ * Reducer
+ */
+ export default todoSlice.reducer;
+
+
+
+```
+
+</TabItem>
+
+<TabItem value="reducer.ts" label="store/reducer.ts">
+
+```ts
+import { combineReducers } from '@reduxjs/toolkit';
+import todoReducer from './slices/todo.slice';
+
+
+const rootReducer = combineReducers({
+  todoStore: todoReducer
+});
+
+export default rootReducer;
+
+```
+
+</TabItem>
+
+<TabItem value="store.config.ts" label="store/store.config.ts">
+
+```ts
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './reducers';
+
+// 透過 configureStore() 建立 Redux Store
+export const store = configureStore({
+  reducer: rootReducer,
+});
+
+// type definition
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
+
+```
+
+</TabItem>
+
+<TabItem value="main.tsx" label="main.tsx">
+
+```tsx {5,6,10,12}
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.scss";
+import { store } from "./store/store.config";
+import { Provider } from "react-redux";
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);
+
+
+```
+
+</TabItem>
+</Tabs>
+
+基礎設定好以後
+
+可以開始使用了
+
+下面簡單使用如何從store拿值
+
+以及透過Observable-hooks實現在hooks裡使用rx與狀態管理
+
+```tsx title=App.tsx {1-9,12-17,38-45}
+import {
+  useObservable,
+  useObservableState,
+} from "observable-hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { map } from "rxjs";
+import reactLogo from "./assets/react.svg";
+import { decrement, increment } from "./store/slices/todo.slice";
+import { RootState } from "./store/store.config";
+
+function App() {
+  const count = useSelector((state: RootState) => state.todoStore.count);
+  const dispatch = useDispatch();
+  // 當store的count變動時透過rx去對count做處理,這邊的範例是當count變動時將count乘以2
+  const twiceCount = useObservableState(
+    useObservable((obs$) => obs$.pipe(map(([v]) => v * 2)), [count])
+  );
+
+  return (
+    <div className="flex flex-col">
+      <div className="w-full flex justify-around p-10">
+        <a href="https://vitejs.dev" target="_blank" className="basis-1/4">
+          <img
+            src="/vite.svg"
+            className="w-full aspect-square"
+            alt="Vite logo"
+          />
+        </a>
+        <a href="https://reactjs.org" target="_blank" className="basis-1/4">
+          <img
+            src={reactLogo}
+            className="w-full aspect-square"
+            alt="React logo"
+          />
+        </a>
+      </div>
+      <h1 className="self-center text-lg mx-5">Vite + React + Tailwindcss</h1>
+      <div className="w-full flex justify-around p-10">
+        <div>count: {count}</div>
+        <div>twiceCount: {twiceCount}</div>
+      </div>
+      <div className="w-full flex justify-around p-10">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => dispatch(increment(1))}>increment</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => dispatch(decrement(1))}>decrement</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+```
+run起來後應該會長這樣, 可以正常運作
+
+![](./images/03.png)
 
 
 
 
-## swc / jest
 
-以前在使用jest搭配typescript都必須要透過babel轉譯
 
-jest是使用CommonJS modules
-
-而vite / typescript則是使用ECMAScript Modules（簡稱ESM）
-
-所以以往都是透過babel將ESM轉成CommonJS
-
-在jest還沒有出ESM版本前, 現在有幾個選擇
-
-+ 使用babel
-+ 使用esbuild,開發者是figma(已被Adobe併購幫ＱＱ)的創始人之一, 用go寫的
-+ 使用swc, 開發者是個韓國人，使用Rust寫的
