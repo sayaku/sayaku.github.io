@@ -17,7 +17,6 @@ tags: [vite, react, sass, tailwindcss, redux, redux-observable, rxjs, observable
 + rxjs / observable-hooks
 + redux-toolkit
 + redux-observable / axios-observable
-+ husky
 
 首先拉上一次建好的範本再另外做一個擴充版本的範本
 
@@ -643,6 +642,74 @@ axios-observable則是使用rxjs將axios包裝起來
 ```bash
 $yarn add axios axios-observable
 ```
+簡單的操作GET/POST如下
+
+```tsx title=GET
+import Axios from  'axios-observable';
+// or const Axios = require('axios-observable').Axios;
+
+// Make a request for a user with a given ID
+Axios.get('/user?ID=12345')
+  .subscribe(
+    response => console.log(response),
+    error => console.log(error)
+  );
+```
+
+```tsx title=POST
+Axios.post('/user', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
+   .subscribe(
+    response => console.log(response),
+    error => console.log(error)
+  );
+```
+
+為什麼使用rx的observable會優於promise
+
+比如一個情境
+
+我在打API失敗後要retry, retry次數3次
+
+你可以想想在promise的寫法會多麻煩
+
+用observable的寫法就會直覺很多
+
+```tsx 
+Axios.post('/user', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
+  .pipe(
+  	retry(3)
+  )
+   .subscribe(
+    response => console.log(response),
+    error => console.log(error)
+  );
+```
+
+相關功能與api很多可以參閱[repo](https://github.com/zhaosiyang/axios-observable#readme)
+
+以上就是我工作上基本上會用到的配置
+
+像是還有其他code管理例如husky
+
+或是關於Testing的部分之後再另開篇幅來新增
+
+目前的code也直接變成一個新專案的範本
+
+以後直接這樣下就可以了
+
+```bash
+$ npx degit sayaku/viteReactTemplate new_react_project
+```
+
+
+
+
 
 
 
