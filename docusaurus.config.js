@@ -46,15 +46,15 @@ const editUrl = `https://github.com/sayaku/${projectName}/edit/main`
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "SAYAKU",
-  tagline: "喜歡鐵道單車咖啡的前端碼農",
+  title: "KOJUNG",
+  tagline: "",
   url: MAIN_URL, //process.env.URL,
   baseUrl: "/", //process.env.BASE_URL,
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.png",
   trailingSlash: false,
-  organizationName: "sayaku", // Usually your GitHub org/user name.
+  organizationName: "kojung", // Usually your GitHub org/user name.
   projectName: projectName, // Usually your repo name.
   deploymentBranch: "master",
   i18n: {
@@ -87,17 +87,17 @@ module.exports = {
       maxHeadingLevel: 5,
     },
     metadata: [{
-        name: 'robots',
-        content: 'max-image-preview:large'
-      },
-      {
-        name: 'og:type',
-        content: 'article'
-      },
-      {
-        name: 'fb:app_id',
-        content: '173025689387886'
-      }
+      name: 'robots',
+      content: 'max-image-preview:large'
+    },
+    {
+      name: 'og:type',
+      content: 'article'
+    },
+    {
+      name: 'fb:app_id',
+      content: '173025689387886'
+    }
     ],
     docs: {
       sidebar: {
@@ -125,27 +125,27 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
     navbar: {
-      title: "SAYAKU",
+      title: "KOJUNG",
       logo: {
         alt: "Site Logo",
         src: "img/logo.png",
       },
       items: [{
-          type: "doc",
-          docId: "intro/intro",
-          position: "left",
-          label: "文件庫",
-        },
-        {
-          to: "/blog",
-          label: "部落格",
-          position: "left",
-        },
+        type: "doc",
+        docId: "intro/intro",
+        position: "left",
+        label: "文件庫",
+      },
+      {
+        to: "/blog",
+        label: "部落格",
+        position: "left",
+      },
       ],
     },
     footer: {
       style: "dark",
-      copyright: `Copyright © ${new Date().getFullYear()} Sayaku Lin(林克融). Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Kojung Lin(林克融. Sayaku). Built with Docusaurus.`,
     },
   },
   presets: [
@@ -197,32 +197,32 @@ module.exports = {
     ],
   ],
   stylesheets: [{
-      href: "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css",
-      type: "text/css",
-      integrity: "sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc",
-      crossorigin: "anonymous",
-    },
-    {
-      rel: "preconnect",
-      href: "https://fonts.googleapis.com",
-    },
-    {
-      rel: "preconnect",
-      href: "https://fonts.gstatic.com",
-      crossorigin: "anonymous",
-    },
-    {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap",
-    },
+    href: "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css",
+    type: "text/css",
+    integrity: "sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc",
+    crossorigin: "anonymous",
+  },
+  {
+    rel: "preconnect",
+    href: "https://fonts.googleapis.com",
+  },
+  {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossorigin: "anonymous",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap",
+  },
   ],
   scripts: [{
-      src: "https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js",
-      async: true,
-    },
-    {
-      src: "/assets/enablePangu.js",
-      async: true,
-    },
+    src: "https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js",
+    async: true,
+  },
+  {
+    src: "/assets/enablePangu.js",
+    async: true,
+  },
   ],
 };
