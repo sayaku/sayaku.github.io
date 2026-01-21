@@ -6,10 +6,10 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "reveal": "reveal-md slides/ --listing-template templates/listing.html --static static/slides",
-    "start": "set TZ=Asia/Taipei && set URL=http://localhost&& set BASE_URL=/&& yarn new && docusaurus start -p 9527",
+    "start": "set TZ=Asia/Taipei && set URL=http://localhost&& set BASE_URL=/&& npm run new && docusaurus start -p 9527",
     "build": "set TZ=Asia/Taipei && set URL=https://sayaku.github.io&& set BASE_URL=/&&docusaurus build",
     "swizzle": "set URL=http://localhost&& set BASE_URL=/&& docusaurus swizzle",
-    "deploy": "yarn new && USE_SSH=true docusaurus deploy",
+    "deploy": "npm run new && USE_SSH=true docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
@@ -109,6 +109,5 @@
   },
   "engines": {
     "node": ">=16.14"
-  },
-  "packageManager": "yarn@3.6.4"
+  }
 }
